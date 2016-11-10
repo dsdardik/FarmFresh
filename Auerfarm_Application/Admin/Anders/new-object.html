@@ -1,0 +1,125 @@
+﻿<!Doctype html>
+<html lang=en>
+<head>
+	<meta charset="utf-8">
+	<link href="/Content/bootstrap.min.css" rel="stylesheet">
+	<link href="/Content/style.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+ 			<div class="nav-image navbar-left">
+ 				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"></a>
+ 			</div>
+   			<div class="nav-options navbar-left">
+   			 	<ul class="nav navbar-nav">
+ 	     			<li><a class="hyper-nav" href="announcements.html">Announcements & News</a></li>
+ 	     			<li><a  class="hyper-nav" href="map-objects.html">Interactive Map</a></li>
+    			</ul>
+    		</div>
+    		<div class="nav-welcome navbar-right">
+   			 	<h3>Welcome Admin!</h3>
+    		</div>
+	</nav>
+
+	<div class="container-fluid page-content">
+		<div class="row page-title">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h2>Create Map Object:</h2>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Object Type:</h5>
+			</div>
+			<div class="col-md-6">
+				<select class="selectpicker form-control" id="object-type-select" required>
+					<option value="" disabled selected>...</option>
+					<option value="animal">Animal</option>
+					<option value="plant">Plant</option>
+					<option value="landmark">Landmark</option>
+					<option value="building">Building</option>
+					<option value="equipment">Equipment</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Map Coordinates:</h5>
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control object-lat" placeholder="latitude" />
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control object-long" placeholder="longitude" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Display:</h5>
+			</div>
+			<div class="col-md-6 center-input">
+					<input type="checkbox" class="object-display" checked />
+					<span>Show on map</span>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<hr />
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Default Image:</h5>
+			</div>
+			<div class="col-md-6 center-input">
+				<input type="file" class="object-def-image" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Object Name:</h5>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control object-name" placeholder="" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Object Description:</h5>
+			</div>
+			<div class="col-md-6">
+				<textarea class="form-control object-description" rows="6" ></textarea>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Add Other Image:</h5>
+			</div>
+			<div class="col-md-6 center-input">
+				<input type="file" class="object-image-add" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-default" id="submit-new-object">Create</button>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</body>

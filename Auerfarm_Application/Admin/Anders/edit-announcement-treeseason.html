@@ -1,0 +1,106 @@
+﻿<!Doctype html>
+<html lang=en>
+<head>
+	<meta charset="utf-8">
+	<link href="/Content/bootstrap.min.css" rel="stylesheet">
+	<link href="/Content/style.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+ 			<div class="nav-image navbar-left">
+ 				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"></a>
+ 			</div>
+   			<div class="nav-options navbar-left">
+   			 	<ul class="nav navbar-nav">
+ 	     			<li><a class="hyper-nav" href="announcements.html">Announcements & News</a></li>
+ 	     			<li><a  class="hyper-nav" href="map-objects.html">Interactive Map</a></li>
+    			</ul>
+    		</div>
+    		<div class="nav-welcome navbar-right">
+   			 	<h3>Welcome Admin!</h3>
+    		</div>
+	</nav>
+
+	<div class="container-fluid page-content">
+		<div class="row page-title">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h2>Edit Announcement:</h2>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Announcement Type:</h5>
+			</div>
+			<div class="col-md-6">
+				<select class="selectpicker form-control" id="announcement-type-select" required>
+					<option value="" disabled >...</option>
+					<option value="news">News</option>
+					<option value="cal-event" selected>Calendar Event</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Date:</h5>
+			</div>
+			<div class="col-md-2 center-input">
+				<input type="checkbox" class="has-date" checked />
+				<span>Has date</span>
+			</div>
+			<div class="col-md-4">
+				<input type="date" class="form-control anouncement-date" value="2016-11-26"/>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<hr />
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Default Image:</h5>
+			</div>
+			<div class="col-md-4">
+				<image class="def-image" src="/Content/wreath.jpg" alt="cow">
+			</div>
+			<div class="col-md-2">
+			<button type="button" class="btn btn-default" id="change-def-image">change</button>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Announcement Title:</h5>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control announcement-title" value="Christmas Tree and Holiday Wreath Season!" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Announcement Description:</h5>
+			</div>
+			<div class="col-md-6">
+				<textarea class="form-control announcement-description" rows="6" >Auerfarm Christmas Tree/Holiday Wreath sales start Saturday November 26th...</textarea>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-default" id="update-announcement">Update Info</button>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</body>
