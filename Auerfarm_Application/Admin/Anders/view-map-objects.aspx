@@ -1,21 +1,24 @@
-﻿<!Doctype html>
-<html lang=en>
-<head>
-	<meta charset="utf-8">
-	<link href="/Content/bootstrap.min.css" rel="stylesheet">
-	<link href="/Content/style.css" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="view-map-objects.aspx.cs" Inherits="Auerfarm_Application.Admin.Anders.view_map_objects" %>
 
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8"/>
+	<link href="/Content/bootstrap.min.css" rel="stylesheet"/>
+	<link href="/Content/style.css" rel="stylesheet"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
  			<div class="nav-image navbar-left">
  				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"></a>
  			</div>
    			<div class="nav-options navbar-left">
    			 	<ul class="nav navbar-nav">
  	     			<li><a class="hyper-nav" href="announcements.html">Announcements & News</a></li>
- 	     			<li><a  class="hyper-nav" href="map-objects.html">Interactive Map</a></li>
+ 	     			<li><a  class="hyper-nav" href="map-objects.aspx">Interactive Map</a></li>
     			</ul>
     		</div>
     		<div class="nav-welcome navbar-right">
@@ -68,3 +71,4 @@
 		
 	</div>
 </body>
+</html>

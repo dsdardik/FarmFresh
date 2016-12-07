@@ -1,10 +1,14 @@
-﻿<!Doctype html>
-<html lang=en>
-<head>
-	<meta charset="utf-8">
-	<link href="/Content/bootstrap.min.css" rel="stylesheet">
-	<link href="/Content/style.css" rel="stylesheet">
-    <meta name="viewport" content="initial-scale=1.0">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="map-objects.aspx.cs" Inherits="Auerfarm_Application.Admin.Anders.map_objects" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+<meta charset="utf-8"/>
+	<link href="/Content/bootstrap.min.css" rel="stylesheet"/>
+	<link href="/Content/style.css" rel="stylesheet"/>
+    <meta name="viewport" content="initial-scale=1.0"/>
     <style>
           /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
@@ -17,16 +21,15 @@
           }
     </style>
 </head>
-
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
  			<div class="nav-image navbar-left">
- 				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"></a>
+ 				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"/></a>
  			</div>
    			<div class="nav-options navbar-left">
    			 	<ul class="nav navbar-nav">
  	     			<li><a class="hyper-nav" href="announcements.html">Announcements & News</a></li>
- 	     			<li><a  class="hyper-nav" href="map-objects.html">Interactive Map</a></li>
+ 	     			<li><a  class="hyper-nav" href="map-objects.aspx">Interactive Map</a></li>
     			</ul>
     		</div>
     		<div class="nav-welcome navbar-right">
@@ -39,7 +42,8 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h2>Interactive Map:</h2>
-				<p>Here you can view, edit, or remove current map objects by selecting "View / Edit / Remove Map Objects".  You can also create new map objects by selecting "Create New Map Object".</p>
+				<p>Here you can view, edit, or remove current map objects by selecting "View / Edit / Remove Map Objects".  You can also create new map objects by selecting "Create New Map Object".
+                 Below is the current Map being displayed to mobile users: </p>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -54,21 +58,6 @@
           zoom: 18,
           mapTypeId: 'satellite'
         });
-
-        var drawingManager = new google.maps.drawing.DrawingManager({
-            drawingMode: google.maps.drawing.OverlayType.MARKER,
-            drawingControl: true,
-            drawingControlOptions: {
-                position: google.maps.ControlPosition.BOTTOM_CENTER,
-                drawingModes: ['marker']
-            },
-            markerOptions:
-            {
-                draggable: true,
-            },
-
-        });
-        drawingManager.setMap(map);
       }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&libraries=drawing&callback=initMap"
@@ -77,7 +66,7 @@
 		<div class="row nav-button-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<a href="view-map-objects.html">
+				<a href="view-map-objects.aspx">
 					<button type="button" class="btn btn-default form-control" id="new-announcement">View / Edit / Remove Map Objects</button>
 				</a>
 			</div>
@@ -86,7 +75,7 @@
 		<div class="row nav-button-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<a href="new-object.html">
+				<a href="new-object.aspx">
 					<button type="button" class="btn btn-default form-control" id="new-announcement">Create a New Map Object</button>
 				</a>
 			</div>
@@ -94,3 +83,4 @@
 		</div>
 	</div>
 </body>
+</html>
