@@ -1,0 +1,18 @@
+﻿.login {
+    position:absolute;
+    top:30%;
+    display:block;
+    left:40%;
+    background:white;
+    border:solid;
+    border-color:#619FF8;
+    border-width:2px;
+    padding: 20px 20px 20px 20px;
+}
+
+.main-body {
+    background: url('/Content/farm_flowers.jpg') ;
+    background-size:cover;
+
+}
+
