@@ -136,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Anders\announcements.html" />
+    <Content Include="Admin\Anders\map-objects.aspx" />
+    <Content Include="Admin\Anders\new-object.aspx" />
+    <Content Include="Admin\Anders\view-map-objects.aspx" />
     <Content Include="Content\auerfarm-logo.jpeg" />
     <Content Include="Content\barn_background.jpg" />
     <Content Include="Content\cow.jpg" />
@@ -143,12 +146,9 @@
     <Content Include="Admin\Anders\edit-object-cow.html" />
     <Content Include="Content\grass-sky-background.jpg" />
     <Content Include="Admin\Anders\index.html" />
-    <Content Include="Admin\Anders\map-objects.html" />
     <Content Include="Admin\Anders\new-announcement.html" />
-    <Content Include="Admin\Anders\new-object.html" />
     <Content Include="Content\style.css" />
     <Content Include="Admin\Anders\view-announcements.html" />
-    <Content Include="Admin\Anders\view-map-objects.html" />
     <Content Include="Content\wreath.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -209,6 +209,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Anders\map-objects.aspx.cs">
+      <DependentUpon>map-objects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Anders\map-objects.aspx.designer.cs">
+      <DependentUpon>map-objects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Anders\new-object.aspx.cs">
+      <DependentUpon>new-object.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Anders\new-object.aspx.designer.cs">
+      <DependentUpon>new-object.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Anders\view-map-objects.aspx.cs">
+      <DependentUpon>view-map-objects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Anders\view-map-objects.aspx.designer.cs">
+      <DependentUpon>view-map-objects.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
