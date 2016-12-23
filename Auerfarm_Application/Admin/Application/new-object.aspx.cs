@@ -19,13 +19,6 @@ namespace Auerfarm_Application.Admin.Anders
 
         }
 
-        [WebMethod]
-        public void getCoordinates(float data1, float data2)
-        {
-            x = data1;
-            y = data2;
-        }
-
         protected void submit_new_object_clicked(object sender, EventArgs e)
         {
             string connection_string = "Server=OWNERPC;Database=Auerfarm;Trusted_Connection=true";
@@ -34,8 +27,8 @@ namespace Auerfarm_Application.Admin.Anders
                 string query = "INSERT INTO marker_table (marker_Label, x_coordinate, y_coordinate, marker_type, marker_image, marker_desc) VALUES (@marker_Label, @x_coordinate, @y_coordinate, @marker_type, @marker_image, @marker_desc)";
                 SqlCommand myCommand = new SqlCommand(query, conn);
                 myCommand.Parameters.AddWithValue("@marker_Label", map_label.Value);
-                myCommand.Parameters.AddWithValue("@x_coordinate", x);
-                myCommand.Parameters.AddWithValue("@y_coordinate", y);
+                myCommand.Parameters.AddWithValue("@x_coordinate", Hidden1.Value);
+                myCommand.Parameters.AddWithValue("@y_coordinate", Hidden2.Value);
                 myCommand.Parameters.AddWithValue("@marker_type", object_type_select.Value);
                 myCommand.Parameters.AddWithValue("@marker_image", DBNull.Value);
                 myCommand.Parameters.AddWithValue("@marker_desc", object_desc.Value);
@@ -48,7 +41,7 @@ namespace Auerfarm_Application.Admin.Anders
             {
                 Console.WriteLine("Error: " + error.ToString());
             }
-
+            Server.Transfer("map-objects.aspx");
         }
     }
 }

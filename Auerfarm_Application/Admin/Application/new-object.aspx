@@ -44,25 +44,6 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-		<div class="row input-row">
-			<div class="col-md-2"></div>
-			<div class="col-md-2">
-				<h5 class="input-label">Marker Type</h5>
-			</div>
-			<div class="col-md-6">
-				<select class="selectpicker form-control" id="object_type_select" runat="server" required>
-					<option value="" disabled selected>...</option>
-					<option value="animal">Animal</option>
-					<option value="plant">Plant</option>
-					<option value="landmark">Landmark</option>
-					<option value="building">Building</option>
-					<option value="equipment">Equipment</option>
-					<option value="other">Other</option>
-				</select>
-			</div>
-           
-			<div class="col-md-2"></div>
-		</div>
         <br /><br />
         <div id="map"></div>
         <script>
@@ -97,47 +78,70 @@
                           drawingModes: []
                       }
                   });
-
-
+                  
                   drawingManager.setDrawingMode(null);
                   var point = marker.getPosition();
                   var x = point.lat();
                   var y = point.lng();
-
-                  $.ajax({
-                      type: "POST",
-                      url: "new-object.aspx/GetCoordinates",
-                      data: { data1: x, data2: y },
-                      contentType: "application/json; charset=utf-8",
-                      dataType: "json"
-                  });
+                  document.getElementById("Hidden1").value = x;
+                  document.getElementById("Hidden2").value = y;
 
                   google.maps.event.addListener(marker, 'dragend', function (event)
                   {
                       var point = marker.getPosition();
                       var x = point.lat();
                       var y = point.lng();
-
-                      $.ajax({
-                          type: "POST",
-                          url: "new-object.aspx/getCoordinates",
-                          data: { data1: x, data2: y },
-                          contentType: "application/json; charset=utf-8",
-                          dataType: "json"
-                      });
-
-                      
+                      document.getElementById("Hidden1").value = x;
+                      document.getElementById("Hidden2").value = y; 
                   });
 
               });
-
-          }
+           }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&libraries=drawing&callback=initMap"
                 async defer></script>
         <br /><br />
 		
 		<hr />
+        <div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Marker Type</h5>
+			</div>
+			<div class="col-md-6">
+				<select class="selectpicker form-control" id="object_type_select" runat="server" required>
+					<option value="" disabled selected>...</option>
+					<option value="animal">Animal</option>
+					<option value="plant">Plant</option>
+					<option value="landmark">Landmark</option>
+					<option value="building">Building</option>
+					<option value="equipment">Equipment</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+           
+			<div class="col-md-2"></div>
+		</div>
+        <div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Map Label:</h5>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control object-name" runat="server" id="map_label" placeholder="" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+        <div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				<h5 class="input-label">Object Description:</h5>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control object-description" runat="server" id="object_desc" />
+			</div>
+			<div class="col-md-2"></div>
+		</div>
 		<div class="row input-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
@@ -150,36 +154,16 @@
 		</div>
 		<div class="row input-row">
 			<div class="col-md-2"></div>
-			<div class="col-md-2">
-				<h5 class="input-label">Map Label:</h5>
-			</div>
-			<div class="col-md-6">
-				<input type="text" class="form-control object-name" runat="server" id="map_label" placeholder="" />
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-		<div class="row input-row">
-			<div class="col-md-2"></div>
-			<div class="col-md-2">
-				<h5 class="input-label">Object Description:</h5>
-			</div>
-			<div class="col-md-6">
-				<input type="text" class="form-control object-description" runat="server" id="object_desc" />
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-		<div class="row input-row">
-			<div class="col-md-2"></div>
 			<div class="col-md-8">
-                <a href ="map-objects.aspx" runat="server" onserverclick ="submit_new_object_clicked">
-				<button type="button" class="btn btn-default">
+				<button type="button" class="btn btn-default" runat="server" onserverclick="submit_new_object_clicked">
                     Save and Create New Map Marker
 				</button>
-                </a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
+        <input id="Hidden1" type="hidden" runat="server"/>
+        <input id="Hidden2" type="hidden" runat="server"/>
         </form>
 </body>
 </html>

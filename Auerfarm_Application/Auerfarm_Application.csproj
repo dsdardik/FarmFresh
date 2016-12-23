@@ -159,23 +159,23 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Anders\announcements.html" />
-    <Content Include="Admin\Anders\map-objects.aspx" />
-    <Content Include="Admin\Anders\new-object.aspx" />
-    <Content Include="Admin\Anders\view-map-objects.aspx" />
+    <Content Include="Admin\Application\announcements.html" />
+    <Content Include="Admin\Application\map-objects.aspx" />
+    <Content Include="Admin\Application\new-object.aspx" />
+    <Content Include="Admin\Application\view-map-objects.aspx" />
     <Content Include="Content\auerfarm-logo.jpeg" />
     <Content Include="Content\barn_background.jpg" />
     <Content Include="Content\cow.jpg" />
-    <Content Include="Admin\Anders\edit-announcement-treeseason.html" />
-    <Content Include="Admin\Anders\edit-object-cow.html" />
+    <Content Include="Admin\Application\edit-announcement-treeseason.html" />
+    <Content Include="Admin\Application\edit-object-cow.html" />
     <Content Include="Content\farm_flowers.jpg" />
     <Content Include="Content\grass-sky-background.jpg" />
-    <Content Include="Admin\Anders\index.html" />
-    <Content Include="Admin\Anders\new-announcement.html" />
-    <Content Include="Admin\Anders\new-object.html" />
+    <Content Include="Admin\Application\index.html" />
+    <Content Include="Admin\Application\new-announcement.html" />
+    <Content Include="Admin\Application\new-object.html" />
     <Content Include="Content\login.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Admin\Anders\view-announcements.html" />
+    <Content Include="Admin\Application\view-announcements.html" />
     <Content Include="Content\wreath.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -237,25 +237,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Anders\map-objects.aspx.cs">
+    <Compile Include="Admin\Application\map-objects.aspx.cs">
       <DependentUpon>map-objects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Anders\map-objects.aspx.designer.cs">
+    <Compile Include="Admin\Application\map-objects.aspx.designer.cs">
       <DependentUpon>map-objects.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Anders\new-object.aspx.cs">
+    <Compile Include="Admin\Application\new-object.aspx.cs">
       <DependentUpon>new-object.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Anders\new-object.aspx.designer.cs">
+    <Compile Include="Admin\Application\new-object.aspx.designer.cs">
       <DependentUpon>new-object.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Anders\view-map-objects.aspx.cs">
+    <Compile Include="Admin\Application\view-map-objects.aspx.cs">
       <DependentUpon>view-map-objects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Anders\view-map-objects.aspx.designer.cs">
+    <Compile Include="Admin\Application\view-map-objects.aspx.designer.cs">
       <DependentUpon>view-map-objects.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
