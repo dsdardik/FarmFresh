@@ -172,7 +172,6 @@
     <Content Include="Content\grass-sky-background.jpg" />
     <Content Include="Admin\Application\index.html" />
     <Content Include="Admin\Application\new-announcement.html" />
-    <Content Include="Admin\Application\new-object.html" />
     <Content Include="Content\login.css" />
     <Content Include="Content\style.css" />
     <Content Include="Admin\Application\view-announcements.html" />

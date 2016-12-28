@@ -22,6 +22,7 @@
     </style>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
  			<div class="nav-image navbar-left">
  				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"/></a>
@@ -52,12 +53,31 @@
         <script>
       var map;
       function initMap() {
+          var markers = JSON.parse('<%=ConvertDataTabletoString() %>');
           var auerfarm = {lat: 41.811224, lng: -72.774158};
         map = new google.maps.Map(document.getElementById('map'), {
           center: auerfarm,
           zoom: 18,
           mapTypeId: 'satellite'
         });
+        var infoWindow = new google.maps.InfoWindow();
+        for (i = 0; i < markers.length; i++) {
+            var data = markers[i]
+            var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                label: data.title
+            });
+            (function (marker, data) {
+
+                // Attaching a click event to the current marker
+                google.maps.event.addListener(marker, "click", function (e) {
+                    infoWindow.setContent(data.description);
+                    infoWindow.open(map, marker);
+                });
+            })(marker, data);
+        }
       }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&libraries=drawing&callback=initMap"
