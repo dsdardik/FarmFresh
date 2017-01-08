@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -24,53 +25,54 @@ namespace Auerfarm_Application.Admin.Anders
             string connection_string = "Server=OWNERPC;Database=Auerfarm;Trusted_Connection=true";
             SqlConnection conn = new SqlConnection(connection_string);
             String label = map_label.Value;
+            String imgPath = marker_image.PostedFile.FileName;
+            String imgName = Path.GetFileName(imgPath);
+            String ext = Path.GetExtension(imgName);
             double x = Convert.ToDouble(string.IsNullOrEmpty(Hidden1.Value) ? "0" : Hidden1.Value);
             double y = Convert.ToDouble(string.IsNullOrEmpty(Hidden2.Value) ? "0" : Hidden2.Value);
             String objType = object_type_select.Value;
             String objDesc = object_desc.Value;
 
-            //Check if there is already a label with the same name, 
-            //if so don't execute insert statement
-            int amt;
-            using (var con = new SqlConnection(connection_string))
-            {
-                var sql = "SELECT COUNT(*) FROM marker_table WHERE marker_Label = @Label";
-                using (var cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@Label", label);
-                    con.Open();
-                    amt = (int)cmd.ExecuteScalar();
-                }
-            }
-
             //if no label on page, don't execute insert
             if (x == 0)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "coordCheck", "alert('Please place a marker on the map');", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), 
+                    "coordCheck", "alert('Please place a marker on the map');", true);
             }
 
+            //if marker extension is not null and not jpg or png, alert user and don't execute insert
+            else if ( !( (String.IsNullOrEmpty(ext)) || (String.Equals(ext, ".jpg") || String.Equals(ext, ".png")) ) )
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                    "imgCheck", "alert('Please only upload a .jpg or .png image file');", true);
+            }
             //if marker is not named, don't execute insert
             else if (String.IsNullOrEmpty(label))
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "labelCheck", "alert('Please give the marker a label');", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "labelCheck", 
+                    "alert('Please give the marker a label');", true);
             }
 
-            //if there is a marker with this name, don't execute insert
-            else if (amt > 0)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "labelUniqueCheck", "alert('Please give the marker a unique label');", true);
-            }
-
-            //finally, if passes stipulations, execute the insert statement
             else
             {
-                string query = "INSERT INTO marker_table (marker_Label, x_coordinate, y_coordinate, marker_type, marker_image, marker_desc) VALUES (@marker_Label, @x_coordinate, @y_coordinate, @marker_type, @marker_image, @marker_desc)";
+                string query = "INSERT INTO marker_table (marker_label, x_coordinate, y_coordinate, marker_type, marker_image, marker_desc) VALUES (@marker_label, @x_coordinate, @y_coordinate, @marker_type, @marker_image, @marker_desc)";
                 SqlCommand myCommand = new SqlCommand(query, conn);
-                myCommand.Parameters.AddWithValue("@marker_Label", label);
+                myCommand.Parameters.AddWithValue("@marker_label", label);
                 myCommand.Parameters.AddWithValue("@x_coordinate", x);
                 myCommand.Parameters.AddWithValue("@y_coordinate", y);
                 myCommand.Parameters.AddWithValue("@marker_type", objType);
-                myCommand.Parameters.AddWithValue("@marker_image", DBNull.Value);
+                    if (String.IsNullOrEmpty(ext))
+                    {
+                    byte[] nullBin = new byte[0];
+                        myCommand.Parameters.AddWithValue("@marker_image", nullBin);
+                    }
+                    else
+                    {
+                    Stream fs = marker_image.PostedFile.InputStream;
+                    BinaryReader br = new BinaryReader(fs);
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                    myCommand.Parameters.AddWithValue("@marker_image", bytes);
+                    }
                 myCommand.Parameters.AddWithValue("@marker_desc", objDesc);
                 try
                 {

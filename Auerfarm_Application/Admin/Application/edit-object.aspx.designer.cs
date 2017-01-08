@@ -10,7 +10,7 @@
 namespace Auerfarm_Application.Admin.Anders {
     
     
-    public partial class new_object {
+    public partial class edit_object {
         
         /// <summary>
         /// form1 control.

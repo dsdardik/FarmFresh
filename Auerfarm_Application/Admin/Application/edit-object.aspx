@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="new-object.aspx.cs" Inherits="Auerfarm_Application.Admin.Anders.new_object" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="edit-object.aspx.cs" Inherits="Auerfarm_Application.Admin.Anders.edit_object" %>
 
 <!DOCTYPE html>
 
@@ -40,7 +40,7 @@
 		<div class="row page-title">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<h2>Create Map Object:</h2>
+				<h2>Edit Marker:</h2>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -49,6 +49,7 @@
         <script>
       var map;
       function initMap() {
+
           var auerfarm = { lat: 41.811224, lng: -72.774158 };
           map = new google.maps.Map(document.getElementById('map'), {
               center: auerfarm,
@@ -56,36 +57,33 @@
               mapTypeId: 'satellite'
           });
 
-          var drawingManager = new google.maps.drawing.DrawingManager({
-              drawingMode: google.maps.drawing.OverlayType.MARKER,
-              drawingControl: true,
-              drawingControlOptions: {
-                  position: google.maps.ControlPosition.BOTTOM_CENTER,
-                  drawingModes: ['marker']
+          var iconBase = "/Content/";
+          var icons = {
+              animal: {
+                  icon: iconBase + "animal.png"
               },
-              markerOptions:
-              {
-                  draggable: true,
+              building: {
+                  icon: iconBase + "building.png"
               },
-
+              office: {
+                  icon: iconBase + "office.png"
+              },
+              plant: {
+                  icon: iconBase + "plant.png"
+              },
+              other: {
+                  icon: iconBase + "other.png"
+              }
+          };
+          var lat = parseFloat(document.getElementById("Hidden1").value);
+          var lng = parseFloat(document.getElementById("Hidden2").value);
+          var latlng = {lat: lat, lng: lng}
+          var marker = new google.maps.Marker({
+              position: latlng,
+              icon: icons[document.getElementById('object_type_select').value].icon,
+              map: map,
+              draggable: true
           });
-          drawingManager.setMap(map);
-
-          google.maps.event.addListener(drawingManager, 'markercomplete',
-              function (marker) {
-                  drawingManager.setOptions({
-                      drawingControlOptions: {
-                          drawingModes: []
-                      }
-                  });
-                  
-                  drawingManager.setDrawingMode(null);
-                  var point = marker.getPosition();
-                  var x = point.lat();
-                  var y = point.lng();
-                  document.getElementById("Hidden1").value = x;
-                  document.getElementById("Hidden2").value = y;
-
                   google.maps.event.addListener(marker, 'dragend', function (event)
                   {
                       var point = marker.getPosition();
@@ -94,8 +92,6 @@
                       document.getElementById("Hidden1").value = x;
                       document.getElementById("Hidden2").value = y; 
                   });
-
-              });
            }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&libraries=drawing&callback=initMap"
@@ -153,8 +149,17 @@
 		<div class="row input-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<button type="button" class="btn btn-default" runat="server" onserverclick="submit_new_object_clicked">
-                    Save and Create New Map Marker
+				<button type="button" class="btn btn-default" runat="server" onserverclick="update_object_clicked">
+                    Update Map Marker
+				</button>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+        <div class="row input-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<button type="button" class="btn btn-default" runat="server" onserverclick="delete_object_clicked">
+                    Delete Map Marker
 				</button>
 			</div>
 			<div class="col-md-2"></div>

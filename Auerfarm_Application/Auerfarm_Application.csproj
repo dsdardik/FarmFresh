@@ -162,17 +162,21 @@
     <Content Include="Admin\Application\announcements.html" />
     <Content Include="Admin\Application\map-objects.aspx" />
     <Content Include="Admin\Application\new-object.aspx" />
-    <Content Include="Admin\Application\view-map-objects.aspx" />
+    <Content Include="Admin\Application\edit-object.aspx" />
+    <Content Include="Content\animal.png" />
     <Content Include="Content\auerfarm-logo.jpeg" />
     <Content Include="Content\barn_background.jpg" />
     <Content Include="Content\cow.jpg" />
     <Content Include="Admin\Application\edit-announcement-treeseason.html" />
-    <Content Include="Admin\Application\edit-object-cow.html" />
     <Content Include="Content\farm_flowers.jpg" />
     <Content Include="Content\grass-sky-background.jpg" />
     <Content Include="Admin\Application\index.html" />
     <Content Include="Admin\Application\new-announcement.html" />
+    <Content Include="Content\building.png" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\office.png" />
+    <Content Include="Content\other.png" />
+    <Content Include="Content\plant.png" />
     <Content Include="Content\style.css" />
     <Content Include="Admin\Application\view-announcements.html" />
     <Content Include="Content\wreath.jpg" />
@@ -250,12 +254,12 @@
     <Compile Include="Admin\Application\new-object.aspx.designer.cs">
       <DependentUpon>new-object.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Application\view-map-objects.aspx.cs">
-      <DependentUpon>view-map-objects.aspx</DependentUpon>
+    <Compile Include="Admin\Application\edit-object.aspx.cs">
+      <DependentUpon>edit-object.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Application\view-map-objects.aspx.designer.cs">
-      <DependentUpon>view-map-objects.aspx</DependentUpon>
+    <Compile Include="Admin\Application\edit-object.aspx.designer.cs">
+      <DependentUpon>edit-object.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

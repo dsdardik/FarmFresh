@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-
+<form id="form1" runat="server">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
  			<div class="nav-image navbar-left">
  				<a href="index.html"><img src="/Content/auerfarm-logo.jpeg" alt="Auerfarm Logo"/></a>
@@ -53,26 +53,53 @@
         <script>
       var map;
       function initMap() {
+          var currentMarker;
           var markers = JSON.parse('<%=ConvertDataTabletoString() %>');
           var auerfarm = {lat: 41.811224, lng: -72.774158};
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: auerfarm,
-          zoom: 18,
-          mapTypeId: 'satellite'
-        });
-        var infoWindow = new google.maps.InfoWindow();
+          map = new google.maps.Map(document.getElementById('map'), {
+              center: auerfarm,
+              zoom: 18,
+              mapTypeId: 'satellite'
+          });
+          var infoWindow = new google.maps.InfoWindow();
+          var iconBase = "/Content/";
+          var icons = {
+              animal: {
+                  icon: iconBase + "animal.png"
+              },
+              building: {
+                  icon: iconBase + "building.png"
+              },
+              office: {
+                  icon: iconBase + "office.png"
+              },
+              plant: {
+                  icon: iconBase + "plant.png"
+              },
+              other: {
+                  icon: iconBase + "other.png"
+              }
+           };
         for (i = 0; i < markers.length; i++) {
             var data = markers[i]
             var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+            var iconType = data.iconimg;
             var marker = new google.maps.Marker({
                 position: myLatlng,
-                map: map,
-                label: data.title
+                icon: icons[iconType].icon,
+                map: map
             });
             (function (marker, data) {
 
                 // Attaching a click event to the current marker
                 google.maps.event.addListener(marker, "click", function (e) {
+                    if (currentMarker && currentMarker != marker)
+                    {
+                        currentMarker.setAnimation(null);
+                    }
+                    currentMarker = marker;
+                    document.getElementById("Hidden1").value = data.id;
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
                     infoWindow.setContent(data.description);
                     infoWindow.open(map, marker);
                 });
@@ -83,11 +110,11 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&libraries=drawing&callback=initMap"
                 async defer></script>
         <br /><br />
-		<div class="row nav-button-row">
+        <div class="row nav-button-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<a href="view-map-objects.aspx">
-					<button type="button" class="btn btn-default form-control" id="new-announcement">View / Edit / Remove Map Objects</button>
+				<a href="new-object.aspx">
+					<button type="button" class="btn btn-default form-control">Create a New Map Object</button>
 				</a>
 			</div>
 			<div class="col-md-2"></div>
@@ -95,12 +122,14 @@
 		<div class="row nav-button-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<a href="new-object.aspx">
-					<button type="button" class="btn btn-default form-control" id="new-announcement">Create a New Map Object</button>
-				</a>
+					<button type="button" class="btn btn-default form-control" runat="server" onserverclick="edit_marker_clicked">
+                        Edit / Delete Selected Marker
+					</button>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
+    <input id="Hidden1" type="hidden" runat="server"/>
+    </form>
 </body>
 </html>
