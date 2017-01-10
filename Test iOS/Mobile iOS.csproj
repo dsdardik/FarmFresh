@@ -94,6 +94,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\Content\images\goat.jpg" />
+    <Content Include="app\Controller\Directives\newsItem.js" />
+    <Content Include="app\View\app.js" />
+    <Content Include="app\View\Directives\newsItem.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -149,7 +153,7 @@
     <Content Include="app\Content\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="app\Content\Site.css" />
     <Content Include="app\Controller\mainMenuController.js" />
-    <Content Include="app\Controller\News.js" />
+    <Content Include="app\Controller\news.js" />
     <Content Include="app\View\landing.html" />
     <Content Include="app\View\main.html" />
     <Content Include="app\View\news.html" />

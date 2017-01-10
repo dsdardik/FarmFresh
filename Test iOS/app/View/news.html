@@ -5,14 +5,37 @@
 <link href="../Content/bootstrap.css" rel="stylesheet" />
 
 
-<div class="row mobile-header">
-    <p class="text-center header-text">
-        Happening Now
-    </p>
+<div class="clearfix mobile-header">
+   
+        <div class="col-lg-2 col-sm-2 col-xs-2">
+            <a href="#/main">
+                <i class="fa fa-arrow-left fa-3x white-color" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="col-lg-10 col-xs-10">
+            <p class="text-center header-text">
+                News
+            </p>
+        </div>
+  
 </div>
-
-
-
+<div ng-controller="NewsController as NC">
+    
 <div class="main-menu col-xs-12">
-    <div ng-repeat></div>
-</div>
+    <div ng-repeat="x in NC.newsItems">
+        <div class="clearfix">
+            <div class="col-xs-12">
+                <h4>{{x.headline}}</h4>
+            </div>
+
+            <!--<div class="col-xs-3">
+                <img src="../Content/images/goat.jpg" />
+            </div>-->
+
+            <div class="col-xs-9">
+                <p>{{x.body}}</p>
+            </div>
+        </div>
+    </div>
+</div>  
+    </div>
