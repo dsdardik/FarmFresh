@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auerfarm_Application", "Aue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile iOS", "Test iOS\Mobile iOS.csproj", "{60D94303-5A27-4D40-A42D-43A4FF54ABA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuerfarmAdmin", "..\..\..\Documents\Visual Studio 2015\Projects\WebApplication1\WebApplication1\AuerfarmAdmin.csproj", "{E7FC6C1A-95E0-41B0-AA0F-31F7BBED207A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{60D94303-5A27-4D40-A42D-43A4FF54ABA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D94303-5A27-4D40-A42D-43A4FF54ABA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60D94303-5A27-4D40-A42D-43A4FF54ABA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7FC6C1A-95E0-41B0-AA0F-31F7BBED207A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7FC6C1A-95E0-41B0-AA0F-31F7BBED207A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7FC6C1A-95E0-41B0-AA0F-31F7BBED207A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7FC6C1A-95E0-41B0-AA0F-31F7BBED207A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
