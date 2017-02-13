@@ -21,7 +21,9 @@ namespace Auerfarm_Application.Admin.Anders
             DataTable dt = new DataTable();
             string connection_string = "Server=OWNERPC;Database=Auerfarm;Trusted_Connection=true";
             SqlConnection conn = new SqlConnection(connection_string);
-            using (SqlCommand cmd = new SqlCommand("SELECT id=marker_id, title=marker_label,lat=x_coordinate,lng=y_coordinate, iconimg=marker_type, description=marker_desc FROM marker_table", conn))
+            using (SqlCommand cmd = new SqlCommand("SELECT id=marker_id, title=marker_label,lat=x_coordinate," +
+                "lng=y_coordinate, iconimg=marker_type, description=marker_desc," +
+                "mimg = marker_image FROM marker_table", conn))
             {
                 conn.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

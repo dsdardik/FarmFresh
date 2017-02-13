@@ -43,8 +43,13 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h2>Interactive Map:</h2>
-				<p>Here you can view, edit, or remove current map objects by selecting "View / Edit / Remove Map Objects".  You can also create new map objects by selecting "Create New Map Object".
-                 Below is the current Map being displayed to mobile users: </p>
+				<p>Below is the current map that will be displayed to mobile users. To add a new custom marker to 
+                    the map, click the "Create a New Map Object" button below. To select a marker,
+                    click the marker on the map and it will begin to bounce and the pop-up display that 
+                    users will see on mobile will show. In order to Edit or delete an 
+                    existing custom marker, press "Edit/Delete Selected Marker" after you have clicked a
+                    marker and it is selcted, you will know it is selected when it is bouncing on the map.
+				</p>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -100,7 +105,9 @@
                     currentMarker = marker;
                     document.getElementById("Hidden1").value = data.id;
                     marker.setAnimation(google.maps.Animation.BOUNCE);
-                    infoWindow.setContent(data.description);
+                    infoWindow.setContent("<h3>"+ data.title + "</h3>" +
+                    "<img src='/Images/" + data.mimg + "' alt='" + data.description + 
+                    "' height='60' width='60'>");
                     infoWindow.open(map, marker);
                 });
             })(marker, data);

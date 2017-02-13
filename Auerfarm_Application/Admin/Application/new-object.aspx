@@ -40,10 +40,20 @@
 		<div class="row page-title">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<h2>Create Map Object:</h2>
+				<h2>Create a New Map Object:</h2>
+                <h6>* = Required fields</h6>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+
+		<div class="row page-title">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+                <asp:Label ID="errorLabel" runat="server" Text="" Visible="False"></asp:Label>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
         <br /><br />
         <div id="map"></div>
         <script>
@@ -106,7 +116,7 @@
         <div class="row input-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
-				<h5 class="input-label">Marker Type</h5>
+				<h5 class="input-label">*Marker Type</h5>
 			</div>
 			<div class="col-md-6">
 				<select class="selectpicker form-control" id="object_type_select" runat="server">
@@ -123,7 +133,7 @@
         <div class="row input-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
-				<h5 class="input-label">Map Label:</h5>
+				<h5 class="input-label">*Map Label:</h5>
 			</div>
 			<div class="col-md-6">
 				<input type="text" class="form-control object-name" runat="server" id="map_label" placeholder="" />
