@@ -13,8 +13,8 @@
           /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
           #map {
-              height: 400px;
-              width: 60%;
+              height: 600px;
+              width: 80%;
               align-content: center;
               margin-left: auto;
               margin-right: auto;
@@ -53,7 +53,7 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-
+        <br /> <br /> <br />
         <div id="map"></div>
         <script>
       var map;
@@ -105,9 +105,9 @@
                     currentMarker = marker;
                     document.getElementById("Hidden1").value = data.id;
                     marker.setAnimation(google.maps.Animation.BOUNCE);
-                    infoWindow.setContent("<h3>"+ data.title + "</h3>" +
-                    "<img src='/Images/" + data.mimg + "' alt='" + data.description + 
-                    "' height='60' width='60'>");
+                    infoWindow.setContent("<h4 style='text-align:center'>" + data.title + "</h4>" +
+                    "<img style='height:auto;width:auto;max-width:220px;max-height:125px;' src='/Images/" + data.mimg + "'>" +
+                    "<p style='text-align:center'>" + data.description + "</p>");
                     infoWindow.open(map, marker);
                 });
             })(marker, data);
