@@ -1,0 +1,116 @@
+﻿body {
+    margin-top: 0;
+    padding-bottom: 20px;
+    overflow:hidden;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+/*NEW CSS*/
+.navbar {
+    background-color: rgb(12, 104, 17) !important;
+}
+
+button, input, .input-row select, textarea {
+	border-color: rgb(12, 104, 17) !important;
+}
+button {
+	color: rgb(12, 104, 17) !important;
+}
+button:hover {
+	background-color: rgb(12, 104, 17) !important;
+	color: white !important;
+}
+
+.page-name {
+    color: rgb(12, 104, 17);
+    padding-top:10px;
+}
+
+.menu-option {
+    padding: 10px 0;
+}
+
+.menu-container {
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    position:absolute;
+    top: 0;
+    left: 0;
+    overflow:hidden;
+    background-color: white; 
+}
+.test-content {
+    width: 100vw;
+    height: 100vh;
+}
+.no-disp {
+    display: none;
+}
+.color-col {
+    background-color: rgb(12, 104, 17);
+}
+.row {
+    margin: 0;
+}
+.full-height {
+    height: 100%;
+}
+.left-nav {
+    position:fixed;
+    left: 0;
+    top: 0;
+    width: 15vw;
+    height: 100vh;
+    z-index:2;
+    background-color: rgb(12, 104, 17);
+}
+.nav-op {
+    color: white;
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(12, 104, 17);
+}
+.nav-op:hover {
+    background-color: white;
+    color: rgb(12, 104, 17);
+    cursor: pointer;
+}
+.selected-op {
+    background-color: white;
+    color: rgb(12, 104, 17);
+}
+.nav-image {
+	display: inline-block;
+	height: auto;
+	width: 100% !important;
+    max-width: 100% !important;
+}
+img {
+    height: auto;
+    width: auto;
+    max-width: 100%!important;
+}
+
+.nav-image:hover {
+    cursor: pointer;
+}

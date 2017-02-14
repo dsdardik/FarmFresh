@@ -94,10 +94,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\Content\CSS\lists.css" />
     <Content Include="app\Content\images\goat.jpg" />
     <Content Include="app\Controller\Directives\newsItem.js" />
     <Content Include="app\View\app.js" />
+    <Content Include="app\View\more_info.html" />
     <Content Include="app\View\Directives\newsItem.html" />
+    <Content Include="app\View\events.html" />
+    <Content Include="app\View\map.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

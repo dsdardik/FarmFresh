@@ -49,33 +49,6 @@ namespace Auerfarm_Application.Admin.Anders {
         protected global::System.Web.UI.HtmlControls.HtmlInputText object_desc;
         
         /// <summary>
-        /// EditImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox EditImg;
-        
-        /// <summary>
-        /// DeleteImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox DeleteImg;
-        
-        /// <summary>
-        /// SameImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox SameImg;
-        
-        /// <summary>
         /// marker_image control.
         /// </summary>
         /// <remarks>
