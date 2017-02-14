@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -37,27 +36,21 @@ namespace Auerfarm_Application.Admin.Anders
             //if no label on page, don't execute insert
             if (x == 0)
             {
-                errorLabel.Text = "Please place a marker on the map";
-                errorLabel.BackColor = Color.Red;
-                errorLabel.Visible = true;
-                return;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), 
+                    "coordCheck", "alert('Please place a marker on the map');", true);
             }
 
             //if marker extension is not null and not jpg or png, alert user and don't execute insert
             else if ( !( (String.IsNullOrEmpty(ext)) || (String.Equals(ext, ".jpg") || String.Equals(ext, ".png")) ) )
             {
-                errorLabel.Text = "Please only upload a .jpg or .png image file";
-                errorLabel.BackColor = Color.Red;
-                errorLabel.Visible = true;
-                return;
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                    "imgCheck", "alert('Please only upload a .jpg or .png image file');", true);
             }
             //if marker is not named, don't execute insert
             else if (String.IsNullOrEmpty(label))
             {
-                errorLabel.Text = "Please give the marker a label";
-                errorLabel.BackColor = Color.Red;
-                errorLabel.Visible = true;
-                return;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "labelCheck", 
+                    "alert('Please give the marker a label');", true);
             }
 
             else
@@ -68,48 +61,19 @@ namespace Auerfarm_Application.Admin.Anders
                 myCommand.Parameters.AddWithValue("@x_coordinate", x);
                 myCommand.Parameters.AddWithValue("@y_coordinate", y);
                 myCommand.Parameters.AddWithValue("@marker_type", objType);
-
                     if (String.IsNullOrEmpty(ext))
                     {
-                        myCommand.Parameters.AddWithValue("@marker_image", DBNull.Value);
+                    byte[] nullBin = new byte[0];
+                        myCommand.Parameters.AddWithValue("@marker_image", nullBin);
                     }
                     else
                     {
-                        try
-                        {
-                        String fileName = marker_image.FileName;
-                        String path = Server.MapPath("~/Images/" + fileName);
-                        string tempfileName = "";
-
-                        // Check to see if a file already exists with the
-                        // same name as the file to upload.        
-                        if (System.IO.File.Exists(path))
-                        {
-                            int counter = 2;
-                            while (System.IO.File.Exists(path))
-                            {
-                                // if a file with this name already exists,
-                                // prefix the filename with a number.
-                                tempfileName = counter.ToString() + fileName;
-                                path = Server.MapPath("~/Images/") + tempfileName;
-                                counter++;
-                            }
-
-                            fileName = tempfileName;
-                        }
-
-                        path = Server.MapPath("~/Images/" + fileName);
-                        marker_image.PostedFile.SaveAs(path);
-                        myCommand.Parameters.AddWithValue("@marker_image", fileName);
+                    Stream fs = marker_image.PostedFile.InputStream;
+                    BinaryReader br = new BinaryReader(fs);
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                    myCommand.Parameters.AddWithValue("@marker_image", bytes);
                     }
-                        catch(Exception ex)
-                        {
-                            Console.Write(ex.Message);
-                        }
-                    }
-
                 myCommand.Parameters.AddWithValue("@marker_desc", objDesc);
-
                 try
                 {
                     conn.Open();
@@ -119,7 +83,6 @@ namespace Auerfarm_Application.Admin.Anders
                 {
                     Console.WriteLine("Error: " + error.ToString());
                 }
-
                 Server.Transfer("map-objects.aspx");
             }
         }
