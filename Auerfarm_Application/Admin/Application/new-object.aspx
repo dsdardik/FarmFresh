@@ -40,10 +40,20 @@
 		<div class="row page-title">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<h2>Create Map Object:</h2>
+				<h2>Create a New Map Object:</h2>
+                <h6>* = Required fields</h6>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+
+		<div class="row page-title">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+                <asp:Label ID="errorLabel" runat="server" Text="" Visible="False"></asp:Label>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
         <br /><br />
         <div id="map"></div>
         <script>
@@ -55,7 +65,6 @@
               zoom: 18,
               mapTypeId: 'satellite'
           });
-
           var drawingManager = new google.maps.drawing.DrawingManager({
               drawingMode: google.maps.drawing.OverlayType.MARKER,
               drawingControl: true,
@@ -67,10 +76,8 @@
               {
                   draggable: true,
               },
-
           });
           drawingManager.setMap(map);
-
           google.maps.event.addListener(drawingManager, 'markercomplete',
               function (marker) {
                   drawingManager.setOptions({
@@ -85,7 +92,6 @@
                   var y = point.lng();
                   document.getElementById("Hidden1").value = x;
                   document.getElementById("Hidden2").value = y;
-
                   google.maps.event.addListener(marker, 'dragend', function (event)
                   {
                       var point = marker.getPosition();
@@ -94,7 +100,6 @@
                       document.getElementById("Hidden1").value = x;
                       document.getElementById("Hidden2").value = y; 
                   });
-
               });
            }
         </script>
@@ -106,7 +111,7 @@
         <div class="row input-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
-				<h5 class="input-label">Marker Type</h5>
+				<h5 class="input-label">*Marker Type</h5>
 			</div>
 			<div class="col-md-6">
 				<select class="selectpicker form-control" id="object_type_select" runat="server">
@@ -123,7 +128,7 @@
         <div class="row input-row">
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
-				<h5 class="input-label">Map Label:</h5>
+				<h5 class="input-label">*Map Label:</h5>
 			</div>
 			<div class="col-md-6">
 				<input type="text" class="form-control object-name" runat="server" id="map_label" placeholder="" />

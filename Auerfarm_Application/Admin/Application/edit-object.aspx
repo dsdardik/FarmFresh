@@ -49,14 +49,12 @@
         <script>
       var map;
       function initMap() {
-
           var auerfarm = { lat: 41.811224, lng: -72.774158 };
           map = new google.maps.Map(document.getElementById('map'), {
               center: auerfarm,
               zoom: 18,
               mapTypeId: 'satellite'
           });
-
           var iconBase = "/Content/";
           var icons = {
               animal: {
@@ -136,10 +134,34 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+        <div class="row input-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+            <asp:CheckBox ID="EditImg" runat="server" Text="Edit Current Image"
+            oncheckedchanged="EditImg_CheckedChanged" AutoPostBack="True" />
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row input-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+            <asp:CheckBox ID="DeleteImg" runat="server" Text="Delete Current Image"
+             oncheckedchanged="DeleteImg_CheckedChanged" AutoPostBack="True" />
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row input-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+            <asp:CheckBox ID="SameImg" runat="server" Text="Keep Current Image"
+             oncheckedchanged="SameImg_CheckedChanged" AutoPostBack="True" />
+            </div>
+            <div class="col-md-2"></div>
+        </div>
 		<div class="row input-row">
 			<div class="col-md-2"></div>
-			<div class="col-md-2">
-				<h5 class="input-label" runat="server">Pop-up Image:</h5>
+            <div class="col-md-2">
+				<h5 class="input-label" runat="server">New Image:</h5>
 			</div>
 			<div class="col-md-6 center-input">
 				<asp:FileUpload ID="marker_image" runat="server" />

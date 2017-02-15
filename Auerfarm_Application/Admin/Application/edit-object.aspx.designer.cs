@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Auerfarm_Application.Admin.Anders {
-    
-    
-    public partial class edit_object {
-        
+namespace Auerfarm_Application.Admin.Anders
+{
+
+
+    public partial class edit_object
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// object_type_select control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect object_type_select;
-        
+
         /// <summary>
         /// map_label control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText map_label;
-        
+
         /// <summary>
         /// object_desc control.
         /// </summary>
@@ -47,7 +49,34 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText object_desc;
-        
+
+        /// <summary>
+        /// EditImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox EditImg;
+
+        /// <summary>
+        /// DeleteImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox DeleteImg;
+
+        /// <summary>
+        /// SameImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox SameImg;
+
         /// <summary>
         /// marker_image control.
         /// </summary>
@@ -56,7 +85,7 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload marker_image;
-        
+
         /// <summary>
         /// Hidden1 control.
         /// </summary>
@@ -65,7 +94,7 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden Hidden1;
-        
+
         /// <summary>
         /// Hidden2 control.
         /// </summary>

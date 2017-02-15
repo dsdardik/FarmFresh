@@ -21,7 +21,9 @@ namespace Auerfarm_Application.Admin.Anders
             DataTable dt = new DataTable();
             string connection_string = "Server=OWNERPC;Database=Auerfarm;Trusted_Connection=true";
             SqlConnection conn = new SqlConnection(connection_string);
-            using (SqlCommand cmd = new SqlCommand("SELECT id=marker_id, title=marker_label,lat=x_coordinate,lng=y_coordinate, iconimg=marker_type, description=marker_desc FROM marker_table", conn))
+            using (SqlCommand cmd = new SqlCommand("SELECT id=marker_id, title=marker_label,lat=x_coordinate," +
+                "lng=y_coordinate, iconimg=marker_type, description=marker_desc," +
+                "mimg = marker_image FROM marker_table", conn))
             {
                 conn.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -41,17 +43,17 @@ namespace Auerfarm_Application.Admin.Anders
                 return serializer.Serialize(rows);
             }
         }
-             protected void edit_marker_clicked(object sender, EventArgs e)
-                {
-                    if (String.IsNullOrEmpty(Hidden1.Value))
-                    {
-                        Page.ClientScript.RegisterStartupScript(this.GetType(),
-                            "selectCheck", "alert('You must select a marker by clicking on it to edit it's contents');", true);
-                    }
-                    else
-                    {
-                        Response.Redirect("edit-object.aspx?markerID=" + Hidden1.Value);
-                    }
-                }
-         }
+        protected void edit_marker_clicked(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Hidden1.Value))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                    "selectCheck", "alert('You must select a marker by clicking on it to edit it's contents');", true);
+            }
+            else
+            {
+                Response.Redirect("edit-object.aspx?markerID=" + Hidden1.Value);
+            }
+        }
+    }
 }

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Auerfarm_Application.Admin.Anders {
-    
-    
-    public partial class map_objects {
-        
+namespace Auerfarm_Application.Admin.Anders
+{
+
+
+    public partial class map_objects
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Auerfarm_Application.Admin.Anders {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// Hidden1 control.
         /// </summary>
