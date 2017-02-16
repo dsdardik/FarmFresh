@@ -160,7 +160,7 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Application\announcements.html" />
+    <Content Include="Admin\Application\announcement.aspx" />
     <Content Include="Admin\Application\map-objects.aspx" />
     <Content Include="Admin\Application\new-object.aspx" />
     <Content Include="Admin\Application\edit-object.aspx" />
@@ -241,6 +241,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Application\announcement.aspx.cs">
+      <DependentUpon>announcement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Application\announcement.aspx.designer.cs">
+      <DependentUpon>announcement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Application\map-objects.aspx.cs">
       <DependentUpon>map-objects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

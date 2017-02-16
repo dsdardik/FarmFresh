@@ -10,13 +10,13 @@
 	<link href="/Content/style.css" rel="stylesheet"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
     <style>
-    #map {
-    height: 400px;
-    width: 60%;
-    align-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    }
+          #map {
+              height: 600px;
+              width: 80%;
+              align-content: center;
+              margin-left: auto;
+              margin-right: auto;
+          }
     </style>
 </head>
 <body>

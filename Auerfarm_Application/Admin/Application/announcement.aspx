@@ -1,5 +1,8 @@
-﻿<!Doctype html>
-<html lang=en>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="announcement.aspx.cs" Inherits="Auerfarm_Application.Admin.Application.announcement" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
 	<link href="/Content/bootstrap.min.css" rel="stylesheet">
@@ -32,6 +35,9 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+        <asp:Table ID="announcements" runat="server"></asp:Table>
+
+
 		<hr />
 		<div class="row nav-button-row">
 			<div class="col-md-2"></div>
