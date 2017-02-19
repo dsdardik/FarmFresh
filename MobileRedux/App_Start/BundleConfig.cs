@@ -23,12 +23,14 @@ namespace MobileRedux
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/font-awesome-4.7.0/css/font-awesome.css",
-                      "~/Content/lists.css",
-                      "~/Content/landing.css"));
+            bundles.Add(new StyleBundle("~/Content/css")
+            .IncludeDirectory("~/Content", "*.css", true));
+
+            bundles.Add(new ScriptBundle("~/bundles/scripts")
+            .IncludeDirectory("~/Scripts", "*.js", true));
+
+
+        
         }
     }
 }
