@@ -1,59 +1,80 @@
-﻿.main-icon{
-    
+﻿.main-menu {
+    min-height: 100vh;
+}
+.main-icon {
     box-shadow: 10px 10px 5px #888888;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius:8px;
-    background:#67BB4A;
+    border-radius: 40px;
+    background: #67BB4A;
+    max-width: 100%;
+    max-height: 20vh;
+    min-height: 20vh;
+    margin: 4vh 4vw 4vh 4vw;
 }
 
 .left-icon {
-    
+    min-height:100vh;
+    width:50vw;
+    float:left;
+   
 }
 
 .right-icon {
+    min-height: 90vh;
+    width: 50vw;
+    float:right;
 
 }
 .mobile-header {
     background:#67BB4A;
     padding-top: 4px;
-    max-width:100%;
+    min-width:100%;
 }
 
 .mobile-header-back {
     margin-bottom:4px;
 }
 
+a > i {
+    color: mintcream;
+}
+
 .header-text {
     height:30%;
     font: bold 28px sans-serif, arial;
-    color: white; 
-    padding: 8px 50px 0px 0px;
+    color: mintcream; 
+    padding: 8px 18% 0px 0px;
    
 }
 
-.inner-icon {
-    position:center;
-    margin:3px 10px 3px 10px;
-    padding: 10px 0px 0px 0px;
-    text-align:center;
 
+
+.main-icon > i {
+    max-height: 80%;
+    color: mintcream;
+    font-size: 12em;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    margin-top: 25%;
 }
 
-a > i{
-    color:white;
-
-}
-
-.inner-icon > a > p{
-    color: white;
-    font-weight:500;
-
+.main-icon > p {
+    color: mintcream;
+    font-weight: 500;
+    font-size: 250%;
+    text-align: center;
+    height:10%;
+    padding-top:-40%;
 }
 
 .main-menu {
-    background:white;
-   
+    background: mintcream;
+}
+
+.center{
+    margin:auto;
 }
 
 

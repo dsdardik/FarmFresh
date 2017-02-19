@@ -8,7 +8,7 @@
     <!-- load scripts -->
     <script src="../../Scripts/jquery-1.10.2.js"></script>
     <script src="../../Scripts/bootstrap.js"></script>
-   
+    <script src="../../Scripts/underscore.min.js"></script>
 
     <!-- Load CSS -->
     <link href="../Content/fonts/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
@@ -38,27 +38,28 @@
     <div id="panel"></div>
 
     <!-- Main Body -->
-    <!--<div class="row">-->
+    
      
         <!-- Partial HTML Page -->
-        <div class="col-sm-12 container-fluid" ng-controller="MainController as MainC">
-            <div class="row mobile-header">
+        <div class="main-menu" ng-controller="MainController as MainC">
+            <div class="clearfix mobile-header">
 
-                <div class="col-lg-2 col-sm-2 col-xs-2">
+                <div class="col-xs-2">
                     <a href="#/main" ng-hide="{{MainC.back}}">
                         <i class="fa fa-arrow-left fa-3x white-color" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div class="col-lg-10 col-xs-10">
+                <div class="col-xs-10">
                     <p class="text-center header-text">
                         {{MainC.pageTitle}}
                     </p>
                 </div>
 
             </div>
-            <ng-view autoscroll></ng-view>
+           
+                <ng-view autoscroll></ng-view>
+           
         </div>
-    <!--</div>-->
 
 </body>
 </html>

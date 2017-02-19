@@ -1,0 +1,60 @@
+﻿.main-icon{
+    
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius:8px;
+    background:#67BB4A;
+}
+
+.left-icon {
+    
+}
+
+.right-icon {
+
+}
+.mobile-header {
+    background:#67BB4A;
+    padding-top: 4px;
+    max-width:100%;
+}
+
+.mobile-header-back {
+    margin-bottom:4px;
+}
+
+.header-text {
+    height:30%;
+    font: bold 28px sans-serif, arial;
+    color: white; 
+    padding: 8px 50px 0px 0px;
+   
+}
+
+.inner-icon {
+    position:center;
+    margin:3px 10px 3px 10px;
+    padding: 10px 0px 0px 0px;
+    text-align:center;
+
+}
+
+a > i{
+    color:white;
+
+}
+
+.inner-icon > a > p{
+    color: white;
+    font-weight:500;
+
+}
+
+.main-menu {
+    background:white;
+   
+}
+
+
+
