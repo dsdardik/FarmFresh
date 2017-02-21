@@ -1,12 +1,18 @@
 ﻿.list-item-title {
-    background-color:grey;
-    color:white;
-    margin: 0px 0px 0px 8px;
-    padding: 2px 4px 2px 4px;
-    
+    font: 30px helvetica, arial;
+    background-color: grey;
+    color: white;
+    margin-bottom:.5%;
 }
 
+.title-inner{
+    padding:1% 5% 1% 5%;
+}
 
+.list-item-date{
+    opacity:.8;
+    padding:1% 5% 1% 0%;
+}
 
 .list-item-image {
     margin: 2px 0px 2px 0px;
@@ -16,19 +22,71 @@
 
 
 .list-item-text {
-    font: 14px helvetica, arial;
+    font: 30px helvetica, arial;
     color: black;
-    margin:10px 0px 3px 0px;
+    margin: 2% 2% 2% 10px;
+    max-height: 10vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .list-item {
-    margin: 5px 0px 0px 0px;
+    margin: 2% 5% 0px 5%;
     padding: 1px 0px 1px 0px;
-    max-width: 95%;
+    max-width: 90%;
+    max-height: 16vh;
+    overflow: hidden;
 }
 
 .list-item-body {
     background-color: #D7D8D0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    overflow: hidden;
+    padding: 1vh 0vh 1vh 0vh;
+   
+}
+
+.list-item-expand {
+    margin: 2% 5% 0px 5%;
+    padding: 1px 0px 1px 0px;
+    max-width: 90%;
+    max-height: 16vh;
+    min-height: 100%;
+}
+
+.expand-title{
+    height:20%;
+}
+
+.expanded-story{
+    min-height:80%;
+}
+
+.item-image{
+    float:left;
+    max-width: 25%;
+}
+
+.expanded-item-image {
+    float: left;
+    max-width: 40%;
+    padding:2% 5% 2% 5%;
+}
+
+.height-full{
+    min-height:100%;
+}
+
+.expanded-body {
+    padding:2% 5% 2% 5%;
+    font: 30px helvetica, arial;
+    color: black;
+    background-color: #D7D8D0;
+    min-height:14vh;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

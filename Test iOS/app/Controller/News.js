@@ -11,11 +11,14 @@
 
     function NewsController($scope) {
         var vm = this;
+        vm.isLoaded = false;
         vm.title = "News";
+        vm.showAll = true;
+
         vm.newsItems = {
             story1: { headline: "Punmpkin Pies on Sale", body: "Pies will be on sale starting on Tuesday.", date:"11/12/16" },
             story2: { headline: "Hike Scheduled for Friday", body: "Group hike scheduled for Friday. Dogs welcome.", date: "11/16/16" },
-            story3: { headline: "School Trip on Monday", body: "Group hike scheduled for Friday. Dogs welcome.", date: "11/16/16",  }
+            story3: { headline: "School Trip on Monday", body: "Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday.", date: "11/16/16",  }
         };
 
         _.each(vm.newsItems, function (story) {
@@ -27,7 +30,15 @@
             vm.showAll = !vm.showAll;
         };
 
-        vm.showAll = true;
+        vm.loadCheck = function(){
+            if (document.readyState === "complete") {
+                vm.isLoaded = true;
+            };
+        };
+
+        vm.loadCheck();
+    
+
        
     }
 
