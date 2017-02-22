@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+
+
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,6 +14,7 @@
     @Scripts.Render("~/bundles/scripts")
 </head>
 <body>
+
 
     <div class="main-menu" ng-controller="MainController as MainC">
         <div class="clearfix mobile-header">
@@ -28,15 +32,14 @@
 
         </div>
 
-        <div class="container body-content">
-            @RenderBody()
-           
+        <div>
+            <ng-view></ng-view>
         </div>
 
     </div>
 
 
-   
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

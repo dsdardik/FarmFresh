@@ -4,44 +4,65 @@
 <link href="../Content/CSS/lists.css" rel="stylesheet" />
 <link href="../Content/bootstrap.css" rel="stylesheet" />
 
-<div ng-controller="NewsController as NC">
-
-    <div>
-        <div ng-repeat="story in NC.newsItems" class="list-item">
-            <div class="clearfix" ng-show="NC.showAll" ng-click="NC.toggleStory(story)")>
-                <div class="col-xs-12 list-item-title">
-                    <h4>{{story.headline}}</h4>
-                </div>
-
-
-                <div class="list-item-body">
-
-                    <div class="col-xs-3 col-lg-3">
-                        <img src="../Content/images/goat.jpg" class="list-item-image" />
+<div ng-controller="NewsController as NC" class="height-full">
+    <div ng-if="!NC.isLoaded">
+        <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>
+    </div>
+    <div ng-if="NC.isLoaded">
+        <div ng-repeat="story in NC.newsItems">
+            <div class="list-item">
+                <div ng-show="NC.showAll" ng-click="NC.toggleStory(story)" )>
+                    <div class="clearfix">
+                        <div class="list-item-title clearfix">
+                            <div class="title-inner col-xs-10">
+                                {{story.headline}}
+                            </div>
+                            <div class="list-item-date col-xs-2">
+                                {{story.date}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-9 col-lg-9">
-                        <p class="list-item-text">{{story.body}}</p>
+
+                    <div class="list-item-body">
+
+                        <div class="col-xs-3 col-lg-3">
+                            <img src="../Content/images/goat.jpg" class="list-item-image" />
+                        </div>
+                        <div class="col-xs-9 col-lg-9">
+                            <div class="list-item-text">{{story.body}}</div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="clearfix" ng-show ="story.showFull">
-                <div class="col-xs-12 list-item-title">
-                    <h4>{{story.headline}}</h4>
-                    <h4>This the full story</h4>
-                </div>
-
-
-                <div class="list-item-body">
-
-                    <div class="col-xs-3 col-lg-3">
-                        <img src="../Content/images/goat.jpg" class="list-item-image" />
-                    </div>
-                    <div class="col-xs-9 col-lg-9">
-                        <p class="list-item-text">{{story.body}}</p>
-                    </div>
                 </div>
             </div>
-        </div>
+            <div class="list-item-expand" ng-show ="story.showFull" ng-click="NC.toggleStory(story)">
+
+                <div class="list-item-title clearfix">
+
+                    <div class="title-inner col-xs-10">
+                        {{story.headline}}
+                    </div>
+
+                    <div class="list-item-date col-xs-2">
+                        {{story.date}}
+                    </div>
+
+                </div>
+
+                <div class="expanded-story">
+
+                    <div>
+                        <img class="expanded-item-image" src="../Content/images/cold-snow-winter-mountain.jpeg" />
+                    </div>
+
+                    <div class="expanded-body">
+                        {{story.body}}
+                    </div>
+                </div>
+
+            </div>
+
+       
+   </div>
     </div>
 </div>

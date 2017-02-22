@@ -95,7 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\Content\CSS\lists.css" />
+    <Content Include="app\Content\images\cold-snow-winter-mountain.jpeg" />
     <Content Include="app\Content\images\goat.jpg" />
+    <Content Include="app\Content\images\Pies.jpg" />
+    <Content Include="app\Controller\dataAccess.js" />
     <Content Include="app\Controller\Directives\newsItem.js" />
     <Content Include="app\View\app.js" />
     <Content Include="app\View\more_info.html" />
