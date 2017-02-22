@@ -24,6 +24,17 @@ textarea {
 
 
 /*NEW CSS*/
+/*.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}*/
 .navbar {
     background-color: rgb(12, 104, 17) !important;
 }
@@ -134,6 +145,8 @@ textarea {
 
 .split-content {
     width: 100%;
+    height:auto;
+    overflow: hidden;
 }
 .left-content .ti-label, .right-content .ti-label {
     float: left;
@@ -157,7 +170,11 @@ textarea {
 #submit-new-item {
     margin: 10px 0; 
 }
-
+.tall-col {
+    min-height: 100% !important;
+    max-height: 100% !important;
+    height: 100%!important;
+}
 .info-item-container {
     border-bottom: solid 1px rgb(12, 104, 17);
 }
@@ -172,9 +189,36 @@ textarea {
     width: auto;
     max-height: 100% !important;
 }
+.map-item-image {
+    display: inline-block;
+	width: auto;
+	height: 20vh;
+    max-height: 20vh !important;
+}
+.map-item-image img {
+    height: 100%;
+    width: auto;
+    max-height: 100% !important;
+}
+.image-upload {
+    max-width: 100%;
+}
 .new-item-button {
     margin: 0 15px;
 }
 .top-pad {
     padding-top: 10px;
+}
+
+.bottom-pad{
+    padding-bottom: 10px;
+}
+
+#map {
+    height: 50vh;
+}
+
+.update-item {
+    padding: 3px 12px;
+    height: auto;
 }

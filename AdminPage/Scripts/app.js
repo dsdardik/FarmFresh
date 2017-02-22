@@ -1,4 +1,66 @@
-﻿$(document).ready(function () {
+﻿var gMapsLoaded = false;
+
+$(document).ready(function () {
+    /****************************************************************************************
+    GOOGLE MAPS SCRIPTS
+    ****************************************************************************************/
+    window.gMapsCallback = function () {
+        gMapsLoaded = true;
+        $(window).trigger('gMapsLoaded');
+    }
+
+    window.loadGoogleMaps = function () {
+        if (gMapsLoaded) { return window.gMapsCallback(); }
+        var script_tag = document.createElement('script');
+        script_tag.setAttribute("type", "text/javascript");
+        script_tag.setAttribute("src", "http://maps.google.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&sensor=false&callback=gMapsCallback");
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+    }
+
+    function initialize() {
+        var auerfarm = { lat: 41.811224, lng: -72.774158 };
+        var mapOptions = {
+            center: auerfarm,
+            zoom: 18,
+            mapTypeId: 'satellite'
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        var iconBase = "/Content/";
+        var icons = {
+            animal: {
+                icon: iconBase + "animal.png"
+            },
+            building: {
+                icon: iconBase + "building.png"
+            },
+            office: {
+                icon: iconBase + "office.png"
+            },
+            plant: {
+                icon: iconBase + "plant.png"
+            },
+            other: {
+                icon: iconBase + "other.png"
+            }
+        };
+        var lat = parseFloat(document.getElementById("Hidden1").value);
+        var lng = parseFloat(document.getElementById("Hidden2").value);
+        var latlng = { lat: lat, lng: lng }
+        var marker = new google.maps.Marker({
+            position: latlng,
+            icon: icons[document.getElementById('object_type_select').value].icon,
+            map: map,
+            draggable: true
+        });
+        google.maps.event.addListener(marker, 'dragend', function (event) {
+            var point = marker.getPosition();
+            var x = point.lat();
+            var y = point.lng();
+            document.getElementById("Hidden1").value = x;
+            document.getElementById("Hidden2").value = y;
+        });
+    }
+
     /****************************************************************************************
     MENU SCRIPTS
     ****************************************************************************************/
@@ -39,7 +101,7 @@
                 $("#content").html(response);
                 $("#calendar-op").toggleClass("selected-op");
             }
-        }).done(function () { if (menu) { CollapseMenu() } });
+        }).done(function () {if (menu) { CollapseMenu(); } });
     }
 
     $(document).on("click", "#calendar-op", function (event) {
@@ -60,6 +122,7 @@
                 $(".selected-op").removeClass("selected-op");
                 $("#content").html(response);
                 $("#map-op").toggleClass("selected-op");
+                $(window).bind('gMapsLoaded', initialize); window.loadGoogleMaps();
             }
         }).done(function () { if (menu) { CollapseMenu() } });
     }
