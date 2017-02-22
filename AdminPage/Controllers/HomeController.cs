@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdminPage.DAL;
+using AdminPage.Models.DBModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,12 +31,14 @@ namespace AdminPage.Controllers
 
         public ActionResult LoadNews()
         {
-            return PartialView("NewsPartial");
+            List<FarmInfoItem> model = InfoItemOps.GetInfoItems("news");
+            return PartialView("NewsPartial", model);
         }
 
         public ActionResult LoadCalendar()
         {
-            return PartialView("CalendarPartial");
+            List<FarmInfoItem> model = InfoItemOps.GetInfoItems("calendar").OrderBy(i => i.Date).ToList();
+            return PartialView("CalendarPartial", model);
         }
 
         public ActionResult LoadMap()

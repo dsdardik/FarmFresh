@@ -185,13 +185,21 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\DataController.cs" />
+=======
+    <Compile Include="Controllers\FarmInfoController.cs" />
+>>>>>>> ca7fdb4ab5213891313da607e3086ad847840fa7
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\InfoItemOps.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DBModels\AuerfarmDataContext.cs" />
+    <Compile Include="Models\DBModels\FarmInfoItem.cs" />
+    <Compile Include="Models\DBModels\MapItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,6 +209,7 @@
     <Content Include="Content\auerfarm-logo.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\rafi-filler-pic.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -261,7 +270,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+<<<<<<< HEAD
     <Folder Include="Views\Data\" />
+=======
+    <Folder Include="Views\FarmInfo\" />
+>>>>>>> ca7fdb4ab5213891313da607e3086ad847840fa7
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
