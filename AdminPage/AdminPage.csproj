@@ -185,11 +185,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\DataController.cs" />
-=======
     <Compile Include="Controllers\FarmInfoController.cs" />
->>>>>>> ca7fdb4ab5213891313da607e3086ad847840fa7
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\InfoItemOps.cs" />
@@ -270,11 +267,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-<<<<<<< HEAD
     <Folder Include="Views\Data\" />
-=======
     <Folder Include="Views\FarmInfo\" />
->>>>>>> ca7fdb4ab5213891313da607e3086ad847840fa7
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
