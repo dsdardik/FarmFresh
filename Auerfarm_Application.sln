@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26014.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auerfarm_Application", "Auerfarm_Application\Auerfarm_Application.csproj", "{65AC6C85-0CA9-41AF-A3D5-36C71A02E5B4}"
 EndProject
@@ -27,6 +27,7 @@ Global
 		{60D94303-5A27-4D40-A42D-43A4FF54ABA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F38978E-65B2-4304-A052-7A27FC076BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F38978E-65B2-4304-A052-7A27FC076BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F38978E-65B2-4304-A052-7A27FC076BEB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1F38978E-65B2-4304-A052-7A27FC076BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F38978E-65B2-4304-A052-7A27FC076BEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E0C3169-48BA-4408-9125-0E45AB81D78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

@@ -18,13 +18,33 @@ $(document).ready(function () {
     }
 
     function initialize() {
+        var map;
+        var infowindow;
+        var messagewindow;
+        var currentMarker;
+
         var auerfarm = { lat: 41.811224, lng: -72.774158 };
         var mapOptions = {
             center: auerfarm,
             zoom: 18,
             mapTypeId: 'satellite'
         };
+
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        var infoString = '<div id="form"> <table><tr><td>Title:</td>' +
+        '<td><input type="text" id="name" /> </td> </tr>' +
+        '<tr><td>Description</td> <td><input type="text" id="address"/></td></tr>' +
+        '<tr><td>Type:</td><td><select id="type">  +' +
+        '<option value="other" SELECTED>Default</option>' +
+        '<option value="animal" SELECTED>Animal</option>' +
+        '<option value="plant" SELECTED>Plant</option>' +
+        '<option value="building" SELECTED>Building</option>' +
+        '</select></td> </tr> <tr><td></td><td><input type="button"' +
+        'value="Save" onclick="saveData()" /></td></tr></table></div>';
+
+        var messageString = '<div id="message">Location saved</div>';
+
         var iconBase = "/Content/";
         var icons = {
             animal: {
@@ -33,9 +53,6 @@ $(document).ready(function () {
             building: {
                 icon: iconBase + "building.png"
             },
-            office: {
-                icon: iconBase + "office.png"
-            },
             plant: {
                 icon: iconBase + "plant.png"
             },
@@ -43,21 +60,62 @@ $(document).ready(function () {
                 icon: iconBase + "other.png"
             }
         };
-        var lat = parseFloat(document.getElementById("Hidden1").value);
-        var lng = parseFloat(document.getElementById("Hidden2").value);
-        var latlng = { lat: lat, lng: lng }
-        var marker = new google.maps.Marker({
-            position: latlng,
-            icon: icons[document.getElementById('object_type_select').value].icon,
-            map: map,
-            draggable: true
+
+        inputwindow = new google.maps.InfoWindow({
+            content: infoString
         });
-        google.maps.event.addListener(marker, 'dragend', function (event) {
-            var point = marker.getPosition();
-            var x = point.lat();
-            var y = point.lng();
-            document.getElementById("Hidden1").value = x;
-            document.getElementById("Hidden2").value = y;
+
+        infowindow = new google.maps.InfoWindow({
+            content: "Test"
+        });
+
+        messagewindow = new google.maps.InfoWindow({
+            content: messageString
+        });
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            if (null == currentMarker) {
+                marker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map,
+                    icon: "/Content/other.png",
+                    draggable: true
+                });
+
+                currentMarker = marker;
+
+                inputwindow.open(map, currentMarker);
+                currentMarker.setAnimation(google.maps.Animation.BOUNCE)
+
+                $(document).on("change", "#type", function () {
+                    currentMarker.setOptions({
+                        icon: "/Content/" + document.getElementById("type").value + ".png"
+                    });
+                });
+
+                google.maps.event.addListener(inputwindow, 'closeclick', function () {
+                    currentMarker.setMap(null);
+                    currentMarker = null;
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                    marker.setOptions({
+                        draggable: true
+                    });
+
+                });
+
+            }
+            else {
+                currentMarker.setAnimation(null);
+                currentMarker.setOptions({
+                    draggable: false
+                });
+                infowindow.close(map, currentMarker);
+                currentMarker = null;
+            }
+
         });
     }
 
