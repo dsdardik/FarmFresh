@@ -1,19 +1,19 @@
 ﻿
-<div ng-controller="NewsController as NC" class="height-full">
+<div ng-controller="forumController as NC" class="height-full">
     <div ng-if="!NC.isLoaded">
         <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>
     </div>
     <div ng-if="NC.isLoaded">
-        <div ng-repeat="story in NC.newsItems">
+        <div ng-repeat="comment in NC.comments">
             <div class="list-item">
                 <div ng-show="NC.showAll" ng-click="NC.toggleStory(story)" )>
                     <div class="clearfix">
                         <div class="list-item-title clearfix">
                             <div class="title-inner col-xs-9">
-                                {{story.Title}}
+                                {{comment.Title}}
                             </div>
                             <div class="list-item-date col-xs-3">
-                                {{story.Date}}
+                                {{comment.Date}}
                             </div>
                         </div>
                     </div>
@@ -21,25 +21,25 @@
                     <div class="list-item-body">
 
                         <div class="col-xs-3 col-lg-3">
-                           <!-- <img src="../Content/images/goat.jpg" class="list-item-image" />-->
+                            <!-- <img src="../Content/images/goat.jpg" class="list-item-image" />-->
                         </div>
                         <div class="col-xs-9 col-lg-9">
-                            <div class="list-item-text">{{story.Description}}</div>
+                            <div class="list-item-text">{{comment.Description}}</div>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <div class="list-item-expand" ng-show="story.showFull" ng-click="NC.toggleStory(story)">
+            <div class="list-item-expand" ng-show="comment.showFull" ng-click="NC.toggleStory(story)">
 
                 <div class="list-item-title clearfix">
 
                     <div class="title-inner col-xs-10">
-                        {{story.Title}}
+                        {{comment.Title}}
                     </div>
 
                     <div class="list-item-date col-xs-2">
-                        {{story.Date}}
+                        {{comment.Date}}
                     </div>
 
                 </div>
@@ -47,11 +47,11 @@
                 <div class="expanded-story">
 
                     <div>
-                     <!--  <img class="expanded-item-image" src="../Content/images/cold-snow-winter-mountain.jpeg" />-->
+                        <!--  <img class="expanded-item-image" src="../Content/images/cold-snow-winter-mountain.jpeg" />-->
                     </div>
 
                     <div class="expanded-body">
-                        {{story.Description}}
+                        {{comment.Description}}
                     </div>
                 </div>
 

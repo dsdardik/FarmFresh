@@ -14,7 +14,12 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/news.html',
     }).when('/map', {
         templateUrl: 'views/map.html',
-
+    }).when('/eve', {
+        templateUrl: 'views/events.html',
+    }).when('/com', {
+        templateUrl: 'views/forum.html',
+    }).when('/sal', {
+        templateUrl: 'views/shop.html',
     });
 
     $routeProvider.otherwise({ redirectTo: "/" });
@@ -49,19 +54,21 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('NewsController', NewsController);
-    NewsController.$inject = ['$scope'];
+    NewsController.$inject = ['$scope','$http'];
 
-    function NewsController($scope) {
+    function NewsController($scope, $http) {
         var vm = this;
         vm.isLoaded = false;
         vm.title = "News";
         vm.showAll = true;
-
-        vm.newsItems = {
-            story1: { headline: "Punmpkin Pies on Sale", body: "Pies will be on sale starting on Tuesday.", date: "11/12/16" },
-            story2: { headline: "Hike Scheduled for Friday", body: "Group hike scheduled for Friday. Dogs welcome.", date: "11/16/16" },
-            story3: { headline: "School Trip on Monday", body: "Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday. Pies will be on sale starting on Tuesday.", date: "11/16/16", }
-        };
+        $http({
+            url: "http://localhost:50409/Api/Data",
+            method: "GET",
+            params: { type: "News" }
+        }).then(function mySucces(response) {
+            vm.newsItems = response.data;
+        }, function myError(response) {
+        });
 
         _.each(vm.newsItems, function (story) {
             story.showFull = false;
@@ -98,17 +105,122 @@ app.config(function ($routeProvider) {
 
 })();
 
+(function () {
+    'use strict';
 
-//data access
-/*
-$.ajax({
-    type: "Post",
-    url: "http://localhost:50409/Api/Data",
-}).done(function (data) {
-    alert(data);
-}).error(function (jqXHR, textStatus, errorThrown) {
-    alert(jqXHR);
-});
+    app.controller('EventsController', EventsController);
+    EventsController.$inject = ['$scope', '$http'];
 
-*/
+    function EventsController($scope, $http) {
+        var vm = this;
+        vm.isLoaded = false;
+        vm.title = "Events";
+        vm.showAll = true;
+        $http({
+            url: "http://localhost:50409/Api/Data",
+            method: "GET",
+            params: { type: "Calendar" }
+        }).then(function mySucces(response) {
+            vm.events = response.data;
+        }, function myError(response) {
+        });
 
+        _.each(vm.events, function (story) {
+            story.showFull = false;
+        });
+
+        vm.toggleStory = function (story) {
+            story.showFull = !story.showFull;
+            vm.showAll = !vm.showAll;
+        };
+
+        vm.loadCheck = function () {
+            if (document.readyState === "complete") {
+                vm.isLoaded = true;
+            };
+        };
+        vm.loadCheck();
+    }
+
+
+})();
+
+(function () {
+    'use strict';
+
+    app.controller('forumController', forumController);
+    forumController.$inject = ['$scope', '$http'];
+
+    function forumController($scope, $http) {
+        var vm = this;
+        vm.isLoaded = false;
+        vm.title = "Forum";
+        vm.showAll = true;
+        $http({
+            url: "http://localhost:50409/Api/Data",
+            method: "GET",
+            params: { type: "Comments" }
+        }).then(function mySucces(response) {
+            vm.comments = response.data;
+        }, function myError(response) {
+        });
+
+        _.each(vm.comments, function (story) {
+            story.showFull = false;
+        });
+
+        vm.toggleStory = function (story) {
+            story.showFull = !story.showFull;
+            vm.showAll = !vm.showAll;
+        };
+
+        vm.loadCheck = function () {
+            if (document.readyState === "complete") {
+                vm.isLoaded = true;
+            };
+        };
+        vm.loadCheck();
+    }
+
+
+})();
+
+(function () {
+    'use strict';
+
+    app.controller('ShopController', ShopController);
+    ShopController.$inject = ['$scope', '$http'];
+
+    function ShopController($scope, $http) {
+        var vm = this;
+        vm.isLoaded = false;
+        vm.title = "Shop";
+        vm.showAll = true;
+        $http({
+            url: "http://localhost:50409/Api/Data",
+            method: "GET",
+            params: { type: "Shop" }
+        }).then(function mySucces(response) {
+            vm.saleItems = response.data;
+        }, function myError(response) {
+        });
+
+        _.each(vm.saleItems, function (story) {
+            story.showFull = false;
+        });
+
+        vm.toggleStory = function (story) {
+            story.showFull = !story.showFull;
+            vm.showAll = !vm.showAll;
+        };
+
+        vm.loadCheck = function () {
+            if (document.readyState === "complete") {
+                vm.isLoaded = true;
+            };
+        };
+        vm.loadCheck();
+    }
+
+
+})();

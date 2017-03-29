@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auerfarm_Application", "Auerfarm_Application\Auerfarm_Application.csproj", "{65AC6C85-0CA9-41AF-A3D5-36C71A02E5B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPage", "AdminPage\AdminPage.csproj", "{1F38978E-65B2-4304-A052-7A27FC076BEB}"
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Mobile Cordova", "Mobile Cordova\Mobile Cordova.jsproj", "{6BA9165D-1CF9-4292-9C2C-D35DF9FF51A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1F38978E-65B2-4304-A052-7A27FC076BEB} = {1F38978E-65B2-4304-A052-7A27FC076BEB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
