@@ -17,6 +17,7 @@
         <script src="scripts/lodash.js"></script>
         <script src="scripts/angular-simple-logger.js"></script>
         <script src="scripts/angular-google-maps.js"></script>
+        <script src="scripts/ngAnimate.js"></script>
 
         <!--App Routing & Controllers -->
         <script src="app.js"></script>
@@ -37,7 +38,7 @@
                 <div ng-include="'views/header.html'"></div>
                 <!-- Partial HTML Page -->
                 <div>
-                    <ng-view></ng-view>
+                    <div class="page-change" ng-view></div>
                 </div>
             </div>
      

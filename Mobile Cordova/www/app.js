@@ -1,5 +1,5 @@
 ﻿/// <reference path="" />
-var app = angular.module('app', ['ngRoute', 'uiGmapgoogle-maps']);
+var app = angular.module('app', ['ngRoute', 'uiGmapgoogle-maps','ngAnimate']);
 
 
 //Routing
@@ -10,7 +10,7 @@ app.config(function ($routeProvider) {
         // route for the home page
     .when('/', {
         templateUrl: 'views/main.html',
-    }).when('/new', {
+    }).when('/news', {
         templateUrl: 'views/news.html',
     }).when('/map', {
         templateUrl: 'views/map.html',
@@ -20,17 +20,14 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/" });
 });
 
-
-
 //Page Controllers
-
 (function () {
     'use strict';
 
     app.controller('MainController', MainController);
-    MainController.$inject = ['$scope'];
+    MainController.$inject = ['$scope','$location'];
 
-    function MainController($scope) {
+    function MainController($scope,$location) {
         var vm = this;
         vm.title = "News";
         vm.pageTitle = "Auerfarm Mobile";
@@ -39,10 +36,10 @@ app.config(function ($routeProvider) {
             vm.pageTitle = input;
         };
 
-
+        vm.changeView = function(view){
+            $location.path(view); // path not hash
+        }
     }
-
-
 })();
 
 (function () {
@@ -79,8 +76,6 @@ app.config(function ($routeProvider) {
         };
         vm.loadCheck();
     }
-
-
 })();
 
 (function () {

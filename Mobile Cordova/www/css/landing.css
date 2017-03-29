@@ -3,7 +3,7 @@
     border-radius: 40px;
     background: #67BB4A;
     margin:10% 2% 10% 5%;
-    height:25%;
+    height:23vh;
 }
 
 
@@ -18,7 +18,7 @@ a > i {
     color: mintcream;
     font-size: 5em;
     position: relative;
-    top: -20%;
+    top: 20px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -46,5 +46,19 @@ a > i {
 }
 
 .main-menu{
+    overflow:hidden;
+}
+
+.page-change.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.page-change.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+body {
     overflow:hidden;
 }
