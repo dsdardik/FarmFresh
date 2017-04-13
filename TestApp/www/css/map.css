@@ -1,0 +1,11 @@
+﻿.angular-google-map-container { height: 200px; }
+
+#map{
+    height:500px; 
+    width:500px; 
+/*    box-shadow: 3px 3px 10px gray;*/  
+    }
+
+#map-canvas {
+            height: 100%;
+        }
