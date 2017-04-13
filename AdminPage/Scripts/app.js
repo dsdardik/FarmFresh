@@ -21,7 +21,7 @@ $(document).ready(function () {
         var map;
         var infowindow;
         var messagewindow;
-        var currentMarker;
+        currentMarker = null;// = null;
 
         var auerfarm = { lat: 41.811224, lng: -72.774158 };
         var mapOptions = {
@@ -32,18 +32,7 @@ $(document).ready(function () {
 
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-        var infoString = '<div id="form"> <table><tr><td>Title:</td>' +
-        '<td><input type="text" id="name" /> </td> </tr>' +
-        '<tr><td>Description</td> <td><input type="text" id="address"/></td></tr>' +
-        '<tr><td>Type:</td><td><select id="type">  +' +
-        '<option value="other" SELECTED>Default</option>' +
-        '<option value="animal" SELECTED>Animal</option>' +
-        '<option value="plant" SELECTED>Plant</option>' +
-        '<option value="building" SELECTED>Building</option>' +
-        '</select></td> </tr> <tr><td></td><td><input type="button"' +
-        'value="Save" onclick="saveData()" /></td></tr></table></div>';
-
-        var messageString = '<div id="message">Location saved</div>';
+        objects = JSON.parse(GetMapObjects());
 
         var iconBase = "/Content/";
         var icons = {
@@ -61,61 +50,162 @@ $(document).ready(function () {
             }
         };
 
-        inputwindow = new google.maps.InfoWindow({
-            content: infoString
-        });
+       // console.log(objects);
 
-        infowindow = new google.maps.InfoWindow({
-            content: "Test"
-        });
+        for (var i in objects) {
+            var ob = objects[i];
+            //console.log(ob);
+            var long = parseFloat(ob.Long);
+            var lat = parseFloat(ob.Lat)
+            var pos = new google.maps.LatLng(lat, long);
+            var mark = new google.maps.Marker({
+                position: pos,
+                map: map,
+                icon: "/Content/" + ob.Type + ".png",
+                draggable: true,
+                id: i,
+            });
+            //console.log(mark);
+            var infowindow;
+            
+            mark.addListener('mouseover', function () {
+               // console.log(mark);
+                infowindow = InfoContent(objects[this.id]);
+                infowindow.open(map, this);
+            });
 
-        messagewindow = new google.maps.InfoWindow({
-            content: messageString
-        });
+            mark.addListener('mouseout', function () {
+                infowindow.close();
+            });
 
-        google.maps.event.addListener(map, 'click', function(event) {
-            if (null == currentMarker) {
+            mark.addListener('click', function () {
+                currentMarker = this;
+                CreateMapObject(this);
+            });
+        }
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            if ( !currentMarker) {
+                //console.log(event.latLng);
                 marker = new google.maps.Marker({
                     position: event.latLng,
                     map: map,
                     icon: "/Content/other.png",
-                    draggable: true
+                    draggable: true,
+                    id: null,
                 });
 
                 currentMarker = marker;
-
-                inputwindow.open(map, currentMarker);
-                currentMarker.setAnimation(google.maps.Animation.BOUNCE)
-
-                $(document).on("change", "#type", function () {
-                    currentMarker.setOptions({
-                        icon: "/Content/" + document.getElementById("type").value + ".png"
-                    });
-                });
-
-                google.maps.event.addListener(inputwindow, 'closeclick', function () {
-                    currentMarker.setMap(null);
-                    currentMarker = null;
-                });
-
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                    marker.setOptions({
-                        draggable: true
-                    });
-
-                });
-
+                currentMarker.setAnimation(google.maps.Animation.BOUNCE);
+                
+                console.log(currentMarker);
+                console.log("^marker");
+                CreateMapObject(currentMarker);
             }
             else {
-                currentMarker.setAnimation(null);
-                currentMarker.setOptions({
-                    draggable: false
-                });
-                infowindow.close(map, currentMarker);
+                $("#map-object-info").toggleClass('no-disp');
                 currentMarker = null;
             }
+        });
+        $(document).on('click', '.update-map-item', function (event) {
+            //console.log(currentMarker);
+            event.preventDefault();
+            //console.log("button clicked");
+            AddMapObject(currentMarker);
+        });
+    }
 
+    var InfoContent = function (ob) {
+        //console.log(ob);
+        var content = "<div><h5 class='ob-info-name'>" + ob.Name + "</h4> <div class='info-window-img'> <img src='Content/rafi-filler-pic.jpg' alt='placeholder-pic' /> </div> </div>";
+        var infowindow = new google.maps.InfoWindow({
+            content: content,
+        });
+        return infowindow;
+    }
+
+    var CreateMapObject = function(m){
+        //console.log(m);
+        //console.log(m.position);
+        if (m.id != null) {
+            var info = objects[m.id];
+            $("#object-action").html("Update Object");
+            $("#item-name").val(info.Name);
+            $("#item-desc").val(info.Description);
+            $(".update-map-item").attr('id', info.Id);
+            $(".update-map-item").html("Update");
+        }
+        else {
+            $("#object-action").html("Add Object");
+            $("#item-name").val(null);
+            $("#item-desc").val(null);
+            $(".update-map-item").attr('id', null);
+            $(".update-map-item").html("Add");
+        }
+        $("#map-object-info").toggleClass('no-disp');
+        location.href = "#";
+        location.href = "#map-object-info";
+        console.log($(".update-map-item").attr('id'));
+    }
+
+    var AddMapObject = function (m) {
+        var MapItem =
+            {
+                Id: $(".update-map-item").attr('id'),
+                Type: 'other',
+                Name: $("#item-name").val(),
+                Description: $('#item-desc').val(),
+                Long: m.position.lng(),
+                Lat: m.position.lat(),
+                Active: true,
+            }
+        $.ajax({
+            type: "POST",
+            url: "../../FarmInfo/AddMapObject",
+            data: MapItem,
+            success: function (response) {
+                //console.log(response);
+            },
+            error: function (error) {
+                console.log(response);
+            }
+        });
+        LoadMap();
+    }
+
+    var GetMapObjects = function () {
+        //console.log("started");
+        var res;
+        $.ajax({
+            type: "GET",
+            url: "../../Home/GetMapObjects",
+           // dataType: "json",
+            async: false,
+            success: function (response) {
+                //console.log(response);
+                res = response;
+            }
+        });
+        return res;
+    }
+
+    $(document).on("click", "#map-list-view", function (event) {
+        event.preventDefault();
+        LoadMapList();
+    });
+
+    $(document).on("click", "#map-map-view", function (event) {
+        event.preventDefault();
+        LoadMap(false);
+    });
+
+    function LoadMapList() {
+        $.ajax({
+            type: "GET",
+            url: "Home/LoadMapList",
+            success: function (response) {
+                $("#content").html(response);
+            }
         });
     }
 
@@ -184,6 +274,7 @@ $(document).ready(function () {
             }
         }).done(function () { if (menu) { CollapseMenu() } });
     }
+
 
     $(document).on("click", "#map-op", function (event) {
         event.preventDefault();

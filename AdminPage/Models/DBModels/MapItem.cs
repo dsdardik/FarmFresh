@@ -15,8 +15,8 @@ namespace AdminPage.Models.DBModels
         public string Type { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Long { get; set; }
-        public int Lat { get; set; }
+        public string Long { get; set; }
+        public string Lat { get; set; }
         public bool Active { get; set; }
     }
 }

@@ -55,5 +55,19 @@ namespace AdminPage.Controllers
         {
             return PartialView();
         }
+
+        [HttpPost]
+        public ActionResult AddMapObject(MapItem item)
+        {
+            try
+            {
+                MapItemOps.AddMapItem(item);
+                return Json("Success");
+            }
+            catch(Exception e)
+            {
+                return Json("error");
+            }
+        }
     }
 }

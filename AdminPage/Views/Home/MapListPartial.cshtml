@@ -1,10 +1,13 @@
-﻿@model List<AdminPage.Models.DBModels.FarmInfoItem>
+﻿@model List<AdminPage.Models.DBModels.MapItem>
 
 <div class="row page-name">
     <div class="col-xs-1"></div>
-    <div class="col-xs-11">
-        <h2>News and Announcements</h2>
-        <p>Here you can view, edit, create, and delete news and announcements.</p>
+    <div class="col-xs-6">
+        <h2>Map Object List</h2>
+        <p>Here you can view, edit, and delete existing map objects.</p>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="form-control" id="map-map-view">Map View</button>
     </div>
     <div class="col-xs-1"></div>
 </div>
@@ -13,11 +16,11 @@
     @Html.Hidden("item-type", "news")
     <div class="col-xs-1"></div>
     <div class="col-xs-11">
-        <div class="container-fluid new-item-button">
+        @*<div class="container-fluid new-item-button">
             <a href="">
                 <button type="button" class="btn btn-default form-control" id="new-info-item">Add News Item</button>
             </a>
-        </div>
+        </div>*@
         <div class="container-fluid item-list">
             @foreach (var item in Model)
             {
@@ -32,15 +35,15 @@
                             <div class="split-content">
                                 <div class="left-content">
                                     <div class='ti-label inline-block'>
-                                        <h6>Title:</h6>
+                                        <h6>Name:</h6>
                                     </div>
-                                    <input type='text' class='inline-block form-control' id='item-title' value="@item.Title">
+                                    <input type='text' class='inline-block form-control' id='item-name' value="@item.Name">
                                 </div>
                                 <div class="right-content">
-                                    <div class='ti-label inline-block'>
+                                    @*<div class='ti-label inline-block'>
                                         <h6>Date:</h6>
                                     </div>
-                                    <input type='text' class='inline-block form-control' id='item-date' value="@item.Date">
+                                    <input type='text' class='inline-block form-control' id='item-date' value="@item.Date">*@
                                 </div>
                             </div>
                             <div class='ti-label inline-block'>
@@ -49,16 +52,16 @@
                             <textarea class='inline-block form-control' id='item-desc'>@item.Description</textarea>
                             <div class="split-content">
                                 <div class="left-content">
-                                    <div class='ti-label inline-block'>
+                                    @*<div class='ti-label inline-block'>
                                         <h6>Post Date:  </h6>
                                     </div>
-                                    <input type='text' class='form-control  inline-block' id='item-post-date' value="@item.StartDate">
+                                    <input type='text' class='form-control  inline-block' id='item-post-date' value="@item.StartDate">*@
                                 </div>
                                 <div class="right-content">
-                                    <div class='ti-label inline-block'>
+                                    @*<div class='ti-label inline-block'>
                                         <h6>Hide Date:  </h6>
                                     </div>
-                                    <input type='text' class='form-control inline-block' id='item-remove-date' value="@item.EndDate">
+                                    <input type='text' class='form-control inline-block' id='item-remove-date' value="@item.EndDate">*@
                                 </div>
                             </div>
                         </div>
