@@ -62,8 +62,3 @@ a > i {
 body {
     overflow:hidden;
 }
-
-#map {
-    width: 100%;
-    height: 500px;
-}
