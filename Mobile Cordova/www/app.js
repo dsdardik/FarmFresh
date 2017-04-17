@@ -92,9 +92,7 @@ app.config(function ($routeProvider) {
     MapController.$inject = ['$scope'];
 
     function MapController($scope) {
-        var vm = this;
-        vm.isLoaded = false;
-        vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     }
 
 
