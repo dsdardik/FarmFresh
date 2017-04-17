@@ -1,5 +1,5 @@
 ﻿/// <reference path="" />
-var app = angular.module('app', ['ngRoute', 'uiGmapgoogle-maps','ngAnimate']);
+var app = angular.module('app', ['ngRoute', 'uiGmapgoogle-maps', 'ngAnimate']);
 
 
 //Routing
@@ -30,9 +30,9 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('MainController', MainController);
-    MainController.$inject = ['$scope','$location'];
+    MainController.$inject = ['$scope', '$location'];
 
-    function MainController($scope,$location) {
+    function MainController($scope, $location) {
         var vm = this;
         vm.title = "News";
         vm.pageTitle = "Auerfarm Mobile";
@@ -41,7 +41,7 @@ app.config(function ($routeProvider) {
             vm.pageTitle = input;
         };
 
-        vm.changeView = function(view){
+        vm.changeView = function (view) {
             $location.path(view); // path not hash
         }
     }
@@ -51,7 +51,7 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('NewsController', NewsController);
-    NewsController.$inject = ['$scope','$http'];
+    NewsController.$inject = ['$scope', '$http'];
 
     function NewsController($scope, $http) {
         var vm = this;
@@ -92,9 +92,7 @@ app.config(function ($routeProvider) {
     MapController.$inject = ['$scope'];
 
     function MapController($scope) {
-        var vm = this;
-        vm.isLoaded = false;
-        vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     }
 
 

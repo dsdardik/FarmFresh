@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 
-        <script src="scripts/angular.js"></script>
-        <script src="scripts/angular-route.min.js"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-        <script src="scripts/lodash.js"></script>
-        <script src="scripts/angular-simple-logger.js"></script>
-        <script src="scripts/angular-google-maps.js"></script>
-        <script src="scripts/ngAnimate.js"></script>
-
-        <!--App Routing & Controllers -->
-        <script src="app.js"></script>
+    <!--Script Import -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
     
-        <script src="scripts/jquery-1.10.2.min.js"></script>
-        <script src="scripts/bootstrap.min.js"></script>
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
-        <link href="css/landing.css" rel="stylesheet" />
-        <link href="css/lists.css" rel="stylesheet" />
-        <link href="css/fonts/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <script src="lib/lodash/lodash.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
-    </head>
-    <body ng-app="app">
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="scripts/underscore.min.js"></script>
+
+  
+
+    
+
+    <!--App Routing & Controllers -->
+    <script src="app.js"></script>
+
+  
+    <link href="lib/Font-Awesome/css/font-awesome.css" rel="stylesheet" />
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="css/landing.css" rel="stylesheet" />
+    <link href="css/lists.css" rel="stylesheet" />
+
+</head>
+<body ng-app="app">
+
+
+    <!-- Main Body -->
+    <div>
+        <div ng-include="'views/header.html'"></div>
+        <!-- Partial HTML Page -->
+        <div>
+            <div class="page-change" ng-view></div>
+        </div>
+    </div>
+
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
    
-           
-            <!-- Main Body -->
-            <div class="container-fluid">
-                <div ng-include="'views/header.html'"></div>
-                <!-- Partial HTML Page -->
-                <div>
-                    <div class="page-change" ng-view></div>
-                </div>
-            </div>
-     
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
 
-       
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-       
-    </body>
+</body>
 </html>
