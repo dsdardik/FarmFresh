@@ -29,7 +29,7 @@
                 <img src="~/Content/rafi-filler-pic.jpg" alt="placeholder-pic" />
             </div>
         </div>
-        <div class="col-xs-8 @*beside-img*@">
+        <div class="col-xs-8 ">
             <div class="split-content bottom-pad">
                 <div class="left-content">
                     <div class='ti-label inline-block'>
@@ -38,10 +38,16 @@
                     <input type='text' class='inline-block form-control' id='item-name'>
                 </div>
                 <div class="right-content">
-                    @*<div class='ti-label inline-block'>
-                            <h6>Date:</h6>
-                        </div>
-                        <input type='text' class='inline-block form-control' id='item-date' >*@
+                    <label for="item-type">Type:</label>
+                    <select class='form-control' id='item-type' >
+                        <option selected disabled>...pick one...</option>
+                        <option value="type-animal">Animal</option>
+                        <option value="type-plant">Plant</option>
+                        <option value="type-building">Building</option>
+                        <option value="type-landmark">Landmark</option>
+                        <option value="type-trail">Trail</option>
+                        <option value="type-other">Other</option>
+                    </select>
                 </div>
             </div>
             <div class='ti-label inline-block'>

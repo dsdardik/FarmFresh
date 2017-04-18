@@ -23,8 +23,10 @@ namespace AdminPage.DAL
                     target.Name = input.Name;
                     target.Description = input.Description;
                     target.Type = input.Type;
-                    target.Long = input.Long;
-                    target.Lat = input.Lat;
+                    if(input.Long != null)
+                       target.Long = input.Long;
+                    if (input.Lat != null)
+                        target.Lat = input.Lat;
                     target.Active = input.Active;
                     db.SaveChanges();
                 }

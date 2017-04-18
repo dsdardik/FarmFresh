@@ -37,16 +37,22 @@ $(document).ready(function () {
         var iconBase = "/Content/";
         var icons = {
             animal: {
-                icon: iconBase + "animal.png"
+                icon: iconBase + "type-animal.png"
             },
             building: {
-                icon: iconBase + "building.png"
+                icon: iconBase + "type-building.png"
             },
             plant: {
-                icon: iconBase + "plant.png"
+                icon: iconBase + "type-plant.png"
+            },
+            landmark: {
+                icon: iconBase + "type-landmark.png"
+            },
+            trail: {
+                icon: iconBase + "type-trail.png"
             },
             other: {
-                icon: iconBase + "other.png"
+                icon: iconBase + "type-other.png"
             }
         };
 
@@ -90,7 +96,7 @@ $(document).ready(function () {
                 marker = new google.maps.Marker({
                     position: event.latLng,
                     map: map,
-                    icon: "/Content/other.png",
+                    icon: "/Content/type-other.png",
                     draggable: true,
                     id: null,
                 });
@@ -107,13 +113,20 @@ $(document).ready(function () {
                 currentMarker = null;
             }
         });
-        $(document).on('click', '.update-map-item', function (event) {
-            //console.log(currentMarker);
-            event.preventDefault();
-            //console.log("button clicked");
-            AddMapObject(currentMarker);
-        });
+        //$(document).on('click', '.update-map-item', function (event) {
+        //    //console.log(currentMarker);
+        //    event.preventDefault();
+        //    console.log("button clicked");
+        //    AddMapObject(currentMarker);
+        //});
     }
+
+    $(document).on('click', '.update-map-item', function (event) {
+        //console.log(currentMarker);
+        event.preventDefault();
+        c//onsole.log("button clicked");
+        AddMapObject(currentMarker);
+    });
 
     var InfoContent = function (ob) {
         //console.log(ob);
@@ -132,6 +145,7 @@ $(document).ready(function () {
             $("#object-action").html("Update Object");
             $("#item-name").val(info.Name);
             $("#item-desc").val(info.Description);
+            $("#item-type").val(info.Type);
             $(".update-map-item").attr('id', info.Id);
             $(".update-map-item").html("Update");
         }
@@ -145,14 +159,16 @@ $(document).ready(function () {
         $("#map-object-info").toggleClass('no-disp');
         location.href = "#";
         location.href = "#map-object-info";
-        console.log($(".update-map-item").attr('id'));
+        //console.log($(".update-map-item").attr('id'));
     }
 
     var AddMapObject = function (m) {
+        //console.log("adding map object");
+        $(".update-map-item").disabled = true;
         var MapItem =
             {
                 Id: $(".update-map-item").attr('id'),
-                Type: 'other',
+                Type: $("#item-type").val(),
                 Name: $("#item-name").val(),
                 Description: $('#item-desc').val(),
                 Long: m.position.lng(),
@@ -171,7 +187,39 @@ $(document).ready(function () {
             }
         });
         LoadMap();
+        $(".update-map-item").disabled = false;
     }
+
+    var AddMapListObject = function (b) {
+        var id = $(b).parent().parent().parent().attr('id');
+        console.log(id);
+        var MapItem =
+            {
+                Id: id,
+                Type: $("#"+ id +" #item-type").val(),
+                Name: $("#" + id + " #item-name").val(),
+                Description: $("#" + id + ' #item-desc').val(),
+                Active: true,
+            }
+        $.ajax({
+            type: "POST",
+            url: "../../FarmInfo/AddMapObject",
+            data: MapItem,
+            success: function (response) {
+                //console.log(response);
+            },
+            error: function (error) {
+                console.log(response);
+            }
+        });
+    }
+
+    $(document).on('click', '.update-map-list-item', function (event) {
+        //console.log(currentMarker);
+        event.preventDefault();
+        //console.log("button clicked");
+        AddMapListObject(this);
+    });
 
     var GetMapObjects = function () {
         //console.log("started");
@@ -205,6 +253,14 @@ $(document).ready(function () {
             url: "Home/LoadMapList",
             success: function (response) {
                 $("#content").html(response);
+                //var selects = $(".map-list-items #item-type").each(function () { $(this).val($(this).attr('name')); });
+                $(".map-list-items #item-type").each(function () { $(this).val($(this).attr('name')); });
+                //console.log(selects);
+                //for (item in selects) {
+                //    console.log(item);
+                //    var type = $(item).attr('name');
+                //    $(item).val(type);
+                //}
             }
         });
     }

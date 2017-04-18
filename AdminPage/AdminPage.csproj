@@ -213,13 +213,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\animal.png" />
+    <Content Include="Content\type-animal.png" />
     <Content Include="Content\auerfarm-logo.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\building.png" />
-    <Content Include="Content\other.png" />
-    <Content Include="Content\plant.png" />
+    <Content Include="Content\type-building.png" />
+    <Content Include="Content\type-landmark - Copy.png" />
+    <Content Include="Content\type-landmark.png" />
+    <Content Include="Content\type-other.png" />
+    <Content Include="Content\type-plant.png" />
     <Content Include="Content\rafi-filler-pic.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -14,6 +14,11 @@
     white-space: normal;
 }
 
+#item-type {
+width:auto;
+display:inline-block;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
