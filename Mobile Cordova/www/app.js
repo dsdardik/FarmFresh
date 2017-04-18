@@ -1,5 +1,5 @@
 ﻿/// <reference path="" />
-var app = angular.module('app', ['ngRoute', 'uiGmapgoogle-maps', 'ngAnimate']);
+var app = angular.module('app', ['ngRoute', 'ngAnimate']);
 
 
 //Routing
@@ -36,13 +36,54 @@ app.config(function ($routeProvider) {
         var vm = this;
         vm.title = "News";
         vm.pageTitle = "Auerfarm Mobile";
+        vm.map = false;
+        vm.part = false;
+        vm.back = false;
 
         function titleChange(input) {
             vm.pageTitle = input;
         };
 
+        vm.showMap = function () {
+            vm.map = true;
+            vm.back = true;
+        }
+
+        vm.hideMap = function () {
+            vm.map = false;
+        }
+
+        vm.showPart = function () {
+            vm.part = true;
+        }
+
+        vm.hidePart= function () {
+            vm.part = false;
+        }
+ 
+        vm.showBack = function () {
+            vm.back = true;
+        }
+
+        vm.hideBack= function () {
+            vm.back = false;
+        }
+
         vm.changeView = function (view) {
             $location.path(view); // path not hash
+        }
+
+        vm.iconSelect = function (view) {
+            $location.path(view); // path not hash
+            vm.part = true;
+            vm.back = true;
+        }
+
+       
+        vm.backToMenu = function () {
+            vm.map = false;
+            vm.back = false;
+            vm.part = false;
         }
     }
 })();

@@ -35,11 +35,9 @@ a > i {
 }
 
 .icon-row{
-    min-height:33%;
-    max-height:33%
+    min-height:28%;
+    max-height:28%
 }
-
-
 
 .center{
     margin:auto;
@@ -61,4 +59,8 @@ a > i {
 
 body {
     overflow:hidden;
+}
+
+#main-menu{
+    height:100vh;
 }
