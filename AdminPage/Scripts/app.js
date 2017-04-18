@@ -22,6 +22,7 @@ $(document).ready(function () {
         var infowindow;
         var messagewindow;
         currentMarker = null;// = null;
+        allMarkers = [];
 
         var auerfarm = { lat: 41.811224, lng: -72.774158 };
         var mapOptions = {
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-        objects = JSON.parse(GetMapObjects());
+        objects = JSON.parse(GetMapObjects("none"));
 
         var iconBase = "/Content/";
         var icons = {
@@ -70,6 +71,7 @@ $(document).ready(function () {
                 icon: "/Content/" + ob.Type + ".png",
                 draggable: true,
                 id: i,
+                type: ob.Type,
             });
             //console.log(mark);
             var infowindow;
@@ -88,6 +90,7 @@ $(document).ready(function () {
                 currentMarker = this;
                 CreateMapObject(this);
             });
+            allMarkers.push(mark);
         }
 
         google.maps.event.addListener(map, 'click', function (event) {
@@ -207,6 +210,7 @@ $(document).ready(function () {
             data: MapItem,
             success: function (response) {
                 //console.log(response);
+                $("#" + id).css("background-color : green");
             },
             error: function (error) {
                 console.log(response);
@@ -221,12 +225,13 @@ $(document).ready(function () {
         AddMapListObject(this);
     });
 
-    var GetMapObjects = function () {
+    var GetMapObjects = function (filter) {
         //console.log("started");
         var res;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "../../Home/GetMapObjects",
+            data: { 'filter': filter },
            // dataType: "json",
             async: false,
             success: function (response) {
@@ -239,7 +244,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#map-list-view", function (event) {
         event.preventDefault();
-        LoadMapList();
+        LoadMapList("none");
     });
 
     $(document).on("click", "#map-map-view", function (event) {
@@ -247,10 +252,32 @@ $(document).ready(function () {
         LoadMap(false);
     });
 
-    function LoadMapList() {
+    $(document).on("change", "#map-filter", function (event) {
+        event.preventDefault();
+        var filter = $(this).val();
+        //console.log("filter: " + filter);
+        //console.log(allMarkers);
+        for (var key in allMarkers) {
+            var mark = allMarkers[key];
+            //console.log(mark.type);
+            mark.setVisible(true);
+            if (mark.type != filter && filter != "none")
+                mark.setVisible(false);
+        }
+    });
+
+    $(document).on('change', '#map-list-filter', function (event) {
+        event.preventDefault();
+        var filter = $(this).val();
+        //console.log(filter);
+        LoadMapList(filter);
+    });
+
+    function LoadMapList(filter) {
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "Home/LoadMapList",
+            data: { 'filter': filter },
             success: function (response) {
                 $("#content").html(response);
                 //var selects = $(".map-list-items #item-type").each(function () { $(this).val($(this).attr('name')); });
@@ -261,6 +288,7 @@ $(document).ready(function () {
                 //    var type = $(item).attr('name');
                 //    $(item).val(type);
                 //}
+                $("#map-list-filter").val(filter);
             }
         });
     }

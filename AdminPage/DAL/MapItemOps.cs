@@ -33,11 +33,14 @@ namespace AdminPage.DAL
             }
         }
 
-        public static List<MapItem> GetMapItems()
+        public static List<MapItem> GetMapItems(string filter)
         {
             using (AuerfarmDataContext db = new AuerfarmDataContext())
             {
-                return db.MapItems.ToList();
+                if(filter != "none")
+                    return db.MapItems.Where(i => i.Type == filter).OrderBy(i => i.Name).ToList();
+                else
+                    return db.MapItems.OrderBy(i => i.Name).ToList();
             }
         }
     }

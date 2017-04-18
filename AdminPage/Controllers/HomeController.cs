@@ -47,18 +47,18 @@ namespace AdminPage.Controllers
             return PartialView("MapPartial");
         }
 
-        public ActionResult LoadMapList()
+        public ActionResult LoadMapList(string filter)
         {
-            List<MapItem> model = MapItemOps.GetMapItems();
+            List<MapItem> model = MapItemOps.GetMapItems(filter);
             return PartialView("MapListPartial", model);
         }
 
-        [HttpGet]
-        public string GetMapObjects()
+        [HttpPost]
+        public string GetMapObjects(string filter)
         {
             try
             {
-                List<MapItem> items = MapItemOps.GetMapItems();
+                List<MapItem> items = MapItemOps.GetMapItems(filter);
                 return JsonConvert.SerializeObject(items);
             }
             catch(Exception e)

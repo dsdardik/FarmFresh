@@ -14,7 +14,7 @@
     white-space: normal;
 }
 
-#item-type {
+#item-type, #map-filter, #map-list-filter {
 width:auto;
 display:inline-block;
 }
