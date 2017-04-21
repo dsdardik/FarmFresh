@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AdminPage.Models.DBModels
 {
-    [Table("MapItems")]
+    [Table("MapItem")]
     public class MapItem
     {
         [Key]
@@ -17,6 +17,7 @@ namespace AdminPage.Models.DBModels
         public string Description { get; set; }
         public string Long { get; set; }
         public string Lat { get; set; }
+        public string Image { get; set; }
         public bool Active { get; set; }
     }
 }

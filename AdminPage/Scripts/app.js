@@ -127,7 +127,7 @@ $(document).ready(function () {
     $(document).on('click', '.update-map-item', function (event) {
         //console.log(currentMarker);
         event.preventDefault();
-        c//onsole.log("button clicked");
+        //console.log("button clicked");
         AddMapObject(currentMarker);
     });
 

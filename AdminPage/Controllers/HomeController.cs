@@ -69,7 +69,8 @@ namespace AdminPage.Controllers
 
         public ActionResult LoadShop()
         {
-            return PartialView("ShopPartial");
+            List<Product> model = ProductOps.GetProducts();
+            return PartialView("ShopPartial", model);
         }
         
     }

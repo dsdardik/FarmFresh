@@ -12,6 +12,10 @@ namespace AdminPage.DAL
         {
             using (AuerfarmDataContext db = new AuerfarmDataContext())
             {
+                input.Date = input.Date ?? DateTime.Now;
+                input.StartDate = input.StartDate ?? DateTime.Now;
+                input.EndDate = input.EndDate ?? DateTime.MaxValue;
+
                 db.InfoItems.Add(input);
                 db.SaveChanges();
             }
@@ -23,10 +27,10 @@ namespace AdminPage.DAL
             {
                 FarmInfoItem itemToChange = db.InfoItems.Where(i => i.Id == input.Id).FirstOrDefault();
                 itemToChange.Title = input.Title;
-                itemToChange.Date = input.Date;
+                itemToChange.Date = input.Date ?? DateTime.Now;
                 itemToChange.Description = input.Description;
-                itemToChange.StartDate = input.StartDate;
-                itemToChange.EndDate = input.EndDate;
+                itemToChange.StartDate = input.StartDate ?? DateTime.Now;
+                itemToChange.EndDate = input.EndDate ?? DateTime.MaxValue;
                 db.SaveChanges();
             }
         }

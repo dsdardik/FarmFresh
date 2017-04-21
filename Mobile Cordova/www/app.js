@@ -2,6 +2,8 @@
 var app = angular.module('app', ['ngRoute', 'ngAnimate']);
 
 
+
+
 //Routing
 
 app.config(function ($routeProvider) {
@@ -23,6 +25,10 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.otherwise({ redirectTo: "/" });
+
+
+
+
 });
 
 //Page Controllers
@@ -156,6 +162,7 @@ app.config(function ($routeProvider) {
         vm.isLoaded = false;
         vm.title = "News";
         vm.showAll = true;
+
         $http({
             url: "http://localhost:50409/Api/Data",
             method: "GET",
@@ -192,7 +199,6 @@ app.config(function ($routeProvider) {
     function MapController($scope) {
         $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     }
-
 
 })();
 

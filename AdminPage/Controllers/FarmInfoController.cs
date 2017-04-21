@@ -1,5 +1,6 @@
 ﻿using AdminPage.DAL;
 using AdminPage.Models.DBModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,9 +63,36 @@ namespace AdminPage.Controllers
             try
             {
                 MapItemOps.AddMapItem(item);
-                return Json("Success");
+                return new HttpStatusCodeResult(200);
             }
             catch(Exception e)
+            {
+                return new HttpStatusCodeResult(500);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(Product item)
+        {
+            try
+            {
+                return Json("success");
+            }
+            catch (Exception e)
+            {
+                return Json("error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProduct(Product item)
+        {
+            try
+            {
+                ProductOps.UpdateProduct(item);
+                return Json(item.Id.ToString());
+            }
+            catch (Exception e)
             {
                 return Json("error");
             }

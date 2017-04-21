@@ -191,22 +191,15 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\InfoItemOps.cs" />
     <Compile Include="DAL\MapItemOps.cs" />
+    <Compile Include="DAL\ProductOps.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703282224027_InitialMigration.cs" />
-    <Compile Include="Migrations\201703282224027_InitialMigration.Designer.cs">
-      <DependentUpon>201703282224027_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703290024253_EditMapObjects.cs" />
-    <Compile Include="Migrations\201703290024253_EditMapObjects.Designer.cs">
-      <DependentUpon>201703290024253_EditMapObjects.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DBModels\AuerfarmDataContext.cs" />
     <Compile Include="Models\DBModels\FarmInfoItem.cs" />
     <Compile Include="Models\DBModels\MapItem.cs" />
+    <Compile Include="Models\DBModels\Product.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,7 +235,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -284,6 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\FarmInfo\" />
   </ItemGroup>
@@ -294,14 +290,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703282224027_InitialMigration.resx">
-      <DependentUpon>201703282224027_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703290024253_EditMapObjects.resx">
-      <DependentUpon>201703290024253_EditMapObjects.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
