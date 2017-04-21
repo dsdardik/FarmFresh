@@ -27,8 +27,7 @@
             };
 
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-            //debugger;
+        
             var objects = [];
 
             $.ajax({
@@ -37,11 +36,9 @@
                 data: { type: "Map" },
                 async: false,
                 success: function (response) {
-                    //debugger;
                     objects = JSON.parse(response);
                 },
                 error: function (error) {
-                    debugger;
                 }
             });
 
@@ -66,8 +63,7 @@
                     icon: iconBase + "type-other.png"
                 }
             };
-
-            debugger;
+            
             for (var i in objects) {
                 var ob = objects[i];
                 //console.log(ob);
