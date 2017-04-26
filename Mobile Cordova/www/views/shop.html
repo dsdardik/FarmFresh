@@ -9,11 +9,11 @@
                 <div ng-show="NC.showAll" ng-click="NC.toggleStory(story)" )>
                     <div class="clearfix">
                         <div class="list-item-title clearfix">
-                            <div class="title-inner col-xs-9">
+                            <div class="title-inner col-xs-7">
                                 {{item.Title}}
                             </div>
-                            <div class="list-item-date col-xs-3">
-                                {{item.Date}}
+                            <div class="list-item-date col-xs-5">
+                                {{item.Date | jsDate | date:"MM-dd-yy}}
                             </div>
                         </div>
                     </div>
@@ -34,12 +34,12 @@
 
                 <div class="list-item-title clearfix">
 
-                    <div class="title-inner col-xs-10">
+                    <div class="title-inner col-xs-7">
                         {{item.Title}}
                     </div>
 
-                    <div class="list-item-date col-xs-2">
-                        {{item.Date}}
+                    <div class="list-item-date col-xs-5">
+                        {{item.Date | jsDate | date:"MM-dd-yy}}
                     </div>
 
                 </div>

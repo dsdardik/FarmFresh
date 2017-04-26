@@ -18,8 +18,6 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/map.html',
     }).when('/eve', {
         templateUrl: 'views/events.html',
-    }).when('/com', {
-        templateUrl: 'views/forum.html',
     }).when('/sal', {
         templateUrl: 'views/shop.html',
     });
@@ -45,6 +43,9 @@ app.config(function ($routeProvider) {
         vm.map = false;
         vm.part = false;
         vm.back = false;
+        vm.infoWindow = false;
+        vm.slide = false;//'slideDown';
+        vm.quickClose = false;
 
         function titleChange(input) {
             vm.pageTitle = input;
@@ -63,15 +64,15 @@ app.config(function ($routeProvider) {
             vm.part = true;
         }
 
-        vm.hidePart= function () {
+        vm.hidePart = function () {
             vm.part = false;
         }
- 
+
         vm.showBack = function () {
             vm.back = true;
         }
 
-        vm.hideBack= function () {
+        vm.hideBack = function () {
             vm.back = false;
         }
 
@@ -85,13 +86,13 @@ app.config(function ($routeProvider) {
             vm.back = true;
         }
 
-       
+
         vm.backToMenu = function () {
             vm.map = false;
             vm.back = false;
             vm.part = false;
+            vm.closeInfoWindow();
         }
-
 
         vm.openInsta = function() {
             var url = 'https://www.instagram.com/auerfarm/';
@@ -148,6 +149,29 @@ app.config(function ($routeProvider) {
                 console.log('Browser is closed...')
             }
         }
+        
+        vm.showInfoWindow = function (marker) {
+            vm.infoWindow = true;
+            vm.toggleContent = true;
+            vm.slide = true;//'slideUp';
+            vm.MapInfoName = marker.Name;
+            vm.MapInfoDescription = marker.Description;
+            $scope.$apply()
+        }
+
+        vm.hideInfoWindow = function () {
+            vm.infoWindow = false;
+            vm.slide = false;//'slideDown';
+            $scope.$apply();
+        }
+
+        // No animation to prevent overlap when going back to menu
+        vm.closeInfoWindow = function () {
+            vm.quickClose = true;
+            hideInfoWindow();
+            vm.quickClose = false;
+            $scope.$apply();
+        }
     }
 })();
 
@@ -155,6 +179,13 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('NewsController', NewsController);
+
+    app.filter("jsDate", function () {
+        return function (x) {
+            return new Date(parseInt(x.substr(6)));
+        };
+    });
+
     NewsController.$inject = ['$scope', '$http'];
 
     function NewsController($scope, $http) {

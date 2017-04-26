@@ -81,6 +81,7 @@
                 //console.log(mark);
                 var infowindow;
 
+                /*
                 mark.addListener('mouseover', function () {
                     // console.log(mark);
                     infowindow = InfoContent(objects[this.id]);
@@ -90,13 +91,31 @@
                 mark.addListener('mouseout', function () {
                     infowindow.close();
                 });
+                */
+
+                mark.addListener('click', function () {
+                    InfoContent(objects[this.id]);
+                    //alert(objects[this.id].Name);
+                    //infowindow.open(map, this);
+                });
 
                 allMarkers.push(mark);
             }
 
+            google.maps.event.addListener(map, 'click', function (event) {
+                angular.element('#MainController').scope().MainC.hideInfoWindow();
+                angular.element('#MainController').scope().$apply;
+            });
         }
 
         google.maps.event.addDomListener(window, 'load', onSuccess);
+
+
+        var InfoContent = function (ob) {
+            angular.element('#MainController').scope().MainC.showInfoWindow(ob);
+            angular.element('#MainController').scope().$apply;
+            return;
+        }
 
     </script>
 
@@ -123,7 +142,7 @@
 
 
     <!-- Main Body -->
-    <div ng-controller="MainController as MainC">
+    <div id="MainController" ng-controller="MainController as MainC">
 
         <div class="clearfix mobile-header">
             <div class="col-lg-2 col-sm-2 col-xs-2" ng-click="MainC.backToMenu()" ng-show="MainC.back">
@@ -194,7 +213,21 @@
             </div>
 
             <div>
-                <div id="map"></div>
+                <div id="map" class ="slider" ng-class="{'slideUp': MainC.slide, 'slideDown': !MainC.slide}">
+                </div>
+                <div ng-hide="!MainC.infoWindow" ng-class="{ 'quickClose': MainC.quickClose}" id="overlap">
+                    <div ng-click="">
+                        <div class="container" ng-class="{'vertical': MainC.toggleContent, 'horizontal': !MainC.toggleContent}">
+                            <h3 class='ob-info-name page-header'>{{MainC.MapInfoName}}</h3> 
+                            <div>
+                                <h4>{{MainC.MapInfoDescription}}</h4>
+                            </div> 
+                        </div>
+                            <div class='info-window-img'> 
+                                <img src='http://localhost:50409/Content/rafi-filler-pic.jpg' class="img-thumbnail" alt='placeholder-pic' /> 
+                            </div> 
+                    </div>
+                </div>
             </div>
         </div>
         <div ng-show="MainC.part">
