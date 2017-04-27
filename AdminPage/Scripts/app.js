@@ -410,7 +410,7 @@ $(document).ready(function () {
         var page = farmInfoItem.Type;
         $.ajax({
             type: "POST",
-            url: "../../FarmInfo/AddInfoItem",
+            url: "/FarmInfo/AddInfoItem",
             data: farmInfoItem,
             success: function (response) {
                 console.log(response);
@@ -435,7 +435,7 @@ $(document).ready(function () {
     function UpdateInfoItem(farmInfoItem) {
         $.ajax({
             type: "POST",
-            url: "../../FarmInfo/UpdateInfoItem",
+            url: "/FarmInfo/UpdateInfoItem",
             data: farmInfoItem,
             success: function (response) {
                 console.log(response);
@@ -457,4 +457,108 @@ $(document).ready(function () {
         }
         UpdateInfoItem(FarmInfoItem);
     });
+
+    $(document).on("click", ".delete-item", function (event) {
+        event.preventDefault();
+        var item = "#" + $(this).attr("id");
+        var FarmInfoItem = {
+            Id: $(this).attr("id"),
+            Type: $("input[name=item-type]").val(),
+            Title: $(item + " #item-title").val(),
+            Description: $(item + " #item-desc").val(),
+            Date: $(item + " #item-date").val(),
+            StartDate: $(item + " #item-post-date").val(),
+            EndDate: $(item + " #item-remove-date").val(),
+        }
+        DeleteInfoItem(FarmInfoItem);
+    });
+
+    function DeleteInfoItem(farmInfoItem) {
+        $.ajax({
+            type: "POST",
+            url: "/FarmInfo/DeleteInfoItem",
+            data: farmInfoItem,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    }
+
+    /****************************************************************************************
+    Product SCRIPTS
+    ****************************************************************************************/
+    //Add new item div when user clicks new-news-item
+    $(document).on("click", "#new-product", function (event) {
+        event.preventDefault();
+        $(".item-list").prepend('<div class="info-item-container container-fluid new-item" ><div class="row"><div class="col-xs-2"><div class="info-item-image"><img src="/Content/rafi-filler-pic.jpg" alt="placeholder-pic" /></div></div><div class="col-xs-10 @*beside-img*@"><div class="split-content"><div class="left-content"><div class="ti-label inline-block"><h6>Name:</h6></div><input type="text" class="inline-block form-control" id="item-title"></div></div><div class="ti-label inline-block"><h6>Description:</h6></div><textarea class="inline-block form-control" id="item-desc"></textarea><div class="ti-label inline-block"><h6>Price:</h6><input class="inline-block form-control" id="item-price"></input></div></div></div></div></div><button type="button" class="form-control" id="submit-new-product">Save Item</button></div>');
+    });
+
+    function AddProduct(product) {
+        $.ajax({
+            type: "POST",
+            url: "/FarmInfo/AddProduct",
+            data: product,
+            success: function (response) {
+                console.log(response);
+            }
+        }).done(function () { LoadShop(false) });
+    }
+
+    $(document).on("click", "#submit-new-product", function (event) {
+        event.preventDefault();
+        var Product = {
+            Id: null,
+            Name: $(".new-item #item-title").val(),
+            Description: $(".new-item #item-desc").val(),
+            Price: $(".new-item #item-price").val()
+        }
+        AddProduct(Product);
+    });
+
+    function UpdateProduct(product) {
+        $.ajax({
+            type: "POST",
+            url: "/FarmInfo/UpdateProduct",
+            data: product,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    }
+
+    $(document).on("click", ".delete-item", function (event) {
+        event.preventDefault();
+        var item = "#" + $(this).attr("id");
+        var Product = {
+            Id: null,
+            Name: $(".new-item #item-title").val(),
+            Description: $(".new-item #item-desc").val(),
+            Price: $(".new-item #item-price").val()
+        }
+        UpdateProduct(Product);
+    });
+
+    $(document).on("click", ".delete-item", function (event) {
+        event.preventDefault();
+        var item = "#" + $(this).attr("id");
+        var Product = {
+            Id: $(this).attr("id"),
+            Name: $(item + " #item-title").val(),
+            Description: $(item + " #item-desc").val(),
+            Price: $(item + " #item-price").val()
+        }
+        DeleteProduct(Product);
+    });
+
+    function DeleteProduct(product) {
+        $.ajax({
+            type: "POST",
+            url: "/FarmInfo/DeleteProduct",
+            data: product,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    }
 });
+

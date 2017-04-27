@@ -27,6 +27,7 @@ namespace AdminPage.DAL
                        target.Long = input.Long;
                     if (input.Lat != null)
                         target.Lat = input.Lat;
+                    target.Image = input.Image;
                     target.Active = input.Active;
                     db.SaveChanges();
                 }

@@ -183,7 +183,7 @@ textarea {
 .info-item-container {
     border-bottom: solid 1px rgb(12, 104, 17);
 }
-.info-item-image {
+.info-item-image  {
     display: inline-block;
 	width: auto;
 	height: 20vh;
@@ -230,4 +230,14 @@ textarea {
 .update-item {
     padding: 3px 12px;
     height: auto;
+}
+
+#product-desc {
+    width: 100% !important;
+    float:left;
+}
+
+img#imgPrv {
+    height: 50px !important;
+    width: 50px !important;
 }

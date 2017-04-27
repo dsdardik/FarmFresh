@@ -41,14 +41,22 @@ namespace AdminPage.Controllers
             }
             catch (Exception e)
             {
-                return Json("error");
+                return new HttpStatusCodeResult(500);
             }
         }
 
         [HttpPost]
-        public ActionResult RemoveInfoItem(int id)
+        public ActionResult DeleteInfoItem(FarmInfoItem item)
         {
-            return PartialView();
+            try
+            {
+                InfoItemOps.DeleteInfoItem(item);
+                return new HttpStatusCodeResult(200);
+            }
+            catch (Exception e)
+            {
+                return new HttpStatusCodeResult(500);
+            }
         }
 
         [HttpPost]
@@ -76,7 +84,8 @@ namespace AdminPage.Controllers
         {
             try
             {
-                return Json("success");
+                ProductOps.AddProduct(item);
+                return new HttpStatusCodeResult(200);
             }
             catch (Exception e)
             {

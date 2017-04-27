@@ -124,6 +124,8 @@
     <script src="lib/angular/angular.min.js"></script>
 
     <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-strap.min.js"></script>
+    <script src="scripts/angular-strap.tpl.min.js"></script>
     <script src="lib/angular-animate/angular-animate.min.js"></script>
     <script src="scripts/underscore.min.js"></script>
 
@@ -216,16 +218,21 @@
                 <div id="map" class ="slider" ng-class="{'slideUp': MainC.slide, 'slideDown': !MainC.slide}">
                 </div>
                 <div ng-hide="!MainC.infoWindow" ng-class="{ 'quickClose': MainC.quickClose}" id="overlap">
-                    <div ng-click="">
-                        <div class="container" ng-class="{'vertical': MainC.toggleContent, 'horizontal': !MainC.toggleContent}">
-                            <h3 class='ob-info-name page-header'>{{MainC.MapInfoName}}</h3> 
-                            <div>
-                                <h4>{{MainC.MapInfoDescription}}</h4>
-                            </div> 
+                    <div>
+                        <div class="container">
+                            
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <h3 class='ob-info-name page-header'>{{MainC.MapInfoName}}</h3>
+                                    <h4>{{MainC.MapInfoDescription}}</h4>
+                                </div>
+                                <div class='info-picture col-xs-4'>
+                                    <img src='http://localhost:50409/Content/rafi-filler-pic.jpg' class="img-thumbnail" alt='placeholder-pic' />
+                                </div>
+                            </div>
+
+
                         </div>
-                            <div class='info-window-img'> 
-                                <img src='http://localhost:50409/Content/rafi-filler-pic.jpg' class="img-thumbnail" alt='placeholder-pic' /> 
-                            </div> 
                     </div>
                 </div>
             </div>

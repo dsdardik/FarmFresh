@@ -31,6 +31,7 @@ namespace AdminPage.DAL
                 itemToChange.Description = input.Description;
                 itemToChange.StartDate = input.StartDate ?? DateTime.Now;
                 itemToChange.EndDate = input.EndDate ?? DateTime.MaxValue;
+                itemToChange.Image = input.Image;
                 db.SaveChanges();
             }
         }
@@ -41,6 +42,17 @@ namespace AdminPage.DAL
             {
                 List<FarmInfoItem> items = db.InfoItems.Where(i => i.Type == type).OrderByDescending(i => i.Id).ToList();
                 return items;
+            }
+        }
+
+        public static bool DeleteInfoItem(FarmInfoItem input)
+        {
+            using (AuerfarmDataContext db = new AuerfarmDataContext())
+            {
+                FarmInfoItem item = db.InfoItems.Where(i => i.Id == input.Id).FirstOrDefault();
+                db.InfoItems.Remove(item);
+                db.SaveChanges();
+                return true;
             }
         }
     }

@@ -23,10 +23,7 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.otherwise({ redirectTo: "/" });
-
-
-
-
+    
 });
 
 //Page Controllers
@@ -34,9 +31,9 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('MainController', MainController);
-    MainController.$inject = ['$scope', '$location'];
+    MainController.$inject = ['$scope', '$location', '$timeout'];
 
-    function MainController($scope, $location) {
+    function MainController($scope, $location, $timeout) {
         var vm = this;
         vm.title = "News";
         vm.pageTitle = "Auerfarm Mobile";
@@ -151,12 +148,13 @@ app.config(function ($routeProvider) {
         }
         
         vm.showInfoWindow = function (marker) {
+            vm.quickClose = false;
             vm.infoWindow = true;
             vm.toggleContent = true;
             vm.slide = true;//'slideUp';
             vm.MapInfoName = marker.Name;
             vm.MapInfoDescription = marker.Description;
-            $scope.$apply()
+            $scope.$apply();
         }
 
         vm.hideInfoWindow = function () {
@@ -168,10 +166,11 @@ app.config(function ($routeProvider) {
         // No animation to prevent overlap when going back to menu
         vm.closeInfoWindow = function () {
             vm.quickClose = true;
-            hideInfoWindow();
-            vm.quickClose = false;
+            vm.infoWindow = false;
+            vm.slide = false;//'slideDown';
             $scope.$apply();
         }
+
     }
 })();
 
