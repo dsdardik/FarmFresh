@@ -21,16 +21,16 @@ namespace AdminPage.Controllers
             string items = "";
             switch (type)
             {
-                case "Calendar":
-                case "News":
+                case "calendar":
+                case "news":
                     List<FarmInfoItem> infoItems = InfoItemOps.GetInfoItems(type);
                     items = new JavaScriptSerializer().Serialize(infoItems);
                     break;
-                case "Map":
+                case "map":
                     List<MapItem> mapItems = MapItemOps.GetMapItems("none");
                     items = new JavaScriptSerializer().Serialize(mapItems);
                     break;
-                case "Shop":
+                case "shop":
                     List<Product> products = ProductOps.GetProducts();
                     items = new JavaScriptSerializer().Serialize(products);
                     break;

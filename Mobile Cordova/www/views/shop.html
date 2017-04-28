@@ -6,14 +6,14 @@
     <div ng-if="NC.isLoaded">
         <div ng-repeat="item in NC.saleItems">
             <div class="list-item">
-                <div ng-show="NC.showAll" ng-click="NC.toggleStory(story)" )>
+                <div ng-show="NC.showAll" ng-click="NC.toggleStory(item)" )>
                     <div class="clearfix">
                         <div class="list-item-title clearfix">
                             <div class="title-inner col-xs-7">
-                                {{item.Title}}
+                                {{item.Name}}
                             </div>
                             <div class="list-item-date col-xs-5">
-                                {{item.Date | jsDate | date:"MM-dd-yy}}
+                                {{item.Price | currency}}
                             </div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                     <div class="list-item-body">
 
                         <div class="col-xs-3 col-lg-3">
-                            <!-- <img src="../Content/images/goat.jpg" class="list-item-image" />-->
+                            <img src="http://localhost:50409/Content/'+{{item.Image}}'" class="list-item-image" />
                         </div>
                         <div class="col-xs-9 col-lg-9">
                             <div class="list-item-text">{{item.Description}}</div>
@@ -30,16 +30,16 @@
 
                 </div>
             </div>
-            <div class="list-item-expand" ng-show="item.showFull" ng-click="NC.toggleStory(story)">
+            <div class="list-item-expand" ng-show="item.showFull" ng-click="NC.toggleStory(item)">
 
                 <div class="list-item-title clearfix">
 
                     <div class="title-inner col-xs-7">
-                        {{item.Title}}
+                        {{item.Name}}
                     </div>
 
                     <div class="list-item-date col-xs-5">
-                        {{item.Date | jsDate | date:"MM-dd-yy}}
+                        {{item.Price | currency}}
                     </div>
 
                 </div>
@@ -53,7 +53,11 @@
                     <div class="expanded-body">
                         {{item.Description}}
                     </div>
+                    <div>
+                        <p>Listing Date: {{item.Date | jsDate | date:"MM-dd-yy"}}</p>
+                    </div>
                 </div>
+
 
             </div>
 

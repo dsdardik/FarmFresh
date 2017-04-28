@@ -7,7 +7,7 @@ $(document).ready(function () {
     window.gMapsCallback = function () {
         gMapsLoaded = true;
         $(window).trigger('gMapsLoaded');
-    }
+    };
 
     window.loadGoogleMaps = function () {
         if (gMapsLoaded) { return window.gMapsCallback(); }
@@ -15,11 +15,10 @@ $(document).ready(function () {
         script_tag.setAttribute("type", "text/javascript");
         script_tag.setAttribute("src", "http://maps.google.com/maps/api/js?key=AIzaSyBEIKQKPXffQ-lVn4p5FjI9sBjsb4GAGWQ&sensor=false&callback=gMapsCallback");
         (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
-    }
+    };
 
     function initialize() {
         var map;
-        var infowindow;
         var messagewindow;
         currentMarker = null;// = null;
         allMarkers = [];
@@ -63,7 +62,7 @@ $(document).ready(function () {
             var ob = objects[i];
             //console.log(ob);
             var long = parseFloat(ob.Long);
-            var lat = parseFloat(ob.Lat)
+            var lat = parseFloat(ob.Lat);
             var pos = new google.maps.LatLng(lat, long);
             var mark = new google.maps.Marker({
                 position: pos,
@@ -71,7 +70,7 @@ $(document).ready(function () {
                 icon: "/Content/" + ob.Type + ".png",
                 draggable: true,
                 id: i,
-                type: ob.Type,
+                type: ob.Type
             });
             //console.log(mark);
             var infowindow;
@@ -101,7 +100,7 @@ $(document).ready(function () {
                     map: map,
                     icon: "/Content/type-other.png",
                     draggable: true,
-                    id: null,
+                    id: null
                 });
 
                 currentMarker = marker;
@@ -135,15 +134,15 @@ $(document).ready(function () {
         //console.log(ob);
         var content = "<div><h5 class='ob-info-name'>" + ob.Name + "</h4> <div class='info-window-img'> <img src='Content/rafi-filler-pic.jpg' alt='placeholder-pic' /> </div> </div>";
         var infowindow = new google.maps.InfoWindow({
-            content: content,
+            content: content
         });
         return infowindow;
-    }
+    };
 
-    var CreateMapObject = function(m){
+    var CreateMapObject = function (m) {
         //console.log(m);
         //console.log(m.position);
-        if (m.id != null) {
+        if (m.id !== null) {
             var info = objects[m.id];
             $("#object-action").html("Update Object");
             $("#item-name").val(info.Name);
@@ -163,7 +162,7 @@ $(document).ready(function () {
         location.href = "#";
         location.href = "#map-object-info";
         //console.log($(".update-map-item").attr('id'));
-    }
+    };
 
     var AddMapObject = function (m) {
         //console.log("adding map object");
@@ -176,8 +175,8 @@ $(document).ready(function () {
                 Description: $('#item-desc').val(),
                 Long: m.position.lng(),
                 Lat: m.position.lat(),
-                Active: true,
-            }
+                Active: true
+            };
         $.ajax({
             type: "POST",
             url: "../../FarmInfo/AddMapObject",
@@ -191,7 +190,7 @@ $(document).ready(function () {
         });
         LoadMap();
         $(".update-map-item").disabled = false;
-    }
+    };
 
     var AddMapListObject = function (b) {
         var id = $(b).parent().parent().parent().attr('id');
@@ -199,11 +198,11 @@ $(document).ready(function () {
         var MapItem =
             {
                 Id: id,
-                Type: $("#"+ id +" #item-type").val(),
+                Type: $("#" + id + " #item-type").val(),
                 Name: $("#" + id + " #item-name").val(),
                 Description: $("#" + id + ' #item-desc').val(),
-                Active: true,
-            }
+                Active: true
+            };
         $.ajax({
             type: "POST",
             url: "../../FarmInfo/AddMapObject",
@@ -216,7 +215,7 @@ $(document).ready(function () {
                 console.log(response);
             }
         });
-    }
+    };
 
     $(document).on('click', '.update-map-list-item', function (event) {
         //console.log(currentMarker);
@@ -232,7 +231,7 @@ $(document).ready(function () {
             type: "POST",
             url: "../../Home/GetMapObjects",
             data: { 'filter': filter },
-           // dataType: "json",
+            // dataType: "json",
             async: false,
             success: function (response) {
                 //console.log(response);
@@ -240,7 +239,7 @@ $(document).ready(function () {
             }
         });
         return res;
-    }
+    };
 
     $(document).on("click", "#map-list-view", function (event) {
         event.preventDefault();
@@ -261,7 +260,7 @@ $(document).ready(function () {
             var mark = allMarkers[key];
             //console.log(mark.type);
             mark.setVisible(true);
-            if (mark.type != filter && filter != "none")
+            if (mark.type !== filter && filter !== "none")
                 mark.setVisible(false);
         }
     });
@@ -311,7 +310,7 @@ $(document).ready(function () {
                 $("#content").html(response);
                 $("#news-op").toggleClass("selected-op");
             }
-        }).done(function () { if (menu) { CollapseMenu() } });
+        }).done(function () { if (menu) { CollapseMenu(); } });
     }
 
     $(document).on("click", "#news-op", function (event) {
@@ -356,7 +355,7 @@ $(document).ready(function () {
                 $("#map-op").toggleClass("selected-op");
                 $(window).bind('gMapsLoaded', initialize); window.loadGoogleMaps();
             }
-        }).done(function () { if (menu) { CollapseMenu() } });
+        }).done(function () { if (menu) { CollapseMenu(); } });
     }
 
 
@@ -379,7 +378,7 @@ $(document).ready(function () {
                 $("#content").html(response);
                 $("#shop-op").toggleClass("selected-op");
             }
-        }).done(function () { if (menu) { CollapseMenu() } });
+        }).done(function () { if (menu) { CollapseMenu(); } });
     }
 
     $(document).on("click", "#shop-op", function (event) {
@@ -403,8 +402,35 @@ $(document).ready(function () {
     //Add new item div when user clicks new-news-item
     $(document).on("click", "#new-info-item", function (event) {
         event.preventDefault();
-        $(".item-list").prepend('<div class="info-item-container container-fluid new-item" ><div class="row"><div class="col-xs-2"><div class="info-item-image"><img src="~/Content/rafi-filler-pic.jpg" alt="placeholder-pic" /></div></div><div class="col-xs-10 @*beside-img*@"><div class="split-content"><div class="left-content"><div class="ti-label inline-block"><h6>Title:</h6></div><input type="text" class="inline-block form-control" id="item-title"></div><div class="right-content"><div class="ti-label inline-block"><h6>Date:</h6></div><input type="text" class="inline-block form-control" id="item-date"></div></div><div class="ti-label inline-block"><h6>Description:</h6></div><textarea class="inline-block form-control" id="item-desc"></textarea><div class="split-content"><div class="left-content"><div class="ti-label inline-block"><h6>Post Date:  </h6></div><input type="text" class="form-control  inline-block" id="item-post-date"></div><div class="right-content"><div class="ti-label inline-block"><h6>Hide Date:  </h6></div><input type="text" class="form-control inline-block" id="item-remove-date"></div></div></div></div><button type="button" class="form-control" id="submit-new-item">Save Item</button></div>');
+        LoadItem();
     });
+
+    function LoadItem() {
+        $.ajax({
+            type: "GET",
+            url: "Home/LoadItem",
+            success: function (response) {
+                $(".selected-op").removeClass("selected-op");
+                $("#item").html(response);
+                $("#news-op").toggleClass("selected-op");
+            }
+        });
+    };
+
+    function LoadEditItem(id) {
+        $.ajax({
+            type: "GET",
+            url: "Home/LoadEditItem",
+            data: {id: id},
+            success: function (response) {
+                $(".selected-op").removeClass("selected-op");
+                $("#item").html(response);
+                $("#news-op").toggleClass("selected-op");
+            }
+        });
+    };
+
+    //$('#datetimepicker').datetimepicker();
 
     function AddInfoItem(farmInfoItem) {
         var page = farmInfoItem.Type;
@@ -415,11 +441,13 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
             }
-        }).done(function () { if (page == "news") { LoadNews(false); } else { LoadCalendar(false); } });
-    }
+        }).done(function () { if (page === "news") { LoadNews(false); } else { LoadCalendar(false); } });
+    };
 
     $(document).on("click", "#submit-new-item", function (event) {
         event.preventDefault();
+        //var fullPath = document.getElementById('#item-image')[0].files[0];
+        //debugger;
         var FarmInfoItem = {
             Id: null,
             Type: $("input[name=item-type]").val(),
@@ -428,7 +456,10 @@ $(document).ready(function () {
             Date: $(".new-item #item-date").val(),
             StartDate: $(".new-item #item-post-date").val(),
             EndDate: $(".new-item #item-remove-date").val(),
-        }
+            Image: "rafi-filler-pic.jpg"
+        };
+        //var formData = new FormData(FarmInfoItem);
+        //formData.append($(".new-item #item-image"));
         AddInfoItem(FarmInfoItem);
     });
 
@@ -441,124 +472,526 @@ $(document).ready(function () {
                 console.log(response);
             }
         });
-    }
+    };
 
     $(document).on("click", ".update-item", function (event) {
         event.preventDefault();
+        
         var item = "#" + $(this).attr("id");
         var FarmInfoItem = {
             Id: $(this).attr("id"),
             Type: $("input[name=item-type]").val(),
-            Title: $(item + " #item-title").val(),
-            Description: $(item + " #item-desc").val(),
-            Date: $(item + " #item-date").val(),
-            StartDate: $(item + " #item-post-date").val(),
-            EndDate: $(item + " #item-remove-date").val(),
-        }
+            Title: $("#item-edit #item-title").val(),
+            Description: $("#item-edit #item-desc").val(),
+            Date: $("#item-edit #item-date").val(),
+            StartDate: $("#item-edit #item-post-date").val(),
+            EndDate: $("#item-edit #item-remove-date").val()
+        };
+        $("#item form").remove();
         UpdateInfoItem(FarmInfoItem);
     });
 
     $(document).on("click", ".delete-item", function (event) {
         event.preventDefault();
-        var item = "#" + $(this).attr("id");
-        var FarmInfoItem = {
-            Id: $(this).attr("id"),
-            Type: $("input[name=item-type]").val(),
-            Title: $(item + " #item-title").val(),
-            Description: $(item + " #item-desc").val(),
-            Date: $(item + " #item-date").val(),
-            StartDate: $(item + " #item-post-date").val(),
-            EndDate: $(item + " #item-remove-date").val(),
-        }
-        DeleteInfoItem(FarmInfoItem);
+        var id = $(this).attr("id");
+        $(this).remove();
+        DeleteInfoItem(id);
     });
 
-    function DeleteInfoItem(farmInfoItem) {
+    function DeleteInfoItem(id) {
         $.ajax({
             type: "POST",
             url: "/FarmInfo/DeleteInfoItem",
-            data: farmInfoItem,
+            data: {id: id},
             success: function (response) {
                 console.log(response);
             }
         });
-    }
+    };
+
+    $(document).on("click", "#cancel-item", function (event) {
+        event.preventDefault();
+        $("#item form").remove();
+    });
+
+    $(document).on("click", ".edit-item", function (event) {
+        event.preventDefault();
+        var id = $(this).attr("id");
+        $(this).remove();
+        LoadEditItem(id);
+    });
 
     /****************************************************************************************
     Product SCRIPTS
     ****************************************************************************************/
     //Add new item div when user clicks new-news-item
-    $(document).on("click", "#new-product", function (event) {
-        event.preventDefault();
-        $(".item-list").prepend('<div class="info-item-container container-fluid new-item" ><div class="row"><div class="col-xs-2"><div class="info-item-image"><img src="/Content/rafi-filler-pic.jpg" alt="placeholder-pic" /></div></div><div class="col-xs-10 @*beside-img*@"><div class="split-content"><div class="left-content"><div class="ti-label inline-block"><h6>Name:</h6></div><input type="text" class="inline-block form-control" id="item-title"></div></div><div class="ti-label inline-block"><h6>Description:</h6></div><textarea class="inline-block form-control" id="item-desc"></textarea><div class="ti-label inline-block"><h6>Price:</h6><input class="inline-block form-control" id="item-price"></input></div></div></div></div></div><button type="button" class="form-control" id="submit-new-product">Save Item</button></div>');
-    });
+        $(document).on("click", "#new-product", function (event) {
+            event.preventDefault();
+            LoadProduct();
+        });
 
-    function AddProduct(product) {
+    function LoadProduct() {
+        $.ajax({
+            type: "GET",
+            url: "Home/LoadProduct",
+            success: function (response) {
+                $(".selected-op").removeClass("selected-op");
+                $("#item").html(response);
+                $("#news-op").toggleClass("selected-op");
+            }
+        });
+    };
+
+    function LoadEditProduct(id) {
+        $.ajax({
+            type: "GET",
+            url: "Home/LoadEditProduct",
+            data: {id: id},
+            success: function (response) {
+                $(".selected-op").removeClass("selected-op");
+                $("#item").html(response);
+                $("#news-op").toggleClass("selected-op");
+            }
+        });
+    };
+
+    //$('#datetimepicker').datetimepicker();
+
+    function AddProduct(Product) {
         $.ajax({
             type: "POST",
             url: "/FarmInfo/AddProduct",
-            data: product,
+            data: Product,
             success: function (response) {
                 console.log(response);
             }
-        }).done(function () { LoadShop(false) });
-    }
+        }).done(function () { LoadShop(false); });
+    };
 
     $(document).on("click", "#submit-new-product", function (event) {
         event.preventDefault();
+        //var fullPath = document.getElementById('#item-image')[0].files[0];
+        //debugger;
         var Product = {
             Id: null,
-            Name: $(".new-item #item-title").val(),
-            Description: $(".new-item #item-desc").val(),
-            Price: $(".new-item #item-price").val()
-        }
+            Name: $(".new-product #item-title").val(),
+            Description: $(".new-product #item-desc").val(),
+            Date: $(".new-product #item-date").val(),
+            Price: $(".new-product #item-price").val(),
+            Image: "rafi-filler-pic.jpg"
+        };
+        //var formData = new FormData(FarmInfoItem);
+        //formData.append($(".new-item #item-image"));
         AddProduct(Product);
     });
 
-    function UpdateProduct(product) {
+    function UpdateProduct(Product) {
         $.ajax({
             type: "POST",
             url: "/FarmInfo/UpdateProduct",
-            data: product,
+            data: Product,
             success: function (response) {
                 console.log(response);
             }
         });
-    }
+    };
 
-    $(document).on("click", ".delete-item", function (event) {
+    $(document).on("click", ".update-item", function (event) {
         event.preventDefault();
-        var item = "#" + $(this).attr("id");
-        var Product = {
-            Id: null,
-            Name: $(".new-item #item-title").val(),
-            Description: $(".new-item #item-desc").val(),
-            Price: $(".new-item #item-price").val()
-        }
-        UpdateProduct(Product);
-    });
-
-    $(document).on("click", ".delete-item", function (event) {
-        event.preventDefault();
+        
         var item = "#" + $(this).attr("id");
         var Product = {
             Id: $(this).attr("id"),
-            Name: $(item + " #item-title").val(),
-            Description: $(item + " #item-desc").val(),
-            Price: $(item + " #item-price").val()
-        }
-        DeleteProduct(Product);
+            Name: $("#item-edit #item-title").val(),
+            Description: $("#item-edit #item-desc").val(),
+            Date: $("#item-edit #item-date").val(),
+            Price: $("#item-edit #item-price").val()
+        };
+        $("#item form").remove();
+        UpdateInfoItem(Product);
     });
 
-    function DeleteProduct(product) {
+    $(document).on("click", ".delete-product", function (event) {
+        event.preventDefault();
+        var id = $(this).attr("id");
+        $('#product-edit').remove();
+        DeleteProduct(id);
+    });
+
+    function DeleteProduct(id) {
         $.ajax({
             type: "POST",
             url: "/FarmInfo/DeleteProduct",
-            data: product,
+            data: {id: id},
             success: function (response) {
                 console.log(response);
             }
         });
-    }
-});
+    };
 
+    $(document).on("click", "#cancel-product", function (event) {
+        event.preventDefault();
+        $("#item form").remove();
+    });
+
+    $(document).on("click", ".edit-product", function (event) {
+        event.preventDefault();
+        var id = $(this).attr("id");
+        $(this).remove();
+        LoadEditProduct(id);
+    });
+
+
+jQuery(function ($) {
+    "use strict";
+    // -------------------------------------------------------------
+    //   Basic Navigation
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#basic");
+        var $slidee = $frame.children("ul").eq(0);
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "basic",
+            smart: 1,
+            activateOn: "click",
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 3,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            pagesBar: $wrap.find(".pages"),
+            activatePageOn: "click",
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Buttons
+            forward: $wrap.find(".forward"),
+            backward: $wrap.find(".backward"),
+            prev: $wrap.find(".prev"),
+            next: $wrap.find(".next"),
+            prevPage: $wrap.find(".prevPage"),
+            nextPage: $wrap.find(".nextPage")
+        });
+
+        // To Start button
+        $wrap.find(".toStart").on("click", function () {
+            var item = $(this).data("item");
+            // Animate a particular item to the start of the frame.
+            // If no item is provided, the whole content will be animated.
+            $frame.sly("toStart", item);
+        });
+
+        // To Center button
+        $wrap.find(".toCenter").on("click", function () {
+            var item = $(this).data("item");
+            // Animate a particular item to the center of the frame.
+            // If no item is provided, the whole content will be animated.
+            $frame.sly("toCenter", item);
+        });
+
+        // To End button
+        $wrap.find(".toEnd").on("click", function () {
+            var item = $(this).data("item");
+            // Animate a particular item to the end of the frame.
+            // If no item is provided, the whole content will be animated.
+            $frame.sly("toEnd", item);
+        });
+
+        // Add item
+        $wrap.find(".add").on("click", function () {
+            $frame.sly("add", "<li>" + $slidee.children().length + "</li>");
+        });
+
+        // Remove item
+        $wrap.find(".remove").on("click", function () {
+            $frame.sly("remove", -1);
+        });
+    })();
+
+    // -------------------------------------------------------------
+    //   Centered Navigation
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#centered");
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "centered",
+            smart: 1,
+            activateOn: "click",
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 4,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Buttons
+            prev: $wrap.find(".prev"),
+            next: $wrap.find(".next")
+        });
+    })();
+
+    // -------------------------------------------------------------
+    //   Force Centered Navigation
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#forcecentered");
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "forceCentered",
+            smart: 1,
+            activateMiddle: 1,
+            activateOn: "click",
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 0,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Buttons
+            prev: $wrap.find(".prev"),
+            next: $wrap.find(".next")
+        });
+    })();
+
+    // -------------------------------------------------------------
+    //   Cycle By Items
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#cycleitems");
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "basic",
+            smart: 1,
+            activateOn: "click",
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 0,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Cycling
+            cycleBy: "items",
+            cycleInterval: 1000,
+            pauseOnHover: 1,
+
+            // Buttons
+            prev: $wrap.find(".prev"),
+            next: $wrap.find(".next")
+        });
+
+        // Pause button
+        $wrap.find(".pause").on("click", function () {
+            $frame.sly("pause");
+        });
+
+        // Resume button
+        $wrap.find(".resume").on("click", function () {
+            $frame.sly("resume");
+        });
+
+        // Toggle button
+        $wrap.find(".toggle").on("click", function () {
+            $frame.sly("toggle");
+        });
+    })();
+
+    // -------------------------------------------------------------
+    //   Cycle By Pages
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#cyclepages");
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "basic",
+            smart: 1,
+            activateOn: "click",
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 0,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            pagesBar: $wrap.find(".pages"),
+            activatePageOn: "click",
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Cycling
+            cycleBy: "pages",
+            cycleInterval: 1000,
+            pauseOnHover: 1,
+            startPaused: 1,
+
+            // Buttons
+            prevPage: $wrap.find(".prevPage"),
+            nextPage: $wrap.find(".nextPage")
+        });
+
+        // Pause button
+        $wrap.find(".pause").on("click", function () {
+            $frame.sly("pause");
+        });
+
+        // Resume button
+        $wrap.find(".resume").on("click", function () {
+            $frame.sly("resume");
+        });
+
+        // Toggle button
+        $wrap.find(".toggle").on("click", function () {
+            $frame.sly("toggle");
+        });
+    })();
+
+    // -------------------------------------------------------------
+    //   One Item Per Frame
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#oneperframe");
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "forceCentered",
+            smart: 1,
+            activateMiddle: 1,
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 0,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Buttons
+            prev: $wrap.find(".prev"),
+            next: $wrap.find(".next")
+        });
+    })();
+
+    // -------------------------------------------------------------
+    //   Crazy
+    // -------------------------------------------------------------
+    (function () {
+        var $frame = $("#crazy");
+        var $slidee = $frame.children("ul").eq(0);
+        var $wrap = $frame.parent();
+
+        // Call Sly on frame
+        $frame.sly({
+            horizontal: 1,
+            itemNav: "basic",
+            smart: 1,
+            activateOn: "click",
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 3,
+            scrollBar: $wrap.find(".scrollbar"),
+            scrollBy: 1,
+            pagesBar: $wrap.find(".pages"),
+            activatePageOn: "click",
+            speed: 300,
+            elasticBounds: 1,
+            easing: "easeOutExpo",
+            dragHandle: 1,
+            dynamicHandle: 1,
+            clickBar: 1,
+
+            // Buttons
+            forward: $wrap.find(".forward"),
+            backward: $wrap.find(".backward"),
+            prev: $wrap.find(".prev"),
+            next: $wrap.find(".next"),
+            prevPage: $wrap.find(".prevPage"),
+            nextPage: $wrap.find(".nextPage")
+        });
+
+        // To Start button
+        $wrap.find(".toStart").on("click", function () {
+            var item = $(this).data("item");
+            // Animate a particular item to the start of the frame.
+            // If no item is provided, the whole content will be animated.
+            $frame.sly("toStart", item);
+        });
+
+        // To Center button
+        $wrap.find(".toCenter").on("click", function () {
+            var item = $(this).data("item");
+            // Animate a particular item to the center of the frame.
+            // If no item is provided, the whole content will be animated.
+            $frame.sly("toCenter", item);
+        });
+
+        // To End button
+        $wrap.find(".toEnd").on("click", function () {
+            var item = $(this).data("item");
+            // Animate a particular item to the end of the frame.
+            // If no item is provided, the whole content will be animated.
+            $frame.sly("toEnd", item);
+        });
+
+        // Add item
+        $wrap.find(".add").on("click", function () {
+            $frame.sly("add", "<li>" + $slidee.children().length + "</li>");
+        });
+
+        // Remove item
+        $wrap.find(".remove").on("click", function () {
+            $frame.sly("remove", -1);
+        });
+    })();
+});
+});

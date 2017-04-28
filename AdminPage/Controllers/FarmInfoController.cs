@@ -46,10 +46,11 @@ namespace AdminPage.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteInfoItem(FarmInfoItem item)
+        public ActionResult DeleteInfoItem(int id)
         {
             try
             {
+                FarmInfoItem item = InfoItemOps.FindInfoItem(id);
                 InfoItemOps.DeleteInfoItem(item);
                 return new HttpStatusCodeResult(200);
             }
@@ -104,6 +105,21 @@ namespace AdminPage.Controllers
             catch (Exception e)
             {
                 return Json("error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProduct(int id)
+        {
+            try
+            {
+                Product item = ProductOps.FindProduct(id);
+                ProductOps.DeleteProduct(item);
+                return new HttpStatusCodeResult(200);
+            }
+            catch (Exception e)
+            {
+                return new HttpStatusCodeResult(500);
             }
         }
     }

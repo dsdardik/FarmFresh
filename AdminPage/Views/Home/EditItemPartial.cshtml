@@ -1,0 +1,91 @@
+﻿@model List<AdminPage.Models.DBModels.FarmInfoItem>
+<form enctype="multipart/form-data">
+    <div class="info-item-container container-fluid\" id="item-edit">
+        <div class="row">
+            <div class="col-xs-2">
+                <div class="info-item-image">
+                    <img src="Content/rafi-filler-pic.jpg" alt="placeholder-pic" />
+                </div>
+            </div>
+            <div class="col-xs-10 @*beside-img*@">
+                <div class="split-content">
+                    <div class="left-content-top">
+                        <div class='input-group'>
+                            <span class="input-group-addon">Title</span>
+                            <input type='text' class='inline-block form-control' id='item-title' placeholder="..." value="@Model.First().Title">
+                        </div>
+                    </div>
+                    <div class="left-content-top">
+                        <div class='input-group'>
+                            <span class="input-group-addon">Type</span>
+                            <select class='inline-block form-control' id='item-title' placeholder="...">
+                                <option value="news">News</option>
+                                <option value="calendar">Events</option>
+                                <option value="both">Both</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="right-content-top">
+                        <div class='input-group'>
+                            <span class="input-group-addon">Date</span>
+                            <input type='text' class='inline-block form-control' id='item-date' placeholder=""  value="@Model.First().Date" disabled>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class='input-group textarea-group'>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-comment"></span>
+                    </span>
+                    <textarea type='text' class='inline-block form-control' id='item-desc' placeholder="Enter Item Description here...">@Model.First().Description</textarea>
+                </div>
+                <br />
+
+                <div class="split-content">
+                    <div class="left-content">
+                        <div class='input-group date datetimepicker'>
+                            <input type='text' class='form-control inline-block date-control' id='item-post-date' placeholder="Show Date" value="@Model.First().StartDate">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="right-content">
+                        <div class='input-group date datetimepicker'>
+                            <input type='text' class='form-control inline-block' id='item-remove-date' placeholder="Hide Date" value="@Model.First().EndDate">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-pad">
+
+                <div class="col-xs-2">
+                    <input id="item-image" type="file" value="upload image" name="pic" accept="image/*" />
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-3">
+                    <button type="button" class="form-control update-item edit-control" id="@Model.FirstOrDefault().Id">Update</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="form-control delete-item edit-control" id="@Model.FirstOrDefault().Id">Delete</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="form-control edit-control" id="cancel-item">Cancel</button>
+                </div>
+
+                <script type="text/javascript">
+                    //$(function () {
+                    $('.datetimepicker').datetimepicker();
+                    $('#item-date').val(new Date().toLocaleString());
+            //});
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <br />
+</form>

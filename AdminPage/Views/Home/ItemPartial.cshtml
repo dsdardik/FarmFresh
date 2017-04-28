@@ -1,0 +1,87 @@
+﻿<form enctype="multipart/form-data">
+    <div class="info-item-container container-fluid new-item">
+        <div class="row">
+            <div class="col-xs-2">
+                <div class="info-item-image">
+                    <img src="Content/rafi-filler-pic.jpg" alt="placeholder-pic" />
+                </div>
+            </div>
+            <div class="col-xs-10 @*beside-img*@">
+                <div class="split-content">
+                    <div class="left-content-top">
+                        <div class='input-group'>
+                            <span class="input-group-addon">Title</span>
+                            <input type='text' class='inline-block form-control' id='item-title' placeholder="...">
+                        </div>
+                    </div>
+                    <div class="left-content-top">
+                        <div class='input-group'>
+                            <span class="input-group-addon">Type</span>
+                            <select class='inline-block form-control' id='item-type' placeholder="Select Type">
+                                <option value="news">News</option>
+                                <option value="calendar">Events</option>
+                                <option value="both">Both</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="right-content-top">
+                        <div class='input-group'>
+                            <span class="input-group-addon">Date</span>
+                            <input type='text' class='inline-block form-control' id='item-date' placeholder="" disabled>
+                        </div>
+                    </div>
+                </div>
+                    <br />
+
+                    <div class='input-group textarea-group'>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </span>
+                        <textarea type='text' class='inline-block form-control' id='item-desc' placeholder="Enter Item Description here..."></textarea>
+                    </div>
+                    <br />
+
+                    <div class="split-content">
+                        <div class="left-content">
+                            <div class='input-group date datetimepicker'>
+                                <input type='text' class='form-control inline-block date-control' id='item-post-date' placeholder="Show Date">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="right-content">
+                            <div class='input-group date datetimepicker'>
+                                <input type='text' class='form-control inline-block' id='item-remove-date' placeholder="Hide Date">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="top-pad">
+
+                <div class="col-xs-2">
+                    <input id="item-image" type="file" value="upload image" name="pic" accept="image/*" />
+                </div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-4">
+                    <button type="button" class="form-control edit-control" id="submit-new-item">Save</button>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="form-control edit-control" id="cancel-item">Cancel</button>
+                </div>
+
+                <script type="text/javascript">
+                    //$(function () {
+                    $('.datetimepicker').datetimepicker();
+                    $('#item-date').val(new Date().toLocaleString());
+            //});
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <br />
+</form>

@@ -15,6 +15,7 @@ namespace AdminPage.DAL
                 input.Date = input.Date ?? DateTime.Now;
                 input.StartDate = input.StartDate ?? DateTime.Now;
                 input.EndDate = input.EndDate ?? DateTime.MaxValue;
+                input.Image = input.Image ?? "rafi-filler-pic.jpg";
 
                 db.InfoItems.Add(input);
                 db.SaveChanges();
@@ -31,7 +32,7 @@ namespace AdminPage.DAL
                 itemToChange.Description = input.Description;
                 itemToChange.StartDate = input.StartDate ?? DateTime.Now;
                 itemToChange.EndDate = input.EndDate ?? DateTime.MaxValue;
-                itemToChange.Image = input.Image;
+                itemToChange.Image = input.Image ?? "rafi-filler-pic.jpg";
                 db.SaveChanges();
             }
         }
@@ -40,7 +41,19 @@ namespace AdminPage.DAL
         {
             using (AuerfarmDataContext db = new AuerfarmDataContext())
             {
-                List<FarmInfoItem> items = db.InfoItems.Where(i => i.Type == type).OrderByDescending(i => i.Id).ToList();
+                List<FarmInfoItem> items = new List<FarmInfoItem>();
+                switch (type)
+                {
+                    case "calendar":
+                    case "news":
+                    case "both":
+                        items = db.InfoItems.Where(i => i.Type == type || i.Type == "Both").OrderByDescending(i => i.Id).ToList();
+                        break;
+                    case "calendaronly":
+                    case "newsonly":
+                        items = db.InfoItems.Where(i => i.Type == type).OrderByDescending(i => i.Id).ToList();
+                        break;
+                }
                 return items;
             }
         }
@@ -53,6 +66,14 @@ namespace AdminPage.DAL
                 db.InfoItems.Remove(item);
                 db.SaveChanges();
                 return true;
+            }
+        }
+
+        public static FarmInfoItem FindInfoItem(int Id)
+        {
+            using (AuerfarmDataContext db = new AuerfarmDataContext())
+            {
+                return db.InfoItems.Where(i => i.Id == Id).FirstOrDefault();
             }
         }
     }

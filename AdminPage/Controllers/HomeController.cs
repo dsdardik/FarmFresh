@@ -72,6 +72,32 @@ namespace AdminPage.Controllers
             List<Product> model = ProductOps.GetProducts();
             return PartialView("ShopPartial", model);
         }
-        
+
+        public ActionResult LoadItem()
+        {
+            return PartialView("ItemPartial");
+        }
+
+        public ActionResult LoadEditItem(int id)
+        {
+            List<FarmInfoItem> model = new List<FarmInfoItem>();
+            FarmInfoItem item = InfoItemOps.FindInfoItem(id);
+            model.Add(item);
+            return PartialView("EditItemPartial", model);
+        }
+
+        public ActionResult LoadProduct()
+        {
+            return PartialView("ProductPartial");
+        }
+
+        public ActionResult LoadEditProduct(int id)
+        {
+            List<Product> model = new List<Product>();
+            Product item = ProductOps.FindProduct(id);
+            model.Add(item);
+            return PartialView("EditProductPartial", model);
+        }
+
     }
 }

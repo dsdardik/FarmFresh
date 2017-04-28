@@ -15,15 +15,14 @@
 }
 
 #item-type, #map-filter, #map-list-filter {
-width:auto;
-display:inline-block;
+    width: auto;
+    display: inline-block;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
-textarea {
-    max-width: 280px;
+select {
+    width: 280px;
 }
 
 
@@ -45,19 +44,21 @@ textarea {
 }
 
 button, input, .input-row select, textarea {
-	border-color: rgb(12, 104, 17) !important;
+    border-color: rgb(12, 104, 17) !important;
 }
+
 button {
-	color: rgb(12, 104, 17) !important;
+    color: rgb(12, 104, 17) !important;
 }
-button:hover {
-	background-color: rgb(12, 104, 17) !important;
-	color: white !important;
-}
+
+    button:hover {
+        background-color: rgb(12, 104, 17) !important;
+        color: white !important;
+    }
 
 .page-name {
     color: rgb(12, 104, 17);
-    padding-top:10px;
+    padding-top: 10px;
 }
 
 .menu-option, .new-item-button {
@@ -68,65 +69,76 @@ button:hover {
     width: 100vw;
     height: 100vh;
     z-index: 2;
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
-    overflow:hidden;
-    background-color: white; 
+    overflow: hidden;
+    background-color: white;
 }
+
 .test-content {
     width: 100vw;
 }
+
 .no-disp {
     display: none;
 }
+
 .color-col {
     background-color: rgb(12, 104, 17);
 }
+
 .row {
     margin: 0;
 }
+
 .full-height {
 }
+
 .left-nav {
-    position:fixed;
+    position: fixed;
     left: 0;
     top: 0;
     width: 15vw;
     height: 100vh;
-    z-index:2;
+    z-index: 2;
     background-color: rgb(12, 104, 17);
 }
+
 .nav-op {
     color: white;
     width: 100%;
     padding: 5px;
     background-color: rgb(12, 104, 17);
 }
-.nav-op:hover {
-    background-color: white;
-    color: rgb(12, 104, 17);
-    cursor: pointer;
-}
+
+    .nav-op:hover {
+        background-color: white;
+        color: rgb(12, 104, 17);
+        cursor: pointer;
+    }
+
 .selected-op {
     background-color: white;
     color: rgb(12, 104, 17);
 }
+
 .nav-image {
-	display: inline-block;
-	height: auto;
-	width: 100% !important;
+    display: inline-block;
+    height: auto;
+    width: 100% !important;
     max-width: 100% !important;
 }
-.nav-image img {
-    height: auto;
-    width: auto;
-    max-width: 100%!important;
-}
 
-.nav-image:hover {
-    cursor: pointer;
-}
+    .nav-image img {
+        height: auto;
+        width: auto;
+        max-width: 100% !important;
+    }
+
+    .nav-image:hover {
+        cursor: pointer;
+    }
 
 .inline-block {
     display: inline-block;
@@ -143,83 +155,112 @@ button:hover {
 
 textarea {
     float: right;
-    width: 85% !important;
+    /*width: 85% !important;*/
     min-width: 85% !important;
     margin-bottom: 10px;
 }
 
 .split-content {
     width: 100%;
-    height:auto;
+    height: auto;
     overflow: hidden;
 }
+
 .left-content .ti-label, .right-content .ti-label {
     float: left;
     clear: left;
     width: 30%;
 }
+
 .left-content input, .right-content input {
     float: right;
-    width: 69% !important;
+    /*!important width: 69%;*/
     min-width: 69% !important;
 }
+
 .left-content {
     float: left;
-    width: 48%;
-}
-.right-content {
-    float: right;
-    width: 48%;
+    width: 45%;
 }
 
-#submit-new-item {
-    margin: 10px 0; 
+.right-content {
+    float: right;
+    width: 45%;
 }
+
+.left-content-top {
+    float: left;
+    padding-right: 25px;
+    width: 33%;
+}
+
+.right-content-top {
+    float: left;
+    width: 33%;
+}
+
+.textarea-group {
+    width: 100%;
+}
+
+.edit-control {
+    margin: 10px;
+}
+
 .tall-col {
     min-height: 100% !important;
     max-height: 100% !important;
-    height: 100%!important;
+    height: 100% !important;
 }
+
 .info-item-container {
     border-bottom: solid 1px rgb(12, 104, 17);
 }
-.info-item-image  {
+
+.info-item-image {
     display: inline-block;
-	width: auto;
-	height: 20vh;
+    width: auto;
+    height: 20vh;
     max-height: 20vh !important;
 }
-.info-item-image img {
-    height: 100%;
-    width: auto;
-    max-height: 100% !important;
-}
+
+    .info-item-image img {
+        height: 100%;
+        width: auto;
+        max-height: 100% !important;
+    }
+
 .map-item-image {
     display: inline-block;
-	width: auto;
-	height: 20vh;
+    width: auto;
+    height: 20vh;
     max-height: 20vh !important;
 }
-.map-item-image img {
-    height: 100%;
-    width: auto;
-    max-height: 100% !important;
-}
+
+    .map-item-image img {
+        height: 100%;
+        width: auto;
+        max-height: 100% !important;
+    }
+
 .info-window-img img {
     max-height: 50px !important;
     width: auto;
 }
+
 .image-upload {
     max-width: 100%;
 }
+
 .new-item-button {
     margin: 0 15px;
 }
+
 .top-pad {
     padding-top: 10px;
 }
 
-.bottom-pad{
+.bottom-pad {
     padding-bottom: 10px;
 }
 
@@ -227,12 +268,190 @@ textarea {
     height: 410px;
 }
 
-.update-item {
-    padding: 3px 12px;
-    height: auto;
-}
 
 #product-desc {
     width: 100% !important;
-    float:left;
+    float: left;
+}
+
+/* Sly CSS */
+.frame {
+    max-height: 250px;
+    /*line-height: 250px;*/
+    overflow: hidden;
+}
+
+    .frame ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-size: 50px;
+    }
+
+        .frame ul li {
+            font-size: 14px;
+            float: left;
+            width: 220px;
+            height: 100%;
+            margin: 0 1px 0 0;
+            padding: 5px;
+            background: #333;
+            color: #ddd;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            .frame ul li img {
+                height: 100%;
+            }
+
+            .frame ul li.active {
+                color: #fff;
+                background: #a03232;
+            }
+
+
+/* Scrollbar */
+
+.scrollbar {
+    margin: 0 0 1em 0;
+    height: 2px;
+    background: #ccc;
+    line-height: 0;
+}
+
+    .scrollbar .handle {
+        width: 100px;
+        height: 100%;
+        background: #292a33;
+        cursor: pointer;
+    }
+
+        .scrollbar .handle .mousearea {
+            position: absolute;
+            top: -9px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+        }
+
+
+/* Pages */
+
+.pages {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+    text-align: center;
+}
+
+    .pages li {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin: 0 4px;
+        text-indent: -999px;
+        border-radius: 10px;
+        cursor: pointer;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2);
+    }
+
+        .pages li:hover {
+            background: #aaa;
+        }
+
+        .pages li.active {
+            background: #666;
+        }
+
+
+/* Controls */
+
+.controls {
+    margin: 25px 0;
+    text-align: center;
+}
+
+
+/* One Item Per Frame example*/
+
+.oneperframe {
+    height: 300px;
+    line-height: 300px;
+}
+
+    .oneperframe ul li {
+        width: 1140px;
+    }
+
+        .oneperframe ul li.active {
+            background: #333;
+        }
+
+
+/* Crazy example */
+
+.crazy ul li:nth-child(2n) {
+    width: 100px;
+    margin: 0 4px 0 20px;
+}
+
+.crazy ul li:nth-child(3n) {
+    width: 300px;
+    margin: 0 10px 0 5px;
+}
+
+.crazy ul li:nth-child(4n) {
+    width: 400px;
+    margin: 0 30px 0 2px;
+}
+
+.sly-list {
+    max-width: 100%;
+    height: 100%;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+    perspective: 1000px;
+}
+    /* flip the pane when hovered */
+    .flip-container:hover .flipper, .flip-container.hover .flipper {
+        transform: rotateY(180deg);
+    }
+
+.flip-container, .front, .back {
+    width: 100%;
+    height: 480px;
+}
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
 }

@@ -12,6 +12,8 @@ namespace AdminPage.DAL
         {
             using (AuerfarmDataContext db = new AuerfarmDataContext())
             {
+                input.Date = input.Date ?? DateTime.Now;
+                input.Image = input.Image ?? "rafi-filler-pic.jpg";
                 db.Products.Add(input);
                 db.SaveChanges();
             }
@@ -24,8 +26,9 @@ namespace AdminPage.DAL
                 Product item = db.Products.Where(i => i.Id == input.Id).FirstOrDefault();
                 item.Name = input.Name;
                 item.Description = input.Description;
+                item.Date = input.Date ?? DateTime.Now;
                 item.Price = input.Price;
-                item.Image = input.Image;
+                input.Image = input.Image ?? "rafi-filler-pic.jpg";
                 db.SaveChanges();
             }
         }
@@ -35,6 +38,25 @@ namespace AdminPage.DAL
             using (AuerfarmDataContext db = new AuerfarmDataContext())
             {
                 return db.Products.OrderBy(i => i.Name).ToList();
+            }
+        }
+
+        public static bool DeleteProduct(Product input)
+        {
+            using (AuerfarmDataContext db = new AuerfarmDataContext())
+            {
+                Product item = db.Products.Where(i => i.Id == input.Id).FirstOrDefault();
+                db.Products.Remove(item);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        public static Product FindProduct(int Id)
+        {
+            using (AuerfarmDataContext db = new AuerfarmDataContext())
+            {
+                return db.Products.Where(i => i.Id == Id).FirstOrDefault();
             }
         }
     }

@@ -154,13 +154,13 @@ app.config(function ($routeProvider) {
             vm.slide = true;//'slideUp';
             vm.MapInfoName = marker.Name;
             vm.MapInfoDescription = marker.Description;
-            $scope.$apply();
+            //$scope.$apply();
         }
 
         vm.hideInfoWindow = function () {
             vm.infoWindow = false;
             vm.slide = false;//'slideDown';
-            $scope.$apply();
+            //$scope.$apply();
         }
 
         // No animation to prevent overlap when going back to menu
@@ -168,7 +168,7 @@ app.config(function ($routeProvider) {
             vm.quickClose = true;
             vm.infoWindow = false;
             vm.slide = false;//'slideDown';
-            $scope.$apply();
+            //$scope.$apply();
         }
 
     }
@@ -196,7 +196,7 @@ app.config(function ($routeProvider) {
         $http({
             url: "http://localhost:50409/Api/Data",
             method: "GET",
-            params: { type: "News" }
+            params: { type: "news" }
         }).then(function mySucces(response) {
             vm.newsItems = response.data;
         }, function myError(response) {
@@ -224,6 +224,13 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('MapController', MapController);
+
+    app.filter("jsDate", function () {
+        return function (x) {
+            return new Date(parseInt(x.substr(6)));
+        };
+    });
+
     MapController.$inject = ['$scope'];
 
     function MapController($scope) {
@@ -236,6 +243,13 @@ app.config(function ($routeProvider) {
     'use strict';
 
     app.controller('EventsController', EventsController);
+
+    app.filter("jsDate", function () {
+        return function (x) {
+            return new Date(parseInt(x.substr(6)));
+        };
+    });
+
     EventsController.$inject = ['$scope', '$http'];
 
     function EventsController($scope, $http) {
@@ -246,7 +260,7 @@ app.config(function ($routeProvider) {
         $http({
             url: "http://localhost:50409/Api/Data",
             method: "GET",
-            params: { type: "Calendar" }
+            params: { type: "calendar" }
         }).then(function mySucces(response) {
             vm.events = response.data;
         }, function myError(response) {
@@ -275,47 +289,14 @@ app.config(function ($routeProvider) {
 (function () {
     'use strict';
 
-    app.controller('forumController', forumController);
-    forumController.$inject = ['$scope', '$http'];
-
-    function forumController($scope, $http) {
-        var vm = this;
-        vm.isLoaded = false;
-        vm.title = "Forum";
-        vm.showAll = true;
-        $http({
-            url: "http://localhost:50409/Api/Data",
-            method: "GET",
-            params: { type: "Comments" }
-        }).then(function mySucces(response) {
-            vm.comments = response.data;
-        }, function myError(response) {
-        });
-
-        _.each(vm.comments, function (story) {
-            story.showFull = false;
-        });
-
-        vm.toggleStory = function (story) {
-            story.showFull = !story.showFull;
-            vm.showAll = !vm.showAll;
-        };
-
-        vm.loadCheck = function () {
-            if (document.readyState === "complete") {
-                vm.isLoaded = true;
-            };
-        };
-        vm.loadCheck();
-    }
-
-
-})();
-
-(function () {
-    'use strict';
-
     app.controller('ShopController', ShopController);
+
+    app.filter("jsDate", function () {
+        return function (x) {
+            return new Date(parseInt(x.substr(6)));
+        };
+    });
+
     ShopController.$inject = ['$scope', '$http'];
 
     function ShopController($scope, $http) {
@@ -326,7 +307,7 @@ app.config(function ($routeProvider) {
         $http({
             url: "http://localhost:50409/Api/Data",
             method: "GET",
-            params: { type: "Shop" }
+            params: { type: "shop" }
         }).then(function mySucces(response) {
             vm.saleItems = response.data;
         }, function myError(response) {
