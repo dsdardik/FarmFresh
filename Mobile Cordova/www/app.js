@@ -150,17 +150,17 @@ app.config(function ($routeProvider) {
         vm.showInfoWindow = function (marker) {
             vm.quickClose = false;
             vm.infoWindow = true;
-            vm.toggleContent = true;
+            //vm.toggleContent = true;
             vm.slide = true;//'slideUp';
             vm.MapInfoName = marker.Name;
             vm.MapInfoDescription = marker.Description;
-            //$scope.$apply();
+            $scope.$apply();
         }
 
         vm.hideInfoWindow = function () {
             vm.infoWindow = false;
             vm.slide = false;//'slideDown';
-            //$scope.$apply();
+            $scope.$apply();
         }
 
         // No animation to prevent overlap when going back to menu
@@ -168,7 +168,7 @@ app.config(function ($routeProvider) {
             vm.quickClose = true;
             vm.infoWindow = false;
             vm.slide = false;//'slideDown';
-            //$scope.$apply();
+           //$scope.$apply();
         }
 
     }
