@@ -46,8 +46,10 @@ namespace AdminPage.DAL
                 {
                     case "calendar":
                     case "news":
+                        items = db.InfoItems.Where(i => i.Type == type || i.Type == "both").OrderByDescending(i => i.Id).ToList();
+                        break;
                     case "both":
-                        items = db.InfoItems.Where(i => i.Type == type || i.Type == "Both").OrderByDescending(i => i.Id).ToList();
+                        items = db.InfoItems.OrderByDescending(i => i.Id).ToList();
                         break;
                     case "calendaronly":
                     case "newsonly":

@@ -23,11 +23,11 @@ namespace AdminPage.Controllers
             try
             {
                 InfoItemOps.AddInfoItem(item);
-                return Json("success");
+                return new HttpStatusCodeResult(200);
             }
             catch (Exception e)
             {
-                return Json("error");
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
 
@@ -41,7 +41,7 @@ namespace AdminPage.Controllers
             }
             catch (Exception e)
             {
-                return new HttpStatusCodeResult(500);
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
 
@@ -56,7 +56,7 @@ namespace AdminPage.Controllers
             }
             catch (Exception e)
             {
-                return new HttpStatusCodeResult(500);
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
 
@@ -76,7 +76,7 @@ namespace AdminPage.Controllers
             }
             catch(Exception e)
             {
-                return new HttpStatusCodeResult(500);
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
 
@@ -90,7 +90,7 @@ namespace AdminPage.Controllers
             }
             catch (Exception e)
             {
-                return Json("error");
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
 
@@ -104,7 +104,7 @@ namespace AdminPage.Controllers
             }
             catch (Exception e)
             {
-                return Json("error");
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
 
@@ -119,7 +119,7 @@ namespace AdminPage.Controllers
             }
             catch (Exception e)
             {
-                return new HttpStatusCodeResult(500);
+                return new HttpStatusCodeResult(500, e.ToString());
             }
         }
     }

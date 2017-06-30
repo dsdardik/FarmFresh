@@ -200,6 +200,22 @@ app.config(function ($routeProvider) {
         }).then(function mySucces(response) {
             vm.newsItems = response.data;
         }, function myError(response) {
+            vm.newsItems = {
+            
+                    "mapObj":[
+                        {
+                "Title" : "Welcome!",
+                "Date" : "5/6/2017",
+                "Description" : "Thank you for downloading our new app!"
+                        },
+
+                        {
+                "Title" : "Welcome!",
+                "Date" : "5/6/2017",
+                "Description" : "Thank you for downloading our new app!"
+                        }
+                        ]
+            };
         });
 
         _.each(vm.newsItems, function (story) {
@@ -264,6 +280,11 @@ app.config(function ($routeProvider) {
         }).then(function mySucces(response) {
             vm.events = response.data;
         }, function myError(response) {
+             vm.saleItems = {
+                "Title" : "Pie Day",
+                "Date" : "5/16/2017",
+                "Description" : "Come pie a staff member in the face and eat some pie!"
+            };
         });
 
         _.each(vm.events, function (story) {
@@ -311,6 +332,12 @@ app.config(function ($routeProvider) {
         }).then(function mySucces(response) {
             vm.saleItems = response.data;
         }, function myError(response) {
+             vm.saleItems = {
+                "Title" : "Eggs",
+                "Price" : "$5.00",
+                "Date" : "5/6/2017",
+                "Description" : "Fresh Eggs for sale!"
+            };
         });
 
         _.each(vm.saleItems, function (story) {

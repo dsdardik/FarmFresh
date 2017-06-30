@@ -1,6 +1,6 @@
 ﻿@model List<AdminPage.Models.DBModels.Product>
 <form enctype="multipart/form-data">
-    <div class="info-item-container container-fluid\" id="product-edit">
+    <div class="info-item-container container-fluid product-edit">
         <div class="row">
             <div class="col-xs-2">
                 <div class="info-item-image">
@@ -12,13 +12,13 @@
                     <div class="left-content-top">
                         <div class='input-group'>
                             <span class="input-group-addon">Name</span>
-                            <input type='text' class='inline-block form-control' id='item-title' placeholder="..." value="@Model.First().Name">
+                            <input type='text' class='inline-block form-control' id='product-name' placeholder="..." value="@Model.First().Name">
                         </div>
                     </div>
                     <div class="right-content-top">
                         <div class='input-group'>
                             <span class="input-group-addon">Date</span>
-                            <input type='text' class='inline-block form-control' id='item-date' placeholder=""  value="@Model.First().Date" disabled>
+                            <input type='text' class='inline-block form-control' id='product-date' placeholder=""  value="@Model.First().Date" disabled>
                         </div>
                     </div>
                 </div>
@@ -28,20 +28,20 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-comment"></span>
                     </span>
-                    <textarea type='text' class='inline-block form-control' id='item-desc' placeholder="Enter Item Description here...">@Model.First().Description</textarea>
+                    <textarea type='text' class='inline-block form-control' id='product-desc' placeholder="Enter Item Description here...">@Model.First().Description</textarea>
                 </div>
                 <br />
 
                 <div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="text" class="form-control" id='item-price' value="@Model.First().Price" aria-label="Amount (to the nearest dollar)">
+                    <input type="text" class="form-control" id='product-price' value="@Model.First().Price" aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-addon">.00</span>
                 </div>
             </div>
             <div class="top-pad">
 
                 <div class="col-xs-2">
-                    <input id="item-image" type="file" value="upload image" name="pic" accept="image/*" />
+                    <input id="product-image" type="file" value="upload image" name="pic" accept="image/*" />
                 </div>
                 <div class="col-xs-1"></div>
                 <div class="col-xs-3">

@@ -15,8 +15,32 @@
     <div class="col-xs-2"></div>
 </div>
 <script>
-    $('#calendar').fullCalendar({
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
 
-         googleCalendarId: 'auerfarm.org_q5e6hao72q09temvb2uokilg4s%40group.calendar.google.com'
+    $('#calendar').fullCalendar({
+        editable: false,
+        weekMode: 'liquid',
+        events: [
+            {
+                title: 'test',
+                start: new Date()
+            }
+        ],
+        eventSources: [
+
+            // your event source
+            {
+                url: 'Home/LoadCalendar',
+                type: 'GET',
+                error: function() {
+                    alert('there was an error while fetching events!');
+                },
+                color: 'yellow',   // a non-ajax option
+                textColor: 'black' // a non-ajax option
+            }
+        ]
     });
 </script>

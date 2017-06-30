@@ -32,7 +32,7 @@ namespace AdminPage.Controllers
 
         public ActionResult LoadNews()
         {
-            List<FarmInfoItem> model = InfoItemOps.GetInfoItems("news");
+            List<FarmInfoItem> model = InfoItemOps.GetInfoItems("both");
             return PartialView("NewsPartial", model);
         }
 

@@ -1,11 +1,11 @@
 {
      "android": {
-         "release": {
-             "keystore": "",
-             "storePassword": "",
-             "alias": "",
-             "password" : "",
-             "keystoreType": ""
-         }
+      "release": {
+        "keystore": "C:\\Users\\dsdar\\Documents\\auerfarm.keystore",
+        "storePassword": "auerfarm",
+        "alias": "auerfarmKey",
+        "password": "auerfarm",
+        "keystoreType": ""
+      }
      }
  }

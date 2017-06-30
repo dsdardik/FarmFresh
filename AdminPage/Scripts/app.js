@@ -329,7 +329,7 @@ $(document).ready(function () {
             url: "Home/LoadCalendar",
             success: function (response) {
                 $(".selected-op").removeClass("selected-op");
-                $("#content").html(response);
+                //$("#content").html(response);
                 $("#calendar-op").toggleClass("selected-op");
             }
         }).done(function () {if (menu) { CollapseMenu(); } });
@@ -433,7 +433,6 @@ $(document).ready(function () {
     //$('#datetimepicker').datetimepicker();
 
     function AddInfoItem(farmInfoItem) {
-        var page = farmInfoItem.Type;
         $.ajax({
             type: "POST",
             url: "/FarmInfo/AddInfoItem",
@@ -441,21 +440,19 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
             }
-        }).done(function () { if (page === "news") { LoadNews(false); } else { LoadCalendar(false); } });
+        }).done(function () { LoadNews(false); });
     };
 
     $(document).on("click", "#submit-new-item", function (event) {
         event.preventDefault();
-        //var fullPath = document.getElementById('#item-image')[0].files[0];
-        //debugger;
         var FarmInfoItem = {
             Id: null,
-            Type: $("input[name=item-type]").val(),
-            Title: $(".new-item #item-title").val(),
-            Description: $(".new-item #item-desc").val(),
-            Date: $(".new-item #item-date").val(),
-            StartDate: $(".new-item #item-post-date").val(),
-            EndDate: $(".new-item #item-remove-date").val(),
+            Type: $("#item-type").val(),
+            Title: $("#item-title").val(),
+            Description: $("#item-desc").val(),
+            Date: $("#item-date").val(),
+            StartDate: $("#item-post-date").val(),
+            EndDate: $("#item-remove-date").val(),
             Image: "rafi-filler-pic.jpg"
         };
         //var formData = new FormData(FarmInfoItem);
@@ -471,21 +468,21 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
             }
-        });
+        }).done(function () { LoadNews(false); });
     };
 
     $(document).on("click", ".update-item", function (event) {
         event.preventDefault();
-        
         var item = "#" + $(this).attr("id");
         var FarmInfoItem = {
             Id: $(this).attr("id"),
-            Type: $("input[name=item-type]").val(),
-            Title: $("#item-edit #item-title").val(),
-            Description: $("#item-edit #item-desc").val(),
-            Date: $("#item-edit #item-date").val(),
-            StartDate: $("#item-edit #item-post-date").val(),
-            EndDate: $("#item-edit #item-remove-date").val()
+            Type: $("#item-type").val(),
+            Title: $("#item-title").val(),
+            Description: $("#item-desc").val(),
+            Date: $("#item-date").val(),
+            StartDate: $("#item-post-date").val(),
+            EndDate: $("#item-remove-date").val(),
+            Image: "rafi-filler-pic.jpg"
         };
         $("#item form").remove();
         UpdateInfoItem(FarmInfoItem);
@@ -494,8 +491,8 @@ $(document).ready(function () {
     $(document).on("click", ".delete-item", function (event) {
         event.preventDefault();
         var id = $(this).attr("id");
-        $(this).remove();
         DeleteInfoItem(id);
+        $("#item form").remove();
     });
 
     function DeleteInfoItem(id) {
@@ -506,12 +503,13 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
             }
-        });
+        }).done(function () { LoadNews(false); });
     };
 
     $(document).on("click", "#cancel-item", function (event) {
         event.preventDefault();
         $("#item form").remove();
+        LoadNews(false);
     });
 
     $(document).on("click", ".edit-item", function (event) {
@@ -536,8 +534,8 @@ $(document).ready(function () {
             url: "Home/LoadProduct",
             success: function (response) {
                 $(".selected-op").removeClass("selected-op");
-                $("#item").html(response);
-                $("#news-op").toggleClass("selected-op");
+                $("#product").html(response);
+                $("#shop-op").toggleClass("selected-op");
             }
         });
     };
@@ -549,8 +547,8 @@ $(document).ready(function () {
             data: {id: id},
             success: function (response) {
                 $(".selected-op").removeClass("selected-op");
-                $("#item").html(response);
-                $("#news-op").toggleClass("selected-op");
+                $("#product").html(response);
+                $("#shop-op").toggleClass("selected-op");
             }
         });
     };
@@ -570,14 +568,12 @@ $(document).ready(function () {
 
     $(document).on("click", "#submit-new-product", function (event) {
         event.preventDefault();
-        //var fullPath = document.getElementById('#item-image')[0].files[0];
-        //debugger;
         var Product = {
             Id: null,
-            Name: $(".new-product #item-title").val(),
-            Description: $(".new-product #item-desc").val(),
-            Date: $(".new-product #item-date").val(),
-            Price: $(".new-product #item-price").val(),
+            Name: $("#product-name").val(),
+            Description: $("#product-desc").val(),
+            Date: $("#product-date").val(),
+            Price: $("#product-price").val(),
             Image: "rafi-filler-pic.jpg"
         };
         //var formData = new FormData(FarmInfoItem);
@@ -593,29 +589,28 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
             }
-        });
+        }).done(function () { LoadShop(false); });
     };
 
-    $(document).on("click", ".update-item", function (event) {
+    $(document).on("click", ".update-product", function (event) {
         event.preventDefault();
         
-        var item = "#" + $(this).attr("id");
         var Product = {
             Id: $(this).attr("id"),
-            Name: $("#item-edit #item-title").val(),
-            Description: $("#item-edit #item-desc").val(),
-            Date: $("#item-edit #item-date").val(),
-            Price: $("#item-edit #item-price").val()
+            Name: $("#product-name").val(),
+            Description: $("#product-desc").val(),
+            Date: $("#product-date").val(),
+            Price: $("#product-price").val()
         };
-        $("#item form").remove();
-        UpdateInfoItem(Product);
+        $("#product form").remove();
+        UpdateProduct(Product);
     });
 
     $(document).on("click", ".delete-product", function (event) {
         event.preventDefault();
         var id = $(this).attr("id");
-        $('#product-edit').remove();
         DeleteProduct(id);
+        $("#product form").remove();
     });
 
     function DeleteProduct(id) {
@@ -626,12 +621,13 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
             }
-        });
+        }).done(function () { LoadShop(false); });
     };
 
     $(document).on("click", "#cancel-product", function (event) {
         event.preventDefault();
-        $("#item form").remove();
+        $("#product form").remove();
+        LoadShop(false);
     });
 
     $(document).on("click", ".edit-product", function (event) {
@@ -642,356 +638,4 @@ $(document).ready(function () {
     });
 
 
-jQuery(function ($) {
-    "use strict";
-    // -------------------------------------------------------------
-    //   Basic Navigation
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#basic");
-        var $slidee = $frame.children("ul").eq(0);
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "basic",
-            smart: 1,
-            activateOn: "click",
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 3,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            pagesBar: $wrap.find(".pages"),
-            activatePageOn: "click",
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Buttons
-            forward: $wrap.find(".forward"),
-            backward: $wrap.find(".backward"),
-            prev: $wrap.find(".prev"),
-            next: $wrap.find(".next"),
-            prevPage: $wrap.find(".prevPage"),
-            nextPage: $wrap.find(".nextPage")
-        });
-
-        // To Start button
-        $wrap.find(".toStart").on("click", function () {
-            var item = $(this).data("item");
-            // Animate a particular item to the start of the frame.
-            // If no item is provided, the whole content will be animated.
-            $frame.sly("toStart", item);
-        });
-
-        // To Center button
-        $wrap.find(".toCenter").on("click", function () {
-            var item = $(this).data("item");
-            // Animate a particular item to the center of the frame.
-            // If no item is provided, the whole content will be animated.
-            $frame.sly("toCenter", item);
-        });
-
-        // To End button
-        $wrap.find(".toEnd").on("click", function () {
-            var item = $(this).data("item");
-            // Animate a particular item to the end of the frame.
-            // If no item is provided, the whole content will be animated.
-            $frame.sly("toEnd", item);
-        });
-
-        // Add item
-        $wrap.find(".add").on("click", function () {
-            $frame.sly("add", "<li>" + $slidee.children().length + "</li>");
-        });
-
-        // Remove item
-        $wrap.find(".remove").on("click", function () {
-            $frame.sly("remove", -1);
-        });
-    })();
-
-    // -------------------------------------------------------------
-    //   Centered Navigation
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#centered");
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "centered",
-            smart: 1,
-            activateOn: "click",
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 4,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Buttons
-            prev: $wrap.find(".prev"),
-            next: $wrap.find(".next")
-        });
-    })();
-
-    // -------------------------------------------------------------
-    //   Force Centered Navigation
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#forcecentered");
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "forceCentered",
-            smart: 1,
-            activateMiddle: 1,
-            activateOn: "click",
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 0,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Buttons
-            prev: $wrap.find(".prev"),
-            next: $wrap.find(".next")
-        });
-    })();
-
-    // -------------------------------------------------------------
-    //   Cycle By Items
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#cycleitems");
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "basic",
-            smart: 1,
-            activateOn: "click",
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 0,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Cycling
-            cycleBy: "items",
-            cycleInterval: 1000,
-            pauseOnHover: 1,
-
-            // Buttons
-            prev: $wrap.find(".prev"),
-            next: $wrap.find(".next")
-        });
-
-        // Pause button
-        $wrap.find(".pause").on("click", function () {
-            $frame.sly("pause");
-        });
-
-        // Resume button
-        $wrap.find(".resume").on("click", function () {
-            $frame.sly("resume");
-        });
-
-        // Toggle button
-        $wrap.find(".toggle").on("click", function () {
-            $frame.sly("toggle");
-        });
-    })();
-
-    // -------------------------------------------------------------
-    //   Cycle By Pages
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#cyclepages");
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "basic",
-            smart: 1,
-            activateOn: "click",
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 0,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            pagesBar: $wrap.find(".pages"),
-            activatePageOn: "click",
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Cycling
-            cycleBy: "pages",
-            cycleInterval: 1000,
-            pauseOnHover: 1,
-            startPaused: 1,
-
-            // Buttons
-            prevPage: $wrap.find(".prevPage"),
-            nextPage: $wrap.find(".nextPage")
-        });
-
-        // Pause button
-        $wrap.find(".pause").on("click", function () {
-            $frame.sly("pause");
-        });
-
-        // Resume button
-        $wrap.find(".resume").on("click", function () {
-            $frame.sly("resume");
-        });
-
-        // Toggle button
-        $wrap.find(".toggle").on("click", function () {
-            $frame.sly("toggle");
-        });
-    })();
-
-    // -------------------------------------------------------------
-    //   One Item Per Frame
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#oneperframe");
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "forceCentered",
-            smart: 1,
-            activateMiddle: 1,
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 0,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Buttons
-            prev: $wrap.find(".prev"),
-            next: $wrap.find(".next")
-        });
-    })();
-
-    // -------------------------------------------------------------
-    //   Crazy
-    // -------------------------------------------------------------
-    (function () {
-        var $frame = $("#crazy");
-        var $slidee = $frame.children("ul").eq(0);
-        var $wrap = $frame.parent();
-
-        // Call Sly on frame
-        $frame.sly({
-            horizontal: 1,
-            itemNav: "basic",
-            smart: 1,
-            activateOn: "click",
-            mouseDragging: 1,
-            touchDragging: 1,
-            releaseSwing: 1,
-            startAt: 3,
-            scrollBar: $wrap.find(".scrollbar"),
-            scrollBy: 1,
-            pagesBar: $wrap.find(".pages"),
-            activatePageOn: "click",
-            speed: 300,
-            elasticBounds: 1,
-            easing: "easeOutExpo",
-            dragHandle: 1,
-            dynamicHandle: 1,
-            clickBar: 1,
-
-            // Buttons
-            forward: $wrap.find(".forward"),
-            backward: $wrap.find(".backward"),
-            prev: $wrap.find(".prev"),
-            next: $wrap.find(".next"),
-            prevPage: $wrap.find(".prevPage"),
-            nextPage: $wrap.find(".nextPage")
-        });
-
-        // To Start button
-        $wrap.find(".toStart").on("click", function () {
-            var item = $(this).data("item");
-            // Animate a particular item to the start of the frame.
-            // If no item is provided, the whole content will be animated.
-            $frame.sly("toStart", item);
-        });
-
-        // To Center button
-        $wrap.find(".toCenter").on("click", function () {
-            var item = $(this).data("item");
-            // Animate a particular item to the center of the frame.
-            // If no item is provided, the whole content will be animated.
-            $frame.sly("toCenter", item);
-        });
-
-        // To End button
-        $wrap.find(".toEnd").on("click", function () {
-            var item = $(this).data("item");
-            // Animate a particular item to the end of the frame.
-            // If no item is provided, the whole content will be animated.
-            $frame.sly("toEnd", item);
-        });
-
-        // Add item
-        $wrap.find(".add").on("click", function () {
-            $frame.sly("add", "<li>" + $slidee.children().length + "</li>");
-        });
-
-        // Remove item
-        $wrap.find(".remove").on("click", function () {
-            $frame.sly("remove", -1);
-        });
-    })();
-});
 });
